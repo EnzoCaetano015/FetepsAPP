@@ -36,11 +36,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
   final Map<String, String> apiUrls = {
     'Etec':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=ETEC',
+        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=ETEC&limit=300',
     'Fatec':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=FATEC',
+        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=FATEC&limit=300',
     'Outros':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=OUTROS',
+        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=OUTROS&limit=300',
   };
 
   @override
