@@ -16,8 +16,6 @@ class Cadastro1Page extends StatefulWidget {
 
 class _Cadastro1PageState extends State<Cadastro1Page> {
   final _formKey = GlobalKey<FormState>();
-  //final _tipoUserController = TextEditingController();
-  //final _instituicaoController = TextEditingController();
 
   List<Map<String, dynamic>> items = [];
   String? selectedItem;
@@ -38,11 +36,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
   final Map<String, String> apiUrls = {
     'Etec':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=ETEC&limit=300',
+        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=ETEC',
     'Fatec':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=FATEC&limit=300',
+        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=FATEC',
     'Outros':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=OUTROS&limit=300',
+        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=OUTROS',
   };
 
   @override
@@ -91,14 +89,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
         print('API response for $type: $data');
 
         if (data is Map && data['response'] is List) {
-          List<Map<String, dynamic>> institutions = (data['response']
-                  as List<dynamic>)
-              .map((e) => {
-                    'id':
-                        e['id'], 
-                    'name': e['name_institution']
-                  })
-              .toList();
+          List<Map<String, dynamic>> institutions =
+              (data['response'] as List<dynamic>)
+                  .map((e) => {'id': e['id'], 'name': e['name_institution']})
+                  .toList();
 
           institutions.sort((a, b) {
             String cleanA = a['name']
@@ -337,7 +331,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                 .map<DropdownMenuItem<String>>(
                                           (subOption) {
                                             return DropdownMenuItem<String>(
-                                              value: subOption['name'],
+                                              value: subOption['id'].toString(),
                                               child: Text(subOption['name']),
                                             );
                                           },
@@ -346,15 +340,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           setState(() {
                                             selectedSubOption = value;
                                           });
-                                          // CHAMANDO  O ID
-                                          final selectedInstitution =
-                                              options[selectedMainOption!]!
-                                                  .firstWhere(
-                                            (institution) =>
-                                                institution['name'] == value,
-                                          );
+
                                           print(
-                                              'ID da instituição selecionada: ${selectedInstitution['id']}');
+                                              'ID da instituição selecionada: $value');
                                         },
                                         decoration: const InputDecoration(
                                             labelText:
@@ -399,18 +387,21 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           left: 3.5, right: 4),
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Cadastro2Page(
-                                                selectedItem:
-                                                    selectedMainOption,
-                                                selectedItemInstituicao:
-                                                    selectedSubOption,
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Cadastro2Page(
+                                                  selectedItem:
+                                                      selectedMainOption,
+                                                  selectedItemInstituicao:
+                                                      selectedSubOption,
+                                                ),
                                               ),
-                                            ),
-                                          );
+                                            );
+                                          }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           minimumSize: const Size(100, 39),
