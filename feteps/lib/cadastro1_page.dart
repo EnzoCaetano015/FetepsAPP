@@ -29,7 +29,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
   String? selectedSubOption;
   List<String> userTypes = [];
 
-  Map<String, List<String>> options = {
+  Map<String, List<Map<String, dynamic>>> options = {
     'Etec': [],
     'Fatec': [],
     'Outros': [],
@@ -91,15 +91,18 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
         print('API response for $type: $data');
 
         if (data is Map && data['response'] is List) {
-          List<String> institutions = (data['response'] as List<dynamic>)
-              .map((e) => e['name_institution'] as String)
+          List<Map<String, dynamic>> institutions = (data['response'] as List<dynamic>)
+              .map((e) => {
+                    'id': e['id'], // assuming 'id' is the key for institution id
+                    'name': e['name_institution']
+                  })
               .toList();
 
           institutions.sort((a, b) {
             String cleanA =
-                a.toUpperCase().replaceFirst(RegExp(r'^PROFESSOR '), '');
+                a['name'].toUpperCase().replaceFirst(RegExp(r'^PROFESSOR '), '');
             String cleanB =
-                b.toUpperCase().replaceFirst(RegExp(r'^PROFESSOR '), '');
+                b['name'].toUpperCase().replaceFirst(RegExp(r'^PROFESSOR '), '');
             return cleanA.compareTo(cleanB);
           });
 
@@ -330,8 +333,8 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                 .map<DropdownMenuItem<String>>(
                                           (subOption) {
                                             return DropdownMenuItem<String>(
-                                              value: subOption,
-                                              child: Text(subOption),
+                                              value: subOption['name'],
+                                              child: Text(subOption['name']),
                                             );
                                           },
                                         ).toList(),
@@ -339,6 +342,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           setState(() {
                                             selectedSubOption = value;
                                           });
+                                          // CHAMANDO  O ID
+                                          final selectedInstitution = options[selectedMainOption!]!.firstWhere(
+                                            (institution) => institution['name'] == value,
+                                          );
+                                          print('ID da instituição selecionada: ${selectedInstitution['id']}');
                                         },
                                         decoration: const InputDecoration(
                                             labelText:
