@@ -20,7 +20,6 @@ class Cadastro2Page extends StatefulWidget {
   State<Cadastro2Page> createState() => _Cadastro2PageState();
 }
 
-
 class _Cadastro2PageState extends State<Cadastro2Page> {
   final _formKey = GlobalKey<FormState>();
   final _nomeController = TextEditingController();
@@ -46,7 +45,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     super.dispose();
   }
 
-//calendario
+  //calendario
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -236,6 +235,31 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                //PRECISA ARRUMAR O USUARIO
+                                Text(
+                                  'Tipo de Usuário: ${widget.selectedItem}',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 16.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  'ID da Instituição: ${widget.selectedItemInstituicao}',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 16.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'Nome',
