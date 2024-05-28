@@ -29,7 +29,6 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
   final _cidadeController = TextEditingController();
   final _areaatividadeController = TextEditingController();
   final _dataNascimentoController = TextEditingController();
-  //calendario
   final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
   String valorExpositor = 'Não';
 
@@ -45,7 +44,6 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     super.dispose();
   }
 
-  //calendario
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -240,7 +238,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                //PRECISA ARRUMAR O USUARIO
+                                //USUARIO E ID SELECIONADOS FUNCIONANDO
                                 Text(
                                   'Tipo de Usuário: ${widget.selectedItem}',
                                   style: GoogleFonts.roboto(
@@ -491,7 +489,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                                     padding: const EdgeInsets.only(
                                         left: 3.5, right: 4),
                                     child: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: enviarDados,
                                       style: ElevatedButton.styleFrom(
                                         minimumSize: const Size(100, 39),
                                         backgroundColor: Colors.white,

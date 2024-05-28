@@ -55,7 +55,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
     if (response.statusCode == 200) {
       final dynamic decodedData = json.decode(response.body);
-      print(decodedData); // Verifica a estrutura da resposta
+      print(decodedData);
 
       if (decodedData is List<dynamic>) {
         setState(() {
@@ -63,7 +63,6 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
         });
       } else if (decodedData is Map<String, dynamic> &&
           decodedData.containsKey('response')) {
-        // Verifica se a resposta é um mapa com chave 'response'
         setState(() {
           items = List<Map<String, dynamic>>.from(decodedData['response']);
         });
@@ -216,8 +215,8 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                           children: [
                             Center(
                               child: items.isEmpty
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(bottom: 8),
+                                  ? const Padding(
+                                      padding: EdgeInsets.only(bottom: 8),
                                       child: CircularProgressIndicator(
                                           color: Color(0xFFFFD35F)),
                                     )
@@ -256,7 +255,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                   color: Colors.black))),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
-                                          return 'Por favor, selecione um item';
+                                          return 'Por favor, selecione um tipo de usuário';
                                         }
                                         return null;
                                       },
@@ -308,10 +307,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                             const SizedBox(height: 30),
                             if (selectedMainOption != null)
                               isLoading
-                                  ? Center(
+                                  ? const Center(
                                       child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 15.0),
+                                      padding: EdgeInsets.only(bottom: 15.0),
                                       child: CircularProgressIndicator(
                                         color: Color(0xFFFFD35F),
                                       ),
@@ -389,16 +387,23 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         onPressed: () {
                                           if (_formKey.currentState!
                                               .validate()) {
+                                            final selectedUserTypeName =
+                                                items.firstWhere((item) =>
+                                                        item['id'].toString() ==
+                                                        selectedItem)[
+                                                    'description'];
+
                                             Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     Cadastro2Page(
+                                                  //ENVIANDO O USUARIO E O ID PARA OUTRA PAGINA
                                                   selectedItem:
-                                                      selectedMainOption,
+                                                      selectedUserTypeName,
                                                   selectedItemInstituicao:
                                                       selectedSubOption,
-                                                ),//ESTÁ PEGANDO A INFORMÇÃO ERRDA DO USUÁRIO
+                                                ),
                                               ),
                                             );
                                           }
@@ -444,9 +449,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                       );
                                     },
                                     child: Text(
-                                      'Sua instiuição não esta na lista?',
+                                      'Sua instituição não está na lista?',
                                       style: GoogleFonts.oswald(
-                                        color: Color(0xFFB6382B),
+                                        color: const Color(0xFFB6382B),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),
