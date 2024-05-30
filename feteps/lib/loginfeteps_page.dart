@@ -1,12 +1,12 @@
 import 'dart:convert';
 
+import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/home_page.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
 
 //APENAS MECHI NO LAYOUT
 class LoginFetepsPage extends StatefulWidget {
@@ -149,41 +149,41 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             child: Theme(
-                            data: Theme.of(context).copyWith(
-                              inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                            ),
-                            child: TextFormField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                labelText: 'Senha',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
+                              data: Theme.of(context).copyWith(
+                                inputDecorationTheme: InputDecorationTheme(
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black),
+                                  ),
+                                  labelStyle: GoogleFonts.roboto(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16.0,
+                                  ),
                                 ),
                               ),
-                              controller: _passwordController,
-                              keyboardType: TextInputType.text,
-                              validator: (senha) {
-                                if (senha == null || senha.isEmpty) {
-                                  return 'Por favor, digite a sua senha';
-                                } else if (senha.length < 3) {
-                                  return 'Por favor, digite uma senha maior de 3 caracteres';
-                                }
-                                return null;
-                              },
+                              child: TextFormField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  labelText: 'Senha',
+                                  labelStyle: GoogleFonts.roboto(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                                controller: _passwordController,
+                                keyboardType: TextInputType.text,
+                                validator: (senha) {
+                                  if (senha == null || senha.isEmpty) {
+                                    return 'Por favor, digite a sua senha';
+                                  } else if (senha.length < 3) {
+                                    return 'Por favor, digite uma senha maior de 3 caracteres';
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
                           ),
-                        ),
                           Padding(
                             padding: const EdgeInsets.only(top: 35),
                             child: Row(
@@ -219,7 +219,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    HomePage(),
+                                                    SobrePage(),
                                               ),
                                             );
                                           } else {

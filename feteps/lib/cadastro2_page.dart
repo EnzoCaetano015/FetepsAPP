@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
+//import 'package:flutter_localizations/flutter_localizations.dart';
+//import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/telainicial_page.dart';
-import 'dart:convert';
+//import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Cadastro2Page extends StatefulWidget {
@@ -28,8 +28,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
   final _ufController = TextEditingController();
   final _cidadeController = TextEditingController();
   final _areaatividadeController = TextEditingController();
-  final _dataNascimentoController = TextEditingController();
-  final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
+  // final _dataNascimentoController = TextEditingController();
+  // final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
   String valorExpositor = 'Não';
 
   @override
@@ -40,37 +40,37 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     _ufController.dispose();
     _cidadeController.dispose();
     _areaatividadeController.dispose();
-    _dataNascimentoController.dispose();
+    //_dataNascimentoController.dispose();
     super.dispose();
   }
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2100),
-      locale: const Locale('pt', 'BR'),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: ColorScheme.light(
-              primary: Color.fromARGB(255, 30, 142, 174),
-              onPrimary: Colors.black,
-              onSurface: Colors.black,
-            ),
-            dialogBackgroundColor: Colors.white,
-          ),
-          child: child!,
-        );
-      },
-    );
-    if (picked != null) {
-      setState(() {
-        _dataNascimentoController.text = _dateFormat.format(picked);
-      });
-    }
-  }
+  // Future<void> _selectDate(BuildContext context) async {
+  //   final DateTime? picked = await showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(1900),
+  //     lastDate: DateTime(2100),
+  //     locale: const Locale('pt', 'BR'),
+  //     builder: (BuildContext context, Widget? child) {
+  //       return Theme(
+  //         data: ThemeData.light().copyWith(
+  //           colorScheme: ColorScheme.light(
+  //             primary: Color.fromARGB(255, 30, 142, 174),
+  //             onPrimary: Colors.black,
+  //             onSurface: Colors.black,
+  //           ),
+  //           dialogBackgroundColor: Colors.white,
+  //         ),
+  //         child: child!,
+  //       );
+  //     },
+  //   );
+  //   if (picked != null) {
+  //     setState(() {
+  //       _dataNascimentoController.text = _dateFormat.format(picked);
+  //     });
+  //   }
+  // }
 
   void enviarDados() async {
     if (!_formKey.currentState!.validate()) {
@@ -93,7 +93,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     var request = http.MultipartRequest('POST', url);
 
     request.fields['userName'] = _nomeController.text;
-    request.fields['data de nascimento'] = _dataNascimentoController.text;
+    //request.fields['data de nascimento'] = _dataNascimentoController.text;
     request.fields['userEmail'] = _emailController.text;
     request.fields['city'] = _cidadeController.text;
     request.fields['state'] = _ufController.text;
@@ -239,22 +239,22 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 //USUARIO E ID SELECIONADOS FUNCIONANDO
-                                Text(
-                                  'Tipo de Usuário: ${widget.selectedItem}',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 16.0,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  'ID da Instituição: ${widget.selectedItemInstituicao}',
-                                  style: GoogleFonts.roboto(
-                                    fontSize: 16.0,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                // Text(
+                                //   'Tipo de Usuário: ${widget.selectedItem}',
+                                //   style: GoogleFonts.roboto(
+                                //     fontSize: 16.0,
+                                //     color: Colors.black,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                // ),
+                                // Text(
+                                //   'ID da Instituição: ${widget.selectedItemInstituicao}',
+                                //   style: GoogleFonts.roboto(
+                                //     fontSize: 16.0,
+                                //     color: Colors.black,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -282,33 +282,33 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               return null;
                             },
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Data de nascimento',
-                              labelStyle: GoogleFonts.roboto(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
-                              ),
-                              enabledBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                              ),
-                              suffixIcon: Icon(Icons.calendar_today,
-                                  color: Colors.black),
-                            ),
-                            controller: _dataNascimentoController,
-                            readOnly: true,
-                            onTap: () => _selectDate(context),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Por favor, selecione sua data de nascimento';
-                              }
-                              return null;
-                            },
-                          ),
+                          // TextFormField(
+                          //   decoration: InputDecoration(
+                          //     labelText: 'Data de nascimento',
+                          //     labelStyle: GoogleFonts.roboto(
+                          //       color: Colors.black,
+                          //       fontWeight: FontWeight.w500,
+                          //       fontSize: 16.0,
+                          //     ),
+                          //     enabledBorder: const UnderlineInputBorder(
+                          //       borderSide: BorderSide(color: Colors.black),
+                          //     ),
+                          //     focusedBorder: const UnderlineInputBorder(
+                          //       borderSide: BorderSide(color: Colors.black),
+                          //     ),
+                          //     suffixIcon: Icon(Icons.calendar_today,
+                          //         color: Colors.black),
+                          //   ),
+                          //   controller: _dataNascimentoController,
+                          //   readOnly: true,
+                          //   onTap: () => _selectDate(context),
+                          //   validator: (value) {
+                          //     if (value == null || value.isEmpty) {
+                          //       return 'Por favor, selecione sua data de nascimento';
+                          //     }
+                          //     return null;
+                          //   },
+                          // ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'E-mail',

@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
 import 'telainicial_page.dart';
-import 'package:flutter/cupertino.dart';
 
 class Cadastro1Page extends StatefulWidget {
   const Cadastro1Page({Key? key}) : super(key: key);
@@ -55,7 +54,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
     if (response.statusCode == 200) {
       final dynamic decodedData = json.decode(response.body);
-      print(decodedData);
+      //print(decodedData);
 
       if (decodedData is List<dynamic>) {
         setState(() {
@@ -85,7 +84,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print('API response for $type: $data');
+        //print('API response for $type: $data');
 
         if (data is Map && data['response'] is List) {
           List<Map<String, dynamic>> institutions =
@@ -240,7 +239,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         setState(() {
                                           selectedItem = value;
                                         });
-                                        print('Item selecionado: $value');
+                                        //print('Item selecionado: $value');
                                       },
                                       decoration: const InputDecoration(
                                           labelText:
@@ -339,8 +338,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                             selectedSubOption = value;
                                           });
 
-                                          print(
-                                              'ID da instituição selecionada: $value');
+                                          //print('ID da instituição selecionada: $value');
                                         },
                                         decoration: const InputDecoration(
                                             labelText:
@@ -400,7 +398,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                     Cadastro2Page(
                                                   //ENVIANDO O USUARIO E O ID PARA OUTRA PAGINA
                                                   selectedItem:
-                                                      selectedUserTypeName,
+                                                      //selectedUserTypeName,
+                                                      //selectedMainOption,
+                                                      selectedItem,
                                                   selectedItemInstituicao:
                                                       selectedSubOption,
                                                 ),

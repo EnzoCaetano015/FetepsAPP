@@ -72,6 +72,11 @@ flutter:
   assets:
     - 'lib/assets/fundo.png'
     - 'lib/assets/logo.png'
+    - 'lib/assets/alunos.png'
+    - 'lib/assets/banner2.png'
+    - 'lib/assets/estudantes.png'
+    - 'lib/assets/Rectangle.png'
+    - 'lib/assets/calendario.jpg'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
