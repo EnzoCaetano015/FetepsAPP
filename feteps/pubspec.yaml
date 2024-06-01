@@ -77,6 +77,9 @@ flutter:
     - 'lib/assets/estudantes.png'
     - 'lib/assets/Rectangle.png'
     - 'lib/assets/calendario.jpg'
+    - 'lib/assets/user2.png'
+    - 'lib/assets/documentos.png'
+    - 'lib/assets/user.png'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
