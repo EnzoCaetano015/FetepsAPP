@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/reservas/cadastro_page.dart';
 import 'package:feteps/loginfeteps_page.dart';
 
-//APENAS MECHI NO LAYOUT
+//AJUSTES NA RESPONSIVIDADE
 class TelaInicialPage extends StatefulWidget {
   const TelaInicialPage({super.key});
 
@@ -32,7 +32,7 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                     padding: const EdgeInsets.only(top: 15.0),
                     child: Image.asset(
                       'lib/assets/logo.png',
-                      width: 260,
+                      width: MediaQuery.of(context).size.width * 0.7,
                     ),
                   )
                 ],
@@ -41,8 +41,8 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
           ),
           body: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 40.0),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.44,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -56,97 +56,97 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
-                          width: 230,
+                          width: MediaQuery.of(context).size.width * 0.67,
                         ),
                       ),
                     )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 35.0, bottom: 15.5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "BEM VINDO!",
-                      style: GoogleFonts.roboto(
-                        fontSize: 25.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 55.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Bem vindo ao aplicativo da Feira \n Tecnologica do Centro Paula \nSouza!",
-                      style: GoogleFonts.roboto(
-                        fontSize: 18.5,
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "BEM VINDO!",
+                    style: GoogleFonts.roboto(
+                      fontSize: MediaQuery.of(context).size.width * 0.069,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
               ),
-              Padding(
-                  padding: const EdgeInsets.only(bottom: 11.5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25.0),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0xFFFFD35F), Color(0xFF572B11)],
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Bem vindo ao aplicativo da Feira \n Tecnologica do Centro Paula \nSouza!",
+                    style: GoogleFonts.roboto(
+                      fontSize: MediaQuery.of(context).size.width * 0.052,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.48,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25.0),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFFFFD35F), Color(0xFF572B11)],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 3.5, right: 4),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //Ir para a tela de login
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginFetepsPage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(100, 39),
+                          backgroundColor: Colors.white,
+                          shadowColor: Colors.transparent,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                            side: const BorderSide(color: Colors.transparent),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 3.5, right: 4),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              //Ir para a tela de login
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginFetepsPage(),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(100, 39),
-                              backgroundColor: Colors.white,
-                              shadowColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
-                                side: const BorderSide(
-                                    color: Colors.transparent, width: 0),
-                              ),
-                            ),
-                            child: Text(
-                              "Login",
-                              style: GoogleFonts.oswald(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17.0,
-                              ),
-                            ),
+                        child: Text(
+                          "Login",
+                          style: GoogleFonts.oswald(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: MediaQuery.of(context).size.width * 0.048,
                           ),
                         ),
                       ),
-                    ],
-                  )),
+                    ),
+                  ),
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -164,7 +164,7 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                         style: GoogleFonts.oswald(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
                         ),
                       ))
                 ],

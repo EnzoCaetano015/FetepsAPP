@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
 import 'telainicial_page.dart';
 
+//AJUSTES NA RESPONSIVIDADE
 class Cadastro1Page extends StatefulWidget {
   const Cadastro1Page({Key? key}) : super(key: key);
 
@@ -120,6 +121,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
     }
   }
 
+//LAYOUT RESPONSIVO USANDO MEDIAQUERY
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -150,10 +152,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                     )),
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 15.0, left: 22, right: 22),
+                      const EdgeInsets.only(top: 15.0, left: 10, right: 10),
                   child: Image.asset(
                     'lib/assets/logo.png',
-                    width: 235,
+                    width: MediaQuery.of(context).size.width * 0.7,
                   ),
                 )
               ],
@@ -165,8 +167,8 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
           children: [
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -180,31 +182,31 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                         child: ClipOval(
                           child: Image.asset(
                             'lib/assets/fundo.png',
-                            width: 190,
+                            width: MediaQuery.of(context).size.width * 0.58,
                           ),
                         ),
                       )
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "CADASTRO",
-                        style: TextStyle(
-                            fontSize: 25.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "CADASTRO",
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.069,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.036,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
                   child: Form(
                     key: _formKey,
                     child: Center(
@@ -220,9 +222,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           color: Color(0xFFFFD35F)),
                                     )
                                   : DropdownButtonFormField(
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.person,
-                                        size: 24,
+                                        size:
+                                            MediaQuery.of(context).size.width *
+                                                0.072,
                                         color: Colors.black,
                                       ),
                                       value: selectedItem,
@@ -241,15 +245,19 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         });
                                         //print('Item selecionado: $value');
                                       },
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                           labelText:
                                               'Selecione um tipo de usuário',
                                           labelStyle: TextStyle(
-                                              color: Color(0xFF0E414F),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16.5),
-                                          border: OutlineInputBorder(),
-                                          focusedBorder: OutlineInputBorder(
+                                            color: const Color(0xFF0E414F),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.045,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          focusedBorder: const OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: Colors.black))),
                                       validator: (value) {
@@ -260,11 +268,14 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                       },
                                     ),
                             ),
-                            const SizedBox(height: 30),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.036,
+                            ),
                             DropdownButtonFormField<String>(
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.business,
-                                size: 24,
+                                size: MediaQuery.of(context).size.width * 0.072,
                                 color: Colors.black,
                               ),
                               value: selectedMainOption,
@@ -285,14 +296,17 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                   fetchOptions(value);
                                 }
                               },
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   labelText: 'Selecione um tipo de instituição',
                                   labelStyle: TextStyle(
-                                      color: Color(0xFF0E414F),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0),
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
+                                    color: const Color(0xFF0E414F),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.045,
+                                  ),
+                                  border: const OutlineInputBorder(),
+                                  focusedBorder: const OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.black))),
                               validator: (value) {
@@ -303,7 +317,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                               },
                               isExpanded: true,
                             ),
-                            const SizedBox(height: 30),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.036,
+                            ),
                             if (selectedMainOption != null)
                               isLoading
                                   ? const Center(
@@ -313,13 +330,17 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         color: Color(0xFFFFD35F),
                                       ),
                                     ))
-                                  : Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 30),
+                                  : SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.14,
                                       child: DropdownButtonFormField<String>(
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.house,
-                                          size: 24,
+                                          size: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.072,
                                           color: Colors.black,
                                         ),
                                         value: selectedSubOption,
@@ -360,80 +381,81 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         isExpanded: true,
                                       ),
                                     ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 140,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          Color(0xFFFFD35F),
-                                          Color(0xFF572B11)
-                                        ],
-                                      ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.48,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color(0xFFFFD35F),
+                                        Color(0xFF572B11)
+                                      ],
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 3.5, right: 4),
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            final selectedUserTypeName =
-                                                items.firstWhere((item) =>
-                                                        item['id'].toString() ==
-                                                        selectedItem)[
-                                                    'description'];
-
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Cadastro2Page(
-                                                  //ENVIANDO O USUARIO E O ID PARA OUTRA PAGINA
-                                                  selectedItem:
-                                                      //selectedUserTypeName,
-                                                      //selectedMainOption,
-                                                      selectedItem,
-                                                  selectedItemInstituicao:
-                                                      selectedSubOption,
-                                                ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 3.5, right: 4),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          final selectedUserTypeName =
+                                              items.firstWhere((item) =>
+                                                  item['id'].toString() ==
+                                                  selectedItem)['description'];
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Cadastro2Page(
+                                                //ENVIANDO O USUARIO E O ID PARA OUTRA PAGINA
+                                                selectedItem:
+                                                    //selectedUserTypeName,
+                                                    //selectedMainOption,
+                                                    selectedItem,
+                                                selectedItemInstituicao:
+                                                    selectedSubOption,
                                               ),
-                                            );
-                                          }
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          minimumSize: const Size(100, 39),
-                                          backgroundColor: Colors.white,
-                                          shadowColor: Colors.transparent,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50.0),
-                                            side: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 0),
-                                          ),
+                                            ),
+                                          );
+                                        }
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: const Size(100, 39),
+                                        backgroundColor: Colors.white,
+                                        shadowColor: Colors.transparent,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50.0),
+                                          side: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0),
                                         ),
-                                        child: Text(
-                                          "Continuar",
-                                          style: GoogleFonts.oswald(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16.5,
-                                          ),
+                                      ),
+                                      child: Text(
+                                        "Continuar",
+                                        style: GoogleFonts.oswald(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.048,
                                         ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.01,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -453,10 +475,15 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                       style: GoogleFonts.oswald(
                                         color: const Color(0xFFB6382B),
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.044,
                                       ),
                                     ))
                               ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
                             )
                           ],
                         ),

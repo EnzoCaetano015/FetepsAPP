@@ -8,7 +8,7 @@ import 'package:feteps/telainicial_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-//APENAS MECHI NO LAYOUT
+//AJUSTES NA RESPONSIVIDADE
 class LoginFetepsPage extends StatefulWidget {
   const LoginFetepsPage({super.key});
 
@@ -45,10 +45,10 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                     color: Color(0xFF0E414F),
                   )),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0, left: 22, right: 22),
+                padding: const EdgeInsets.only(top: 15.0, left: 10, right: 10),
                 child: Image.asset(
                   'lib/assets/logo.png',
-                  width: 235,
+                  width: MediaQuery.of(context).size.width * 0.7,
                 ),
               )
             ],
@@ -60,8 +60,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
         children: [
           Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 45.0),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -75,32 +75,35 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
-                          width: 220,
+                          width: MediaQuery.of(context).size.width * 0.67,
                         ),
                       ),
                     )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0, bottom: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "LOGIN",
-                      style: GoogleFonts.roboto(
-                          fontSize: 25.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "LOGIN",
+                    style: GoogleFonts.roboto(
+                        fontSize: MediaQuery.of(context).size.width * 0.069,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               //Text formfield EMAIL
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+              SizedBox(
+                  width:  MediaQuery.of(context).size.width * 0.82,
                 child: Form(
                   key: _formKey,
                   child: Center(
@@ -127,7 +130,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                 labelStyle: GoogleFonts.roboto(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.05,
                                 ),
                               ),
                               controller: _emailController,
@@ -144,117 +148,118 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                               },
                             ),
                           ),
-
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.038,
+                          ),
                           //Text formfiel SENHA
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            child: Theme(
-                              data: Theme.of(context).copyWith(
-                                inputDecorationTheme: InputDecorationTheme(
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black),
-                                  ),
-                                  labelStyle: GoogleFonts.roboto(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                  ),
+                          Theme(
+                            data: Theme.of(context).copyWith(
+                              inputDecorationTheme: InputDecorationTheme(
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                labelStyle: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                              child: TextFormField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  labelText: 'Senha',
-                                  labelStyle: GoogleFonts.roboto(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18.0,
-                                  ),
+                            ),
+                            child: TextFormField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: 'Senha',
+                                labelStyle: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.05,
                                 ),
-                                controller: _passwordController,
-                                keyboardType: TextInputType.text,
-                                validator: (senha) {
-                                  if (senha == null || senha.isEmpty) {
-                                    return 'Por favor, digite a sua senha';
-                                  } else if (senha.length < 3) {
-                                    return 'Por favor, digite uma senha maior de 3 caracteres';
-                                  }
-                                  return null;
-                                },
                               ),
+                              controller: _passwordController,
+                              keyboardType: TextInputType.text,
+                              validator: (senha) {
+                                if (senha == null || senha.isEmpty) {
+                                  return 'Por favor, digite a sua senha';
+                                } else if (senha.length < 3) {
+                                  return 'Por favor, digite uma senha maior de 3 caracteres';
+                                }
+                                return null;
+                              },
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 35),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 140,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFFFFD35F),
-                                        Color(0xFF572B11)
-                                      ],
-                                    ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.06,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.48,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      Color(0xFFFFD35F),
+                                      Color(0xFF572B11)
+                                    ],
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 3.5, right: 4),
-                                    child: ElevatedButton(
-                                      onPressed: () async {
-                                        FocusScopeNode currentFocus =
-                                            FocusScope.of(context);
-                                        if (_formKey.currentState!.validate()) {
-                                          bool deuCerto = await login();
-                                          if (!currentFocus.hasPrimaryFocus) {
-                                            currentFocus.unfocus();
-                                          }
-                                          if (deuCerto) {
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SobrePage(),
-                                              ),
-                                            );
-                                          } else {
-                                            _passwordController.clear();
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(snackBar);
-                                          }
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 3.5, right: 4),
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      FocusScopeNode currentFocus =
+                                          FocusScope.of(context);
+                                      if (_formKey.currentState!.validate()) {
+                                        bool deuCerto = await login();
+                                        if (!currentFocus.hasPrimaryFocus) {
+                                          currentFocus.unfocus();
                                         }
-                                      },
-                                      child: Text(
-                                        "Confirmar",
-                                        style: GoogleFonts.oswald(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16.0,
-                                        ),
+                                        if (deuCerto) {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => SobrePage(),
+                                            ),
+                                          );
+                                        } else {
+                                          _passwordController.clear();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        }
+                                      }
+                                    },
+                                    child: Text(
+                                      "Confirmar",
+                                      style: GoogleFonts.oswald(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.048,
                                       ),
-                                      style: ElevatedButton.styleFrom(
-                                        minimumSize: Size(100, 39),
-                                        backgroundColor: Colors.white,
-                                        shadowColor: Colors.transparent,
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                          side: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0),
-                                        ),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(100, 39),
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.transparent,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        side: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0),
                                       ),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
+                                ),
+                              )
+                            ],
                           ),
                         ],
                       ),

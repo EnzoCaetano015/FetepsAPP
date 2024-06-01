@@ -1,4 +1,7 @@
+import 'package:feteps/cadastro1_page.dart';
+import 'package:feteps/loginfeteps_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:flutter_localizations/flutter_localizations.dart';
 //import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -107,28 +110,33 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     var response = await request.send();
 
     if (response.statusCode == 200) {
-      final snackBar = const SnackBar(
+      final snackBar = SnackBar(
         content: Text(
-          'Dados cadastrados com sucesso',
+          'Cadastro concluído com sucesso',
           textAlign: TextAlign.center,
+          style: GoogleFonts.roboto(
+              color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.redAccent,
-        duration: Duration(seconds: 2),
+        backgroundColor: Color(0xFFFFD35F),
+        duration: const Duration(seconds: 3),
       );
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const TelaInicialPage(),
-        ),
-      );
+      Future.delayed(const Duration(seconds: 3), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginFetepsPage(),
+          ),
+        );
+      });
     } else {
       print('Falha ao enviar dados: ${response.statusCode}');
     }
   }
 
+//LAYOUT RESPONSIVO USANDO MEDIAQUERY
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,7 +152,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const TelaInicialPage(),
+                        builder: (context) => const Cadastro1Page(),
                       ),
                     );
                   },
@@ -153,10 +161,10 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                     color: Color(0xFF0E414F),
                   )),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0, left: 22, right: 22),
+                padding: const EdgeInsets.only(top: 15.0, left: 10, right: 10),
                 child: Image.asset(
                   'lib/assets/logo.png',
-                  width: 235,
+                  width: MediaQuery.of(context).size.width * 0.7,
                 ),
               )
             ],
@@ -168,8 +176,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
         children: [
           Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 35.0),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -184,48 +192,43 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
-                          width: 190,
+                          width: MediaQuery.of(context).size.width * 0.58,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0, bottom: 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "CADASTRO",
-                      style: GoogleFonts.roboto(
-                        fontSize: 25.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "CADASTRO",
+                    style: GoogleFonts.roboto(
+                      fontSize: MediaQuery.of(context).size.width * 0.069,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Dados pessoais',
-                      style: GoogleFonts.roboto(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Dados pessoais',
+                    style: GoogleFonts.roboto(
+                      fontSize: MediaQuery.of(context).size.width * 0.052,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.85,
+                height: MediaQuery.of(context).size.height * 0.85,
                 child: Form(
                   key: _formKey,
                   child: Center(
@@ -234,7 +237,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
+                            padding: const EdgeInsets.only(bottom: 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -264,7 +267,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -315,7 +319,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -343,7 +348,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -369,7 +375,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -392,7 +399,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -415,7 +423,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -446,7 +455,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                                 labelStyle: GoogleFonts.roboto(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.045,
                                 ),
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
@@ -466,58 +476,61 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               }).toList(),
                             ),
                           ),
-                          const SizedBox(height: 16.0),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 140,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFFFFD35F),
-                                        Color(0xFF572B11)
-                                      ],
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 3.5, right: 4),
-                                    child: ElevatedButton(
-                                      onPressed: enviarDados,
-                                      style: ElevatedButton.styleFrom(
-                                        minimumSize: const Size(100, 39),
-                                        backgroundColor: Colors.white,
-                                        shadowColor: Colors.transparent,
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0),
-                                          side: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        "Cadastrar",
-                                        style: GoogleFonts.oswald(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16.5,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.036,
                           ),
-                          const SizedBox(height: 20.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.48,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      Color(0xFFFFD35F),
+                                      Color(0xFF572B11)
+                                    ],
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 3.5, right: 4),
+                                  child: ElevatedButton(
+                                    onPressed: enviarDados,
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(100, 39),
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.transparent,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        side: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Cadastrar",
+                                      style: GoogleFonts.oswald(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.048,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.03,
+                          ),
                         ],
                       ),
                     ),
