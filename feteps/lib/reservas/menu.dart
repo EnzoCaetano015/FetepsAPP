@@ -1,4 +1,8 @@
+import 'package:feteps/avaliar.dart';
 import 'package:feteps/instituicoes_page.dart';
+import 'package:feteps/perfil.dart';
+import 'package:feteps/projetos.dart';
+import 'package:feteps/palestrantes.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:feteps/telainicial_page.dart';
@@ -57,12 +61,26 @@ class CustomDrawer extends StatelessWidget {
                   _buildDrawerItem(
                     icon: Icons.person,
                     text: 'Perfil',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Perfil(),
+                        ),
+                      );
+                    },
                   ),
                   _buildDrawerItem(
                     icon: Icons.settings,
                     text: 'Projetos',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Projetos(),
+                        ),
+                      );
+                    },
                   ),
                   _buildDrawerItem(
                     icon: Icons.business,
@@ -89,7 +107,14 @@ class CustomDrawer extends StatelessWidget {
                   _buildDrawerItem(
                     icon: Icons.mic_none,
                     text: 'Palestrantes',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => palestrantes(),
+                        ),
+                      );
+                    },
                   ),
                   _buildDrawerItem(
                     icon: Icons.lightbulb,
@@ -116,7 +141,14 @@ class CustomDrawer extends StatelessWidget {
                   _buildDrawerItem(
                     icon: Icons.thumb_up,
                     text: 'Avalições',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Avaliacao(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -158,7 +190,8 @@ class CustomDrawer extends StatelessWidget {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        side: const BorderSide(color: Colors.transparent, width: 0),
+                        side: const BorderSide(
+                            color: Colors.transparent, width: 0),
                       ),
                     ),
                     child: Text(
@@ -203,7 +236,8 @@ class CustomDrawer extends StatelessWidget {
         ),
         onTap: onTap,
         trailing: IconButton(
-          icon: const Icon(Icons.arrow_forward_ios_outlined, color: Colors.black),
+          icon:
+              const Icon(Icons.arrow_forward_ios_outlined, color: Colors.black),
           onPressed: () {},
         ),
       ),
