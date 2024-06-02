@@ -1,8 +1,8 @@
-import 'package:feteps/avaliar.dart';
+import 'package:feteps/avaliar_page.dart';
 import 'package:feteps/instituicoes_page.dart';
-import 'package:feteps/perfil.dart';
-import 'package:feteps/projetos.dart';
-import 'package:feteps/palestrantes.dart';
+import 'package:feteps/perfil_page.dart';
+import 'package:feteps/projetos-page.dart';
+import 'package:feteps/palestrantes_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:feteps/telainicial_page.dart';
@@ -65,7 +65,7 @@ class CustomDrawer extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Perfil(),
+                          builder: (context) => PerfilPage(),
                         ),
                       );
                     },
@@ -111,7 +111,7 @@ class CustomDrawer extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => palestrantes(),
+                          builder: (context) => palestrantesPage(),
                         ),
                       );
                     },
@@ -145,7 +145,7 @@ class CustomDrawer extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Avaliacao(),
+                          builder: (context) => AvaliacaoPage(),
                         ),
                       );
                     },
