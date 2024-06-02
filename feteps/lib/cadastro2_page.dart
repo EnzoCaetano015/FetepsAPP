@@ -177,7 +177,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
           Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: MediaQuery.of(context).size.height * 0.37,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

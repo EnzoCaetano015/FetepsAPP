@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:feteps/cadastroInstitu.dart';
+import 'package:feteps/cadastroInstitu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -168,7 +168,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
             Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.37,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -257,9 +257,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                 0.045,
                                           ),
                                           border: const OutlineInputBorder(),
-                                          focusedBorder: const OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.black))),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black))),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
                                           return 'Por favor, selecione um tipo de usuário';
@@ -269,8 +270,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                     ),
                             ),
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.036,
+                              height: MediaQuery.of(context).size.height * 0.03,
                             ),
                             DropdownButtonFormField<String>(
                               icon: Icon(
@@ -318,8 +318,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                               isExpanded: true,
                             ),
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.036,
+                              height: MediaQuery.of(context).size.height * 0.03,
                             ),
                             if (selectedMainOption != null)
                               isLoading
@@ -361,13 +360,17 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
                                           //print('ID da instituição selecionada: $value');
                                         },
-                                        decoration: const InputDecoration(
+                                        decoration: InputDecoration(
                                             labelText:
                                                 'Selecione sua instituição',
                                             labelStyle: TextStyle(
-                                                color: Color(0xFF0E414F),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16.5),
+                                              color: Color(0xFF0E414F),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.045,
+                                            ),
                                             border: OutlineInputBorder(),
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -466,7 +469,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const CadastroInstituicao(),
+                                              const CadastroInstituicaoPage(),
                                         ),
                                       );
                                     },

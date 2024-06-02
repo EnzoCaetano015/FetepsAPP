@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Avaliacao extends StatelessWidget {
-  const Avaliacao({super.key});
+class AvaliacaoPage extends StatelessWidget {
+  const AvaliacaoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
