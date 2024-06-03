@@ -57,7 +57,7 @@ class AtualizarDadosPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                       top: screenHeight * 0.03,
                       left: screenWidth * 0.07,
-                      bottom: screenHeight * 0.03,
+                      bottom: screenHeight * 0.04,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -75,7 +75,7 @@ class AtualizarDadosPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: screenHeight * 0.01),
+                    padding: EdgeInsets.only(bottom: screenHeight * 0.015),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -105,7 +105,7 @@ class AtualizarDadosPage extends StatelessWidget {
                     labelText: 'Instituição:',
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: screenHeight * 0.02),
+                    padding: EdgeInsets.only(top: screenHeight * 0.04),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -162,7 +162,7 @@ class AtualizarDadosPage extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.02),
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.025),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
