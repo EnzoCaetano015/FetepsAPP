@@ -1,5 +1,5 @@
 import 'package:feteps/instituicoes_page.dart';
-import 'package:feteps/reservas/menu.dart';
+import 'package:feteps/reservas/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -75,7 +75,7 @@ class _SobreNosPageState extends State<SobreNosPage> {
               ),
             ],
           ),
-          endDrawer: CustomDrawer(),
+          endDrawer: MenuPage(),
           body: Column(children: [
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.3,

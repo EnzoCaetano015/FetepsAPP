@@ -56,7 +56,7 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
-                          width: MediaQuery.of(context).size.width * 0.67,
+                          width: MediaQuery.of(context).size.width * 0.65,
                         ),
                       ),
                     )

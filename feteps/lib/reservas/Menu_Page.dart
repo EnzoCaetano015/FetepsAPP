@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CustomDrawer extends StatelessWidget {
+class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -111,7 +111,7 @@ class CustomDrawer extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => palestrantesPage(),
+                          builder: (context) => const PalestrantesPage(),
                         ),
                       );
                     },

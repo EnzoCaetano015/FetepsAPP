@@ -1,5 +1,5 @@
 import 'package:feteps/instituicoes_page.dart';
-import 'package:feteps/reservas/menu.dart';
+import 'package:feteps/reservas/Menu_Page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +64,7 @@ class _SobrePageState extends State<SobrePage> {
                 ),
               ],
             ),
-            endDrawer: CustomDrawer(),
+            endDrawer: MenuPage(),
             body: Column(
               children: [
                 SizedBox(
