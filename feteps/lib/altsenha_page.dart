@@ -61,7 +61,7 @@ class AlterarSenhaPage extends StatelessWidget {
                       padding: EdgeInsets.only(
                         top: screenHeight * 0.03,
                         left: screenWidth * 0.08,
-                        bottom: screenHeight * 0.025,
+                        bottom: screenHeight * 0.04,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +76,7 @@ class AlterarSenhaPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.025),
+                      padding: EdgeInsets.only(bottom: screenHeight * 0.03),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -100,7 +100,7 @@ class AlterarSenhaPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.025),
+                      padding: EdgeInsets.only(bottom: screenHeight * 0.03),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -124,7 +124,7 @@ class AlterarSenhaPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.05),
+                      padding: EdgeInsets.only(bottom: screenHeight * 0.09),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

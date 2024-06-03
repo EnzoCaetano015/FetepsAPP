@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'altsenha_page.dart';
 import 'package:feteps/atualizaperfil_page.dart';
 import 'package:feteps/home_page.dart';
-import 'package:feteps/reservas/menu.dart';
+import 'package:feteps/reservas/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,15 +76,15 @@ class PerfilPage extends StatelessWidget {
             ),
           ],
         ),
-        endDrawer: CustomDrawer(),
+        endDrawer: MenuPage(),
         body: ListView(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: screenWidth * 0.06),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: screenHeight * 0.115,
+            Column(
+              children: [
+                SizedBox(
+                  height: screenHeight * 0.115,
+                  child: Padding(
+                     padding: EdgeInsets.only(left: screenWidth * 0.07),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -99,12 +99,15 @@ class PerfilPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: screenHeight * 0.175,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
+                ),
+                SizedBox(
+                  height: screenHeight * 0.175,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: screenWidth * 0.06),
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Image.asset(
@@ -113,36 +116,39 @@ class PerfilPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: screenHeight * 0.14,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: screenWidth * 0.025),
-                                    child: Text(
-                                      'Olá \nFulano da Silva',
-                                      textAlign: TextAlign.start,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: screenWidth * 0.069,
-                                      ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: screenHeight * 0.14,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: screenWidth * 0.025),
+                                  child: Text(
+                                    'Olá \nFulano da Silva',
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: screenWidth * 0.069,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  Row(
+                ),
+                Padding(
+                 padding: EdgeInsets.only(left: screenWidth * 0.07),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
@@ -171,214 +177,213 @@ class PerfilPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(right: screenWidth * 0.04),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 0.9,
-                          ),
-                        ),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(bottom: screenHeight * 0.025),
-                              child: Text(
-                                'Meus projetos',
-                                style: GoogleFonts.poppins(
-                                  fontSize: screenWidth * 0.045,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.47,
-                                  top: screenHeight * 0.012),
-                              child: Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                color: Colors.black,
-                                size: screenWidth * 0.08,
-                              ),
-                            ),
-                          ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: screenWidth * 0.04, left: screenWidth * 0.07),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 0.9,
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        right: screenWidth * 0.04,
-                        bottom: screenHeight * 0.006),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.025),
+                          child: Text(
+                            'Meus projetos',
+                            style: GoogleFonts.poppins(
+                              fontSize: screenWidth * 0.045,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: screenWidth * 0.47,
+                              top: screenHeight * 0.012),
+                          child: Icon(
+                            Icons.arrow_forward_ios_outlined,
                             color: Colors.black,
-                            width: 0.9,
+                            size: screenWidth * 0.08,
                           ),
                         ),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AlterarSenhaPage(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(bottom: screenHeight * 0.025),
-                              child: Text(
-                                'Alterar senha',
-                                style: GoogleFonts.poppins(
-                                  fontSize: screenWidth * 0.045,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.48,
-                                  top: screenHeight * 0.012),
-                              child: Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                color: Colors.black,
-                                size: screenWidth * 0.08,
-                              ),
-                            ),
-                          ],
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      right: screenWidth * 0.04,
+                      bottom: screenHeight * 0.006,
+                      left: screenWidth * 0.07),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.black,
+                          width: 0.9,
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        right: screenWidth * 0.042,
-                        bottom: screenHeight * 0.018),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 0.9,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AlterarSenhaPage(),
                           ),
-                        ),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AtualizarDadosPage(),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(bottom: screenHeight * 0.025),
-                              child: Text(
-                                'Atualizar perfil',
-                                style: GoogleFonts.poppins(
-                                  fontSize: screenWidth * 0.045,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: screenWidth * 0.45,
-                                  top: screenHeight * 0.012),
-                              child: Icon(
-                                Icons.arrow_forward_ios_outlined,
+                        );
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(bottom: screenHeight * 0.025),
+                            child: Text(
+                              'Alterar senha',
+                              style: GoogleFonts.poppins(
+                                fontSize: screenWidth * 0.045,
                                 color: Colors.black,
-                                size: screenWidth * 0.08,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: screenWidth * 0.48,
+                                top: screenHeight * 0.012),
+                            child: Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: Colors.black,
+                              size: screenWidth * 0.08,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  Row(
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      right: screenWidth * 0.042,
+                      bottom: screenHeight * 0.018,
+                      left: screenWidth * 0.07),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 0.9,
+                        ),
+                      ),
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AtualizarDadosPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.only(bottom: screenHeight * 0.025),
+                            child: Text(
+                              'Atualizar perfil',
+                              style: GoogleFonts.poppins(
+                                fontSize: screenWidth * 0.045,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: screenWidth * 0.45,
+                                top: screenHeight * 0.012),
+                            child: Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: Colors.black,
+                              size: screenWidth * 0.08,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () async {
+                        bool saiu = await sair();
+                        if (saiu) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const TelaInicialPage(),
+                            ),
+                          );
+                        }
+                      },
+                      child: Text(
+                        "Sair",
+                        style: GoogleFonts.poppins(
+                          fontSize: screenWidth * 0.048,
+                          color: const Color(0xFFB6382B),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: screenHeight * 0.042),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/documentos.png',
+                        width: screenWidth * 0.8,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: screenHeight * 0.012),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
-                        onPressed: () async {
-                          bool saiu = await sair();
-                          if (saiu) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const TelaInicialPage(),
-                              ),
-                            );
-                          }
-                        },
+                        onPressed: () {},
                         child: Text(
-                          "Sair",
+                          "*Política de privacidade",
                           style: GoogleFonts.poppins(
-                            fontSize: screenWidth * 0.048,
-                            color: const Color(0xFFB6382B),
+                            fontSize: screenWidth * 0.04,
+                            color: const Color(0xFF572B11),
                             fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: screenHeight * 0.042),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'lib/assets/documentos.png',
-                          width: screenWidth * 0.75,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: screenHeight * 0.012),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "*Política de privacidade",
-                            style: GoogleFonts.poppins(
-                              fontSize: screenWidth * 0.04,
-                              color: const Color(0xFF572B11),
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
