@@ -2,11 +2,8 @@ import 'package:feteps/cadastro1_page.dart';
 import 'package:feteps/loginfeteps_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter_localizations/flutter_localizations.dart';
-//import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/telainicial_page.dart';
-//import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Cadastro2Page extends StatefulWidget {
@@ -31,8 +28,6 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
   final _ufController = TextEditingController();
   final _cidadeController = TextEditingController();
   final _areaatividadeController = TextEditingController();
-  // final _dataNascimentoController = TextEditingController();
-  // final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
   String valorExpositor = 'Não';
 
   @override
@@ -43,37 +38,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     _ufController.dispose();
     _cidadeController.dispose();
     _areaatividadeController.dispose();
-    //_dataNascimentoController.dispose();
     super.dispose();
   }
-
-  // Future<void> _selectDate(BuildContext context) async {
-  //   final DateTime? picked = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(1900),
-  //     lastDate: DateTime(2100),
-  //     locale: const Locale('pt', 'BR'),
-  //     builder: (BuildContext context, Widget? child) {
-  //       return Theme(
-  //         data: ThemeData.light().copyWith(
-  //           colorScheme: ColorScheme.light(
-  //             primary: Color.fromARGB(255, 30, 142, 174),
-  //             onPrimary: Colors.black,
-  //             onSurface: Colors.black,
-  //           ),
-  //           dialogBackgroundColor: Colors.white,
-  //         ),
-  //         child: child!,
-  //       );
-  //     },
-  //   );
-  //   if (picked != null) {
-  //     setState(() {
-  //       _dataNascimentoController.text = _dateFormat.format(picked);
-  //     });
-  //   }
-  // }
 
   void enviarDados() async {
     if (!_formKey.currentState!.validate()) {
@@ -96,7 +62,6 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     var request = http.MultipartRequest('POST', url);
 
     request.fields['userName'] = _nomeController.text;
-    //request.fields['data de nascimento'] = _dataNascimentoController.text;
     request.fields['userEmail'] = _emailController.text;
     request.fields['city'] = _cidadeController.text;
     request.fields['state'] = _ufController.text;
@@ -117,7 +82,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
           style: GoogleFonts.roboto(
               color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xFFFFD35F),
+        backgroundColor: const Color(0xFFFFD35F),
         duration: const Duration(seconds: 3),
       );
 
@@ -136,9 +101,11 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     }
   }
 
-//LAYOUT RESPONSIVO USANDO MEDIAQUERY
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -177,7 +144,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
           Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.37,
+                height: screenHeight * 0.35,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -186,13 +153,13 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: const Color(0xFFB6382B),
-                          width: 3.5,
+                          width: screenWidth * 0.009,
                         ),
                       ),
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
-                          width: MediaQuery.of(context).size.width * 0.58,
+                          width: screenWidth * 0.5,
                         ),
                       ),
                     ),
@@ -205,7 +172,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                   Text(
                     "CADASTRO",
                     style: GoogleFonts.roboto(
-                      fontSize: MediaQuery.of(context).size.width * 0.069,
+                      fontSize: screenWidth * 0.069,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -219,7 +186,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                   Text(
                     'Dados pessoais',
                     style: GoogleFonts.roboto(
-                      fontSize: MediaQuery.of(context).size.width * 0.052,
+                      fontSize: screenWidth * 0.052,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -227,8 +194,8 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                 ],
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.85,
-                height: MediaQuery.of(context).size.height * 0.85,
+                width: screenWidth * 0.85,
+                height: screenHeight * 0.8,
                 child: Form(
                   key: _formKey,
                   child: Center(
@@ -237,28 +204,11 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 0),
-                            child: Column(
+                            padding:
+                                EdgeInsets.only(bottom: screenHeight * 0.01),
+                            child: const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                //USUARIO E ID SELECIONADOS FUNCIONANDO
-                                // Text(
-                                //   'Tipo de Usuário: ${widget.selectedItem}',
-                                //   style: GoogleFonts.roboto(
-                                //     fontSize: 16.0,
-                                //     color: Colors.black,
-                                //     fontWeight: FontWeight.w500,
-                                //   ),
-                                // ),
-                                // Text(
-                                //   'ID da Instituição: ${widget.selectedItemInstituicao}',
-                                //   style: GoogleFonts.roboto(
-                                //     fontSize: 16.0,
-                                //     color: Colors.black,
-                                //     fontWeight: FontWeight.w500,
-                                //   ),
-                                // ),
-                              ],
+                              children: [],
                             ),
                           ),
                           TextFormField(
@@ -267,8 +217,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.045,
+                                fontSize: screenWidth * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -286,41 +235,13 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               return null;
                             },
                           ),
-                          // TextFormField(
-                          //   decoration: InputDecoration(
-                          //     labelText: 'Data de nascimento',
-                          //     labelStyle: GoogleFonts.roboto(
-                          //       color: Colors.black,
-                          //       fontWeight: FontWeight.w500,
-                          //       fontSize: 16.0,
-                          //     ),
-                          //     enabledBorder: const UnderlineInputBorder(
-                          //       borderSide: BorderSide(color: Colors.black),
-                          //     ),
-                          //     focusedBorder: const UnderlineInputBorder(
-                          //       borderSide: BorderSide(color: Colors.black),
-                          //     ),
-                          //     suffixIcon: Icon(Icons.calendar_today,
-                          //         color: Colors.black),
-                          //   ),
-                          //   controller: _dataNascimentoController,
-                          //   readOnly: true,
-                          //   onTap: () => _selectDate(context),
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Por favor, selecione sua data de nascimento';
-                          //     }
-                          //     return null;
-                          //   },
-                          // ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'E-mail',
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.045,
+                                fontSize: screenWidth * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -348,8 +269,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.045,
+                                fontSize: screenWidth * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -375,8 +295,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.045,
+                                fontSize: screenWidth * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -386,6 +305,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               ),
                             ),
                             controller: _ufController,
+                            keyboardType: TextInputType.text,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Por favor, digite seu estado';
@@ -399,8 +319,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.045,
+                                fontSize: screenWidth * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -410,6 +329,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               ),
                             ),
                             controller: _cidadeController,
+                            keyboardType: TextInputType.text,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Por favor, digite sua cidade';
@@ -419,12 +339,11 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                           ),
                           TextFormField(
                             decoration: InputDecoration(
-                              labelText: 'Área de Atuação',
+                              labelText: 'Área de Atuação/Curso',
                               labelStyle: GoogleFonts.roboto(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.045,
+                                fontSize: screenWidth * 0.045,
                               ),
                               enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -434,102 +353,127 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               ),
                             ),
                             controller: _areaatividadeController,
+                            keyboardType: TextInputType.text,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Por favor, digite sua área de atuação';
+                                return 'Por favor, digite sua área de atuação ou curso';
                               }
                               return null;
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
-                            child: DropdownButtonFormField<String>(
-                              value: valorExpositor,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  valorExpositor = newValue!;
-                                });
-                              },
-                              decoration: InputDecoration(
-                                labelText: 'Expositor',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width * 0.045,
+                            padding: EdgeInsets.only(top: screenHeight * 0.03),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Você é expositor?',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: screenWidth * 0.045,
+                                  ),
                                 ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Radio(
+                                      value: 'Sim',
+                                      groupValue: valorExpositor,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          valorExpositor = value.toString();
+                                        });
+                                      },
+                                      activeColor: const Color(0xFFFFD35F),
+                                    ),
+                                    Text(
+                                      'Sim',
+                                      style: GoogleFonts.roboto(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: screenWidth * 0.045,
+                                      ),
+                                    ),
+                                    Radio(
+                                      value: 'Não',
+                                      groupValue: valorExpositor,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          valorExpositor = value.toString();
+                                        });
+                                      },
+                                      activeColor:  const Color(0xFFFFD35F),
+                                    ),
+                                    Text(
+                                      'Não',
+                                      style: GoogleFonts.roboto(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: screenWidth * 0.045,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              items: <String>[
-                                'Não',
-                                'Sim'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.036,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.48,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Color(0xFFFFD35F),
-                                      Color(0xFF572B11)
-                                    ],
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenHeight * 0.03),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: screenWidth * 0.45,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color(0xFFFFD35F),
+                                        Color(0xFF572B11)
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 3.5, right: 4),
-                                  child: ElevatedButton(
-                                    onPressed: enviarDados,
-                                    style: ElevatedButton.styleFrom(
-                                      minimumSize: const Size(100, 39),
-                                      backgroundColor: Colors.white,
-                                      shadowColor: Colors.transparent,
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
-                                        side: const BorderSide(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: screenWidth * 0.015,
+                                      right: screenWidth * 0.015,
+                                    ),
+                                    child: ElevatedButton(
+                                       onPressed: enviarDados,
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: Size(
+                                          screenWidth * 0.25,
+                                          screenHeight * 0.05,
+                                        ),
+                                        backgroundColor: Colors.white,
+                                        shadowColor: Colors.transparent,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50.0),
+                                          side: const BorderSide(
                                             color: Colors.transparent,
-                                            width: 0),
+                                            width: 0,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    child: Text(
-                                      "Cadastrar",
-                                      style: GoogleFonts.oswald(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize:
-                                            MediaQuery.of(context).size.width *
-                                                0.048,
+                                      child: Text(
+                                        "Cadastrar",
+                                        style: GoogleFonts.oswald(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: screenWidth * 0.045,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.03,
+                              ],
+                            ),
                           ),
                         ],
                       ),

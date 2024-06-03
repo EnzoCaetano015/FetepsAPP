@@ -75,7 +75,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
-                          width: MediaQuery.of(context).size.width * 0.67,
+                          width: MediaQuery.of(context).size.width * 0.65,
                         ),
                       ),
                     )
@@ -103,7 +103,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
               ),
               //Text formfield EMAIL
               SizedBox(
-                  width:  MediaQuery.of(context).size.width * 0.82,
+                width: MediaQuery.of(context).size.width * 0.82,
                 child: Form(
                   key: _formKey,
                   child: Center(

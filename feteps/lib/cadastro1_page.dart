@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
 import 'telainicial_page.dart';
 
-//AJUSTES NA RESPONSIVIDADE
 class Cadastro1Page extends StatefulWidget {
   const Cadastro1Page({Key? key}) : super(key: key);
 
@@ -55,7 +54,6 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
     if (response.statusCode == 200) {
       final dynamic decodedData = json.decode(response.body);
-      //print(decodedData);
 
       if (decodedData is List<dynamic>) {
         setState(() {
@@ -85,7 +83,6 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        //print('API response for $type: $data');
 
         if (data is Map && data['response'] is List) {
           List<Map<String, dynamic>> institutions =
@@ -121,9 +118,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
     }
   }
 
-//LAYOUT RESPONSIVO USANDO MEDIAQUERY
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -132,30 +131,32 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
       home: Scaffold(
         appBar: AppBar(
           title: SizedBox(
-            width: 400,
-            height: 300,
+            width: screenWidth * 0.9,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TelaInicialPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_sharp,
-                      color: Color(0xFF0E414F),
-                    )),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TelaInicialPage(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_sharp,
+                    color: Color(0xFF0E414F),
+                  ),
+                ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 15.0, left: 10, right: 10),
+                  padding: EdgeInsets.only(
+                      top: screenHeight * 0.015,
+                      left: screenWidth * 0.025,
+                      right: screenWidth * 0.025),
                   child: Image.asset(
                     'lib/assets/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    width: screenWidth * 0.7,
                   ),
                 )
               ],
@@ -163,29 +164,29 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
           ),
         ),
         body: ListView(
-          scrollDirection: Axis.vertical,
           children: [
             Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.37,
+                  height: screenHeight * 0.36,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: const Color(0xFFB6382B),
-                              width: 3.5,
-                            )),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFFB6382B),
+                            width: 3.5,
+                          ),
+                        ),
                         child: ClipOval(
                           child: Image.asset(
                             'lib/assets/fundo.png',
-                            width: MediaQuery.of(context).size.width * 0.58,
+                            width: screenWidth * 0.5,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -195,18 +196,17 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                     Text(
                       "CADASTRO",
                       style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.069,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                        fontSize: screenWidth * 0.069,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                       textAlign: TextAlign.center,
-                    )
+                    ),
                   ],
                 ),
+                SizedBox(height: screenHeight * 0.04),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.036,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.85,
+                  width: screenWidth * 0.85,
                   child: Form(
                     key: _formKey,
                     child: Center(
@@ -224,9 +224,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                   : DropdownButtonFormField(
                                       icon: Icon(
                                         Icons.person,
-                                        size:
-                                            MediaQuery.of(context).size.width *
-                                                0.072,
+                                        size: screenWidth * 0.072,
                                         color: Colors.black,
                                       ),
                                       value: selectedItem,
@@ -235,32 +233,28 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                               (item) {
                                         return DropdownMenuItem<String>(
                                           value: item['id'].toString(),
-                                          child: Text(item[
-                                              'description']), // Mostrando apenas o campo 'description'
+                                          child: Text(item['description']),
                                         );
                                       }).toList(),
                                       onChanged: (value) {
                                         setState(() {
                                           selectedItem = value;
                                         });
-                                        //print('Item selecionado: $value');
                                       },
                                       decoration: InputDecoration(
-                                          labelText:
-                                              'Selecione um tipo de usuário',
-                                          labelStyle: TextStyle(
-                                            color: const Color(0xFF0E414F),
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.045,
-                                          ),
-                                          border: const OutlineInputBorder(),
-                                          focusedBorder:
-                                              const OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Colors.black))),
+                                        labelText:
+                                            'Selecione um tipo de usuário',
+                                        labelStyle: TextStyle(
+                                          color: const Color(0xFF0E414F),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: screenWidth * 0.045,
+                                        ),
+                                        border: const OutlineInputBorder(),
+                                        focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                      ),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
                                           return 'Por favor, selecione um tipo de usuário';
@@ -269,13 +263,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                       },
                                     ),
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.03,
-                            ),
+                            SizedBox(height: screenHeight * 0.03),
                             DropdownButtonFormField<String>(
                               icon: Icon(
                                 Icons.business,
-                                size: MediaQuery.of(context).size.width * 0.072,
+                                size: screenWidth * 0.072,
                                 color: Colors.black,
                               ),
                               value: selectedMainOption,
@@ -297,18 +289,17 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                 }
                               },
                               decoration: InputDecoration(
-                                  labelText: 'Selecione um tipo de instituição',
-                                  labelStyle: TextStyle(
-                                    color: const Color(0xFF0E414F),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.045,
-                                  ),
-                                  border: const OutlineInputBorder(),
-                                  focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.black))),
+                                labelText: 'Selecione um tipo de instituição',
+                                labelStyle: TextStyle(
+                                  color: const Color(0xFF0E414F),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: screenWidth * 0.045,
+                                ),
+                                border: const OutlineInputBorder(),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                              ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Por favor, selecione um tipo de instituição';
@@ -317,29 +308,23 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                               },
                               isExpanded: true,
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.03,
-                            ),
+                            SizedBox(height: screenHeight * 0.03),
                             if (selectedMainOption != null)
                               isLoading
                                   ? const Center(
                                       child: Padding(
-                                      padding: EdgeInsets.only(bottom: 15.0),
-                                      child: CircularProgressIndicator(
-                                        color: Color(0xFFFFD35F),
+                                        padding: EdgeInsets.only(bottom: 15.0),
+                                        child: CircularProgressIndicator(
+                                          color: Color(0xFFFFD35F),
+                                        ),
                                       ),
-                                    ))
+                                    )
                                   : SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.14,
+                                      height: screenHeight * 0.13,
                                       child: DropdownButtonFormField<String>(
                                         icon: Icon(
                                           Icons.house,
-                                          size: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.072,
+                                          size: screenWidth * 0.072,
                                           color: Colors.black,
                                         ),
                                         value: selectedSubOption,
@@ -357,24 +342,22 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           setState(() {
                                             selectedSubOption = value;
                                           });
-
-                                          //print('ID da instituição selecionada: $value');
                                         },
                                         decoration: InputDecoration(
-                                            labelText:
-                                                'Selecione sua instituição',
-                                            labelStyle: TextStyle(
-                                              color: Color(0xFF0E414F),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.045,
-                                            ),
-                                            border: OutlineInputBorder(),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.black))),
+                                          labelText:
+                                              'Selecione sua instituição',
+                                          labelStyle: TextStyle(
+                                            color: const Color(0xFF0E414F),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: screenWidth * 0.045,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                        ),
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
                                             return 'Por favor, selecione uma instituição';
@@ -388,8 +371,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.48,
+                                  width: screenWidth * 0.45,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(25.0),
                                     gradient: const LinearGradient(
@@ -402,8 +384,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 3.5, right: 4),
+                                    padding: EdgeInsets.only(
+                                      left: screenWidth * 0.015,
+                                      right: screenWidth * 0.015,
+                                    ),
                                     child: ElevatedButton(
                                       onPressed: () {
                                         if (_formKey.currentState!.validate()) {
@@ -416,11 +400,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   Cadastro2Page(
-                                                //ENVIANDO O USUARIO E O ID PARA OUTRA PAGINA
-                                                selectedItem:
-                                                    //selectedUserTypeName,
-                                                    //selectedMainOption,
-                                                    selectedItem,
+                                                selectedItem: selectedItem,
                                                 selectedItemInstituicao:
                                                     selectedSubOption,
                                               ),
@@ -429,7 +409,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        minimumSize: const Size(100, 39),
+                                        minimumSize: Size(
+                                          screenWidth * 0.25,
+                                          screenHeight * 0.05,
+                                        ),
                                         backgroundColor: Colors.white,
                                         shadowColor: Colors.transparent,
                                         elevation: 0,
@@ -437,8 +420,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           borderRadius:
                                               BorderRadius.circular(50.0),
                                           side: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0),
+                                            color: Colors.transparent,
+                                            width: 0,
+                                          ),
                                         ),
                                       ),
                                       child: Text(
@@ -446,48 +430,40 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         style: GoogleFonts.oswald(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.048,
+                                          fontSize: screenWidth * 0.045,
                                         ),
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01,
-                            ),
+                            SizedBox(height: screenHeight * 0.01),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 TextButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CadastroInstituicaoPage(),
-                                        ),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Sua instituição não está na lista?',
-                                      style: GoogleFonts.oswald(
-                                        color: const Color(0xFFB6382B),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize:
-                                            MediaQuery.of(context).size.width *
-                                                0.044,
+                                  onPressed: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const CadastroInstituicaoPage(),
                                       ),
-                                    ))
+                                    );
+                                  },
+                                  child: Text(
+                                    'Sua instituição não está na lista?',
+                                    style: GoogleFonts.oswald(
+                                      color: const Color(0xFFB6382B),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.044,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.03,
-                            )
+                            SizedBox(height: screenHeight * 0.03),
                           ],
                         ),
                       ),
