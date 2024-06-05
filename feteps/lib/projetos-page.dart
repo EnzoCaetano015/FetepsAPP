@@ -41,14 +41,14 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
   //PUXANDO DA API
   Future<void> _fetchProjects(int ods) async {
     final response = await http.get(Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods')); //DEFINI ODS COMO INTEIRO E CONCATENE PARA REPRESENTAR OS IDS
+        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods')); //Concatenei ODS na API para representar os ids
 
     if (response.statusCode == 200) {
       setState(() {
         _projects = json.decode(response.body)['response'];
       });
     } else {
-      throw Exception('Failed to load projects');
+      throw Exception('Falha ao carregar os projetos');
     }
   }
 
