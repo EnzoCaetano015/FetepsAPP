@@ -2,6 +2,8 @@ import 'package:feteps/reservas/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Projetos extends StatelessWidget {
   const Projetos({super.key});
@@ -27,11 +29,27 @@ class ProjetosHomePage extends StatefulWidget {
 class ProjetosHomeState extends State<ProjetosHomePage> {
   int _selectedButtonIndex = -1;
   int _selectedOds = 1;
+  List<dynamic> _projects = [];
 
   void _updateSelectedOds(int ods) {
     setState(() {
       _selectedOds = ods;
+      _fetchProjects(ods);
     });
+  }
+
+  //PUXANDO DA API
+  Future<void> _fetchProjects(int ods) async {
+    final response = await http.get(Uri.parse(
+        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods')); //DEFINI ODS COMO INTEIRO E CONCATENE PARA REPRESENTAR OS IDS
+
+    if (response.statusCode == 200) {
+      setState(() {
+        _projects = json.decode(response.body)['response'];
+      });
+    } else {
+      throw Exception('Failed to load projects');
+    }
   }
 
   @override
@@ -162,9 +180,9 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "${CardWidget.texto(_selectedOds)[0]} - ${CardWidget.texto(_selectedOds)[1]}",
+                  "ODS ${CardWidget.texto(_selectedOds)[0]} - ${CardWidget.texto(_selectedOds)[1]}",
                   style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.055,
+                      fontSize: screenWidth * 0.058,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                 ),
@@ -212,7 +230,11 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for (int i = 1; i < 18; i++) CardWidget2(ods: _selectedOds)
+                    for (int i = 0; i < _projects.length; i++)
+                      CardWidget2(
+                        project: _projects[i],
+                        ods: _selectedOds,
+                      ),
                   ],
                 ),
               ),
@@ -257,64 +279,64 @@ class CardWidget extends StatelessWidget {
       case 9:
         return const Color.fromARGB(255, 225, 107, 16);
       case 10:
-        return const Color.fromARGB(255, 222, 79, 115);
+        return const Color.fromARGB(255, 222, 79, 48);
       case 11:
-        return const Color.fromARGB(255, 225, 162, 16);
+        return const Color.fromARGB(255, 241, 150, 1);
       case 12:
-        return const Color.fromARGB(255, 162, 144, 3);
+        return const Color.fromARGB(255, 229, 194, 1);
       case 13:
-        return const Color.fromARGB(255, 21, 89, 18);
+        return const Color.fromARGB(255, 51, 128, 56);
       case 14:
-        return const Color.fromARGB(255, 12, 107, 186);
+        return const Color.fromARGB(255, 36, 119, 198);
       case 15:
-        return const Color.fromARGB(255, 41, 229, 60);
+        return const Color.fromARGB(255, 94, 147, 48);
       case 16:
-        return const Color.fromARGB(255, 7, 77, 152);
+        return const Color.fromARGB(255, 14, 101, 184);
       case 17:
-        return const Color.fromARGB(255, 31, 27, 88);
+        return const Color.fromARGB(255, 22, 71, 141);
       default:
-        return const Color.fromARGB(255, 179, 0, 0);
+        return const Color.fromARGB(255, 0, 0, 0);
     }
   }
 
   static List<String> texto(int ods) {
     switch (ods) {
       case 1:
-        return ["ODS 1", "Erradicação da Pobreza"];
+        return ['1', 'Erradicação da pobreza'];
       case 2:
-        return ["ODS 2", "Fome Zero"];
+        return ['2', 'Fome zero e agricultura sustentável'];
       case 3:
-        return ["ODS 3", "Saúde e Bem-Estar"];
+        return ['3', 'Saúde e bem-estar'];
       case 4:
-        return ["ODS 4", "Educação de Qualidade"];
+        return ['4', 'Educação de qualidade'];
       case 5:
-        return ["ODS 5", "Igualdade de Gênero"];
+        return ['5', 'Igualdade de gênero'];
       case 6:
-        return ["ODS 6", "Água Potável e Saneamento"];
+        return ['6', 'Água potável e saneamento'];
       case 7:
-        return ["ODS 7", "Energia Limpa e Acessível"];
+        return ['7', 'Energia acessível e limpa'];
       case 8:
-        return ["ODS 8", "Crescimento Econômico"];
+        return ['8', 'Trabalho decente e crescimento econômico'];
       case 9:
-        return ["ODS 9", "Indústria e Inovação"];
+        return ['9', 'Indústria, inovação e infraestrutura'];
       case 10:
-        return ["ODS 10", "Redução das Desigualdades"];
+        return ['10', 'Redução das desigualdades'];
       case 11:
-        return ["ODS 11", "Cidades Sustentáveis"];
+        return ['11', 'Cidades e comunidades sustentáveis'];
       case 12:
-        return ["ODS 12", "Consumo Responsável"];
+        return ['12', 'Consumo e produção responsáveis'];
       case 13:
-        return ["ODS 13", "Ação Contra a Mudança Global do Clima"];
+        return ['13', 'Ação contra a mudança global do clima'];
       case 14:
-        return ["ODS 14", "Vida na Água"];
+        return ['14', 'Vida na água'];
       case 15:
-        return ["ODS 15", "Vida Terrestre"];
+        return ['15', 'Vida terrestre'];
       case 16:
-        return ["ODS 16", "Paz, Justiça e Instituições Eficazes"];
+        return ['16', 'Paz, justiça e instituições eficazes'];
       case 17:
-        return ["ODS 17", "Parcerias e Meios de Implementação"];
+        return ['17', 'Parcerias e meios de implementação'];
       default:
-        return ["Erro", "Erro na busca."];
+        return ['?', 'Meta desconhecida'];
     }
   }
 
@@ -334,8 +356,8 @@ class CardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        height: screenWidth * 0.45,
-        width: screenWidth * 0.6,
+        height: screenWidth * 0.48,
+        width: screenWidth * 0.65,
         child: Card(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -370,11 +392,11 @@ class CardWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      texto(ods)[0],
+                      "ODS ${texto(ods)[0]}",
                       style: GoogleFonts.inter(
-                        fontSize: screenWidth * 0.025,
-                        color: Colors.white,
-                      ),
+                          fontSize: screenWidth * 0.025,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -387,7 +409,7 @@ class CardWidget extends StatelessWidget {
                     texto(ods)[1],
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.039,
+                      fontSize: screenWidth * 0.042,
                       color: Colors.black,
                     ),
                   ),
@@ -430,9 +452,10 @@ class CardWidget extends StatelessWidget {
 }
 
 class CardWidget2 extends StatelessWidget {
+  final Map<String, dynamic> project;
   final int ods;
 
-  CardWidget2({required this.ods});
+  CardWidget2({required this.project, required this.ods});
 
   @override
   Widget build(BuildContext context) {
@@ -458,15 +481,15 @@ class CardWidget2 extends StatelessWidget {
               ),
               const SizedBox(height: 5.0),
               Text(
-                'Nome do projeto',
+                project['name_project'], //PUXANDO O NOME DA API
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
-                    fontSize: screenWidth * 0.04,
+                    fontSize: screenWidth * 0.042,
                     color: const Color.fromARGB(255, 0, 0, 0)),
               ),
               const SizedBox(height: 3.0),
               Text(
-                'Participantes',
+                'name_institution', //NÃO CONSEGUI PUXAR O NOME DA INSITUIÇÃO
                 style: GoogleFonts.poppins(
                     fontSize: screenWidth * 0.035,
                     color: const Color.fromARGB(255, 0, 0, 0)),
