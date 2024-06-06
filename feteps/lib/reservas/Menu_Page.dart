@@ -84,7 +84,7 @@ class MenuPage extends StatelessWidget {
                   ),
                   _buildDrawerItem(
                     icon: Icons.business,
-                    text: 'Instituições',
+                    text: 'Participantes',
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
@@ -93,11 +93,6 @@ class MenuPage extends StatelessWidget {
                         ),
                       );
                     },
-                  ),
-                  _buildDrawerItem(
-                    icon: Icons.calendar_today,
-                    text: 'Programação',
-                    onTap: () {},
                   ),
                   _buildDrawerItem(
                     icon: Icons.place,
