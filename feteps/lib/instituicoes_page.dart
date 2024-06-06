@@ -85,7 +85,7 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Text('Instituições',
+                        child: Text('Participantes',
                             style: GoogleFonts.poppins(
                                 fontSize: screenWidth * 0.09,
                                 fontWeight: FontWeight.bold,
