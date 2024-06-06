@@ -158,6 +158,30 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 10.0),
+                const Divider(
+                  color: Colors.grey,
+                  thickness: 1.5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'Convidados',
+                    style: GoogleFonts.inter(
+                        fontSize: screenWidth * 0.07,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 5.0),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (int i = 0; i < 6; i++) CardWidget(inst: "outros")
+                    ],
+                  ),
+                ),
               ]),
             ],
           ),
@@ -184,7 +208,7 @@ class CardWidget extends StatelessWidget {
     } else if (inst == "fatec") {
       return const Color.fromARGB(220, 255, 209, 64);
     }
-    return const Color.fromARGB(255, 255, 255, 255);
+    return const Color(0xFFB6382B);
   }
 
   @override
