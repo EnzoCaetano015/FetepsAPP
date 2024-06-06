@@ -84,7 +84,7 @@ class PerfilPage extends StatelessWidget {
                 SizedBox(
                   height: screenHeight * 0.115,
                   child: Padding(
-                     padding: EdgeInsets.only(left: screenWidth * 0.07),
+                    padding: EdgeInsets.only(left: screenWidth * 0.07),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -101,7 +101,7 @@ class PerfilPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.175,
+                  height: screenHeight * 0.18,
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -147,7 +147,7 @@ class PerfilPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                 padding: EdgeInsets.only(left: screenWidth * 0.07),
+                  padding: EdgeInsets.only(left: screenWidth * 0.06),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -159,7 +159,7 @@ class PerfilPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        width: screenWidth * 0.9,
+                        width: screenWidth * 0.89,
                         child: TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Instituição:',
@@ -179,49 +179,9 @@ class PerfilPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.04, left: screenWidth * 0.07),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          width: 0.9,
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(bottom: screenHeight * 0.025),
-                          child: Text(
-                            'Meus projetos',
-                            style: GoogleFonts.poppins(
-                              fontSize: screenWidth * 0.045,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: screenWidth * 0.47,
-                              top: screenHeight * 0.012),
-                          child: Icon(
-                            Icons.arrow_forward_ios_outlined,
-                            color: Colors.black,
-                            size: screenWidth * 0.08,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
                   padding: EdgeInsets.only(
                       right: screenWidth * 0.04,
-                      bottom: screenHeight * 0.006,
+                      bottom: screenHeight * 0.007,
                       left: screenWidth * 0.07),
                   child: Container(
                     decoration: const BoxDecoration(
@@ -247,7 +207,7 @@ class PerfilPage extends StatelessWidget {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsets.only(bottom: screenHeight * 0.025),
+                                EdgeInsets.only(bottom: screenHeight * 0.028),
                             child: Text(
                               'Alterar senha',
                               style: GoogleFonts.poppins(
@@ -260,7 +220,7 @@ class PerfilPage extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(
                                 left: screenWidth * 0.48,
-                                top: screenHeight * 0.012),
+                                top: screenHeight * 0.014),
                             child: Icon(
                               Icons.arrow_forward_ios_outlined,
                               color: Colors.black,
@@ -313,7 +273,7 @@ class PerfilPage extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(
                                 left: screenWidth * 0.45,
-                                top: screenHeight * 0.012),
+                                top: screenHeight * 0.014),
                             child: Icon(
                               Icons.arrow_forward_ios_outlined,
                               color: Colors.black,
@@ -324,6 +284,9 @@ class PerfilPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.025,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -392,8 +355,8 @@ class PerfilPage extends StatelessWidget {
   }
 }
 
- Future<bool> sair() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.clear();
-    return true;
-  }
+Future<bool> sair() async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  await sharedPreferences.clear();
+  return true;
+}
