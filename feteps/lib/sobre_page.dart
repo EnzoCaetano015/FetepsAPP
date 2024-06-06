@@ -98,13 +98,15 @@ class _SobrePageState extends State<SobrePage> {
                           Column(
                             children: [
                               SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.32,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.32,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
                                       'lib/assets/estudantes.png',
-                                      width: MediaQuery.of(context).size.width * 0.85,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.85,
                                     )
                                   ],
                                 ),
@@ -115,7 +117,9 @@ class _SobrePageState extends State<SobrePage> {
                                   Text(
                                     'A Feteps é um evento que reúne\nprojetos desenvolvidos por alunos do\nCentro Paula Souza\ne outras instituições participantes.\nCom projetos inovadores,de\ntransformação social, tecnológicos\n e criativos.\nA diversidade e a qualidade dos\ntrabalhos demonstram a excelência\ndos projetos pedagógicos do ensino médio,\ncursos técnicos de nível médio\ne superior tecnológico.\nA Feteps tem como objetivo desenvolver\n a visão empreendedora, criativa, inovadora\ne científico-tecnológica dos alunos.',
                                     style: GoogleFonts.poppins(
-                                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.04,
                                       color: Colors.black,
                                     ),
                                     textAlign: TextAlign.center,
@@ -126,19 +130,13 @@ class _SobrePageState extends State<SobrePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   TextButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SobreNosPage(),
-                                        ),
-                                      );
-                                    },
+                                    onPressed: () {},
                                     child: Text(
                                       "Leia Mais",
                                       style: GoogleFonts.poppins(
-                                        fontSize: MediaQuery.of(context).size.width * 0.045,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
                                         color: const Color(0xFFB6382B),
                                         fontWeight: FontWeight.bold,
                                         decoration: TextDecoration
@@ -163,7 +161,8 @@ class _SobrePageState extends State<SobrePage> {
                                 children: [
                                   Image.asset(
                                     'lib/assets/calendario.jpg',
-                                    width: MediaQuery.of(context).size.width * 0.85,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.85,
                                   )
                                 ],
                               ),
