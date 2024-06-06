@@ -115,7 +115,7 @@ class PalestrantesPage extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        'Dia 1',
+                        '19/06',
                         style: GoogleFonts.inter(
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           color: const Color.fromARGB(255, 61, 20, 10),
@@ -148,7 +148,7 @@ class PalestrantesPage extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        'Dia 2',
+                        '20/06',
                         style: GoogleFonts.inter(
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           color: const Color.fromARGB(255, 61, 20, 10),
@@ -181,7 +181,40 @@ class PalestrantesPage extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        'Dia 3',
+                        '21/06',
+                        style: GoogleFonts.inter(
+                          fontSize: MediaQuery.of(context).size.width * 0.07,
+                          color: const Color.fromARGB(255, 61, 20, 10),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.02,
+                  ),
+                  child: Divider(
+                    color: Colors.grey,
+                    thickness: MediaQuery.of(context).size.width * 0.005,
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [for (int i = 1; i < 18; i++) CardWidget()],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.02,
+                    left: MediaQuery.of(context).size.width * 0.05,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        '22/06',
                         style: GoogleFonts.inter(
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           color: const Color.fromARGB(255, 61, 20, 10),
