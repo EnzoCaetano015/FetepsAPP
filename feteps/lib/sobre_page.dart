@@ -1,5 +1,5 @@
 import 'package:feteps/instituicoes_page.dart';
-import 'package:feteps/reservas/Menu_Page.dart';
+import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';

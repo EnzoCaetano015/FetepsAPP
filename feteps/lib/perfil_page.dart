@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'altsenha_page.dart';
 import 'package:feteps/atualizaperfil_page.dart';
 import 'package:feteps/home_page.dart';
-import 'package:feteps/reservas/Menu_Page.dart';
+import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

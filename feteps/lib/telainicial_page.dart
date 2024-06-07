@@ -1,7 +1,6 @@
 import 'package:feteps/cadastro1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:feteps/reservas/cadastro_page.dart';
 import 'package:feteps/loginfeteps_page.dart';
 
 //AJUSTES NA RESPONSIVIDADE
