@@ -114,7 +114,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: UnderlineInputBorder(
+                                focusedBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
                                 ),
                                 labelStyle: GoogleFonts.roboto(
@@ -155,7 +155,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: UnderlineInputBorder(
+                                focusedBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black),
                                 ),
                                 labelStyle: GoogleFonts.roboto(
@@ -198,7 +198,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                 width: MediaQuery.of(context).size.width * 0.48,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
@@ -223,7 +223,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => SobrePage(),
+                                              builder: (context) => const SobrePage(),
                                             ),
                                           );
                                         } else {
@@ -233,6 +233,19 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                         }
                                       }
                                     },
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(100, 39),
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.transparent,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        side: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0),
+                                      ),
+                                    ),
                                     child: Text(
                                       "Confirmar",
                                       style: GoogleFonts.oswald(
@@ -241,19 +254,6 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                         fontSize:
                                             MediaQuery.of(context).size.width *
                                                 0.048,
-                                      ),
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      minimumSize: Size(100, 39),
-                                      backgroundColor: Colors.white,
-                                      shadowColor: Colors.transparent,
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50.0),
-                                        side: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0),
                                       ),
                                     ),
                                   ),
@@ -274,7 +274,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     );
   }
 
-  final snackBar = SnackBar(
+  final snackBar = const SnackBar(
     content: Text(
       'e-mail ou senha são inválidos',
       textAlign: TextAlign.center,
