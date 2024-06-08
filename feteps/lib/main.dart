@@ -1,7 +1,5 @@
-import 'package:feteps/cadastro1_page.dart';
-import 'package:feteps/home_page.dart';
-import 'package:feteps/loginfeteps_page.dart';
-import 'package:feteps/telainicial_page.dart';
+import 'package:feteps/SplashScreen_page.dart';
+// import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -22,15 +20,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //parametros para o calendario funcionar
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('pt', 'BR'),
-        const Locale('en', 'US'),
+      supportedLocales: const [
+        Locale('pt', 'BR'),
+        Locale('en', 'US'),
       ],
-      home: TelaInicialPage(),
+      home: const SplashScreenPage(),
     );
   }
 }

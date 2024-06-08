@@ -30,6 +30,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
   int _selectedOds = 1;
   Map<int, List<dynamic>> _projectsCache = {}; //RESOLVENDO PROBLEMA DO DELAY COM CACHE DE DADOS
   bool _isLoading = false;
+  String _qtdeString = '';
 
   void _updateSelectedOds(int ods) {
     if (_projectsCache.containsKey(ods)) {
@@ -47,14 +48,21 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
 
   Future<void> _fetchProjects(int ods) async {
     final response = await http.get(Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods'));
+        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'));
 
     if (response.statusCode == 200) {
       setState(() {
         _projectsCache[ods] = json.decode(response.body)['response'];
+        final jsonResponse = jsonDecode(response.body);
+        int contentLength = jsonResponse['content_length'];
+        _qtdeString = contentLength.toString();
         _isLoading = false;
       });
     } else {
+      setState(() {
+        _qtdeString = 'Erro ao carregar';
+        _isLoading = false;
+      });
       throw Exception('Falha ao carregar os projetos');
     }
   }
@@ -165,8 +173,11 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                     for (int i = 1; i < 18; i++)
                       GestureDetector(
                         onTap: () => _updateSelectedOds(i),
-                        child:
-                            CardWidget(ods: i, isSelected: _selectedOds == i),
+                        child: CardWidget(
+                          ods: i,
+                          isSelected: _selectedOds == i,
+                          // qtdeString: _qtdeString,
+                        ),
                       )
                   ],
                 ),
@@ -189,22 +200,35 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 ),
               ),
               _isLoading
-                  ? const Center(child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
+                  ? const Center(
+                      child:
+                          CircularProgressIndicator(color: Color(0xFFFFD35F)))
                   : _projectsCache.containsKey(_selectedOds)
-                      ? SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              for (int i = 0;
-                                  i < _projectsCache[_selectedOds]!.length;
-                                  i++)
-                                CardWidget2(
-                                  project: _projectsCache[_selectedOds]![i],
-                                  ods: _selectedOds,
-                                ),
-                            ],
-                          ),
-                        )
+                      ? _projectsCache[_selectedOds]!.isNotEmpty
+                          ? SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  for (int i = 0;
+                                      i < _projectsCache[_selectedOds]!.length;
+                                      i++)
+                                    CardWidget2(
+                                      project: _projectsCache[_selectedOds]![i],
+                                      ods: _selectedOds,
+                                    ),
+                                ],
+                              ),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                'Essa ODS não possui projetos.',
+                                style: GoogleFonts.poppins(
+                                    fontSize: screenWidth * 0.05,
+                                    color: Colors.black),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
                       : Container(),
             ],
           ),
@@ -217,8 +241,13 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
 class CardWidget extends StatelessWidget {
   final int ods;
   final bool isSelected;
+  // final String qtdeString;
 
-  CardWidget({required this.ods, required this.isSelected});
+  CardWidget({
+    required this.ods,
+    required this.isSelected,
+    // required this.qtdeString,
+  });
 
   static Color cor(int ods) {
     switch (ods) {
@@ -333,8 +362,7 @@ class CardWidget extends StatelessWidget {
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    color:
-                        isSelected ? cor(ods).withOpacity(0.3) : Colors.white,
+                    color: isSelected ? cor(ods).withOpacity(0.3) : Colors.white,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
@@ -394,7 +422,8 @@ class CardWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text(
-                          "XX Projetos",
+                          "CLIQUE PARA VER OS PROJETOS",
+                          //"Quantidade: $qtdeString",
                           style: GoogleFonts.inter(
                             fontSize: screenWidth * 0.035,
                             color: Colors.white,
@@ -460,7 +489,8 @@ class CardWidget2 extends StatelessWidget {
                 ),
                 const SizedBox(height: 3.0),
                 Text(
-                  'name_institution',
+                  'Stand n° ' + project['stand']['stand_number'],
+                  //'name_institution',
                   style: GoogleFonts.poppins(
                       fontSize: screenWidth * 0.035,
                       color: const Color.fromARGB(255, 0, 0, 0)),
