@@ -80,6 +80,8 @@ flutter:
     - 'lib/assets/user2.png'
     - 'lib/assets/documentos.png'
     - 'lib/assets/user.png'
+    - 'lib/assets/cps-logo.png'
+    - 'lib/assets/govsp-logo.png'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
