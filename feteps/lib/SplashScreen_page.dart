@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreenPage>
 
     Timer(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => TelaInicialPage()),
+        MaterialPageRoute(builder: (context) => const TelaInicialPage()),
       );
     });
   }
@@ -50,8 +50,8 @@ class _SplashScreenState extends State<SplashScreenPage>
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 95, 52, 27),
-              Color.fromARGB(255, 255, 222, 138)
+              Color.fromARGB(255, 90, 50, 25),
+              Color.fromARGB(255, 250, 218, 138)
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -59,34 +59,31 @@ class _SplashScreenState extends State<SplashScreenPage>
         ),
         child: Stack(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.3),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: ScaleTransition(
-                    scale: _animation,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3.5,
-                          )),
-                      child: ClipOval(
-                        child: Image.asset(
-                          'lib/assets/fundo.png',
-                          width: MediaQuery.of(context).size.width * 0.55,
-                        ),
+            Align(
+              alignment: Alignment.center,
+              child: ScaleTransition(
+                  scale: _animation,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 3.5,
+                        )),
+                    child: ClipOval(
+                      child: Image.asset(
+                        'lib/assets/fundo.png',
+                        width: MediaQuery.of(context).size.width * 0.5,
                       ),
-                    )),
-              ),
+                    ),
+                  )),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(bottom: screenHeight * 0.05),
+                padding: EdgeInsets.only(bottom: screenHeight * 0.04),
                 child: Image.asset('lib/assets/cps-logo.png',
-                    width: screenWidth * 0.22),
+                    width: screenWidth * 0.2),
               ),
             ),
           ],
@@ -95,3 +92,4 @@ class _SplashScreenState extends State<SplashScreenPage>
     );
   }
 }
+
