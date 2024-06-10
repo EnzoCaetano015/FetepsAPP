@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
 import 'telainicial_page.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 
 class Cadastro1Page extends StatefulWidget {
   const Cadastro1Page({Key? key}) : super(key: key);
@@ -322,53 +321,50 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                     )
                                   : SizedBox(
                                       height: screenHeight * 0.13,
-                                      child: DropdownSearch<String>(
-                                        items: options[selectedMainOption!]
-                                                ?.map<String>((item) =>
-                                                    item['name'] as String)
-                                                .toList() ??
-                                            [],
-                                        selectedItem: selectedSubOption,
-                                        dropdownDecoratorProps:
-                                            DropDownDecoratorProps(
-                                          dropdownSearchDecoration:
-                                              InputDecoration(
-                                            labelText:
-                                                'Selecione sua instituição',
-                                            labelStyle: TextStyle(
-                                              color: const Color(0xFF0E414F),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: screenWidth * 0.045,
-                                            ),
-                                            border: const OutlineInputBorder(),
-                                            focusedBorder:
-                                                const OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.black),
-                                            ),
-                                          ),
+                                      child: DropdownButtonFormField<String>(
+                                        icon: Icon(
+                                          Icons.house,
+                                          size: screenWidth * 0.072,
+                                          color: Colors.black,
                                         ),
+                                        value: selectedSubOption,
+                                        items:
+                                            (options[selectedMainOption!] ?? [])
+                                                .map<DropdownMenuItem<String>>(
+                                          (subOption) {
+                                            return DropdownMenuItem<String>(
+                                              value: subOption['id'].toString(),
+                                              child: Text(subOption['name']),
+                                            );
+                                          },
+                                        ).toList(),
                                         onChanged: (value) {
                                           setState(() {
                                             selectedSubOption = value;
                                           });
                                         },
+                                        decoration: InputDecoration(
+                                          labelText:
+                                              'Selecione sua instituição',
+                                          labelStyle: TextStyle(
+                                            color: const Color(0xFF0E414F),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: screenWidth * 0.045,
+                                          ),
+                                          border: const OutlineInputBorder(),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                        ),
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
                                             return 'Por favor, selecione uma instituição';
                                           }
                                           return null;
                                         },
-                                        popupProps:
-                                            PopupPropsMultiSelection.menu(
-                                          showSelectedItems: true,
-                                        ),
-                                        // searchFieldProps: const TextFieldProps(
-                                        //   decoration: InputDecoration(
-                                        //     prefixIcon: Icon(Icons.search),
-                                        //     border: OutlineInputBorder(),
-                                        //   ),
-                                        // ),
+                                        isExpanded: true,
                                       ),
                                     ),
                             Row(
