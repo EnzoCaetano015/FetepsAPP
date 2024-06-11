@@ -124,7 +124,7 @@ class AlterarSenhaPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.09),
+                      padding: EdgeInsets.only(bottom: screenHeight * 0.075),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -151,38 +151,36 @@ class AlterarSenhaPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: screenWidth * 0.6,
+                          width: MediaQuery.of(context).size.width * 0.5,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [Color(0xFFFFD35F), Color(0xFF572B11)],
-                            ),
+                            borderRadius: BorderRadius.circular(25.0),
+                            color: const Color(0xFFB6382B),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.01),
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width * 0.012,
+                                right:
+                                    MediaQuery.of(context).size.width * 0.012),
                             child: ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                minimumSize: Size(
-                                    screenWidth * 0.25, screenHeight * 0.05),
+                                minimumSize: const Size(100, 39),
                                 backgroundColor: Colors.white,
                                 shadowColor: Colors.transparent,
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(50.0),
                                   side: const BorderSide(
-                                      color: Colors.transparent, width: 0),
+                                      color: Colors.transparent),
                                 ),
                               ),
                               child: Text(
                                 "Atualizar Senha",
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.oswald(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.045,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.045,
                                 ),
                               ),
                             ),

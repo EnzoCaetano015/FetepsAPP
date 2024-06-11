@@ -136,27 +136,25 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TelaInicialPage(),
-                      ),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_sharp,
-                    color: Color(0xFF0E414F),
-                  ),
-                ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TelaInicialPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      size: MediaQuery.of(context).size.width * 0.075,
+                      Icons.arrow_back_sharp,
+                      color: const Color(0xFF0E414F),
+                    )),
                 Padding(
-                  padding: EdgeInsets.only(
-                      top: screenHeight * 0.015,
-                      left: screenWidth * 0.025,
-                      right: screenWidth * 0.025),
+                  padding:
+                      const EdgeInsets.only(top: 15.0, left: 20, right: 20),
                   child: Image.asset(
                     'lib/assets/logo.png',
-                    width: screenWidth * 0.7,
+                    width: MediaQuery.of(context).size.width * 0.65,
                   ),
                 )
               ],
@@ -371,23 +369,20 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  width: screenWidth * 0.45,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.45,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(25.0),
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFFFFD35F),
-                                        Color(0xFF572B11)
-                                      ],
-                                    ),
+                                    color: const Color(0xFFB6382B),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                      left: screenWidth * 0.015,
-                                      right: screenWidth * 0.015,
-                                    ),
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.012,
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.012),
                                     child: ElevatedButton(
                                       onPressed: () {
                                         if (_formKey.currentState!.validate()) {
@@ -409,10 +404,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        minimumSize: Size(
-                                          screenWidth * 0.25,
-                                          screenHeight * 0.05,
-                                        ),
+                                        minimumSize: const Size(100, 39),
                                         backgroundColor: Colors.white,
                                         shadowColor: Colors.transparent,
                                         elevation: 0,
@@ -420,9 +412,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           borderRadius:
                                               BorderRadius.circular(50.0),
                                           side: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0,
-                                          ),
+                                              color: Colors.transparent),
                                         ),
                                       ),
                                       child: Text(
@@ -430,7 +420,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         style: GoogleFonts.oswald(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
-                                          fontSize: screenWidth * 0.045,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.045,
                                         ),
                                       ),
                                     ),

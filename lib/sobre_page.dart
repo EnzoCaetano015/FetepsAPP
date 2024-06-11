@@ -104,9 +104,9 @@ class _SobrePageState extends State<SobrePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                      'lib/assets/estudantes.png',
+                                      'lib/assets/alunos.jpg',
                                       width: MediaQuery.of(context).size.width *
-                                          0.85,
+                                          0.7,
                                     )
                                   ],
                                 ),
@@ -160,7 +160,7 @@ class _SobrePageState extends State<SobrePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    'lib/assets/calendario.jpg',
+                                    'lib/assets/calendario.png',
                                     width: MediaQuery.of(context).size.width *
                                         0.85,
                                   )

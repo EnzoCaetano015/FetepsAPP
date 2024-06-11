@@ -50,11 +50,14 @@ class _SplashScreenState extends State<SplashScreenPage>
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 90, 50, 25),
-              Color.fromARGB(255, 250, 218, 138)
+              Color(0xFF85491A),
+              Color(0xFFA66736),
+              Color(0xFFFFAA5F),
+              Color(0xFFFFBF5F),
+              Color(0xFFFFD35F),
             ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
           ),
         ),
         child: Stack(
@@ -67,7 +70,7 @@ class _SplashScreenState extends State<SplashScreenPage>
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.black,
+                          color: Color(0xFF85491A),
                           width: 3.5,
                         )),
                     child: ClipOval(
@@ -92,4 +95,3 @@ class _SplashScreenState extends State<SplashScreenPage>
     );
   }
 }
-

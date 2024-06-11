@@ -132,12 +132,15 @@ class _SobreNosPageState extends State<SobreNosPage> {
                       )
                     ],
                   ),
+                   SizedBox(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.04,)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'lib/assets/alunos.png',
-                        width: MediaQuery.of(context).size.width * 0.74,
+                        'lib/assets/estudantes.jpeg',
+                        width: MediaQuery.of(context).size.width * 0.7,
                       )
                     ],
                   )

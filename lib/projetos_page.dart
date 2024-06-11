@@ -82,9 +82,10 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
+              icon: Icon(
+                size: MediaQuery.of(context).size.width * 0.075,
                 Icons.arrow_back_sharp,
-                color: Color(0xFF0E414F),
+                color: const Color(0xFF0E414F),
               ),
             ),
             Padding(
@@ -110,7 +111,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                   child: Icon(
                     Icons.menu,
                     size: MediaQuery.of(context).size.width * 0.095,
-                    color: Color(0xFF0E414F),
+                    color: const Color(0xFF0E414F),
                   ),
                 ),
                 onPressed: () {
@@ -453,8 +454,8 @@ class CardWidget2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-     final double screenHeight = MediaQuery.of(context).size.height;
-      final String? bannerUrl = project['banner'];
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final String? bannerUrl = project['banner'];
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -479,31 +480,40 @@ class CardWidget2 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 10.0),
-                 if (bannerUrl != null && bannerUrl.isNotEmpty)
-                  Image.network(
-                    bannerUrl,
-                    width: screenWidth * 0.42,
-                    height: screenHeight * 0.19,
-                    
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(
-                        'lib/assets/Rectangle.png',
-                        width: screenWidth * 0.42,
-                      );
-                    },
+                if (bannerUrl != null && bannerUrl.isNotEmpty)
+                  Container(
+                    height: screenHeight * 0.15,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.black,
+                      width: 2.5,
+                    )),
+                    child: Image.network(
+                      bannerUrl,
+                      width: screenWidth * 0.42,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'lib/assets/Rectangle.png',
+                          width: screenWidth * 0.42,
+                        );
+                      },
+                    ),
                   )
                 else
                   Image.asset(
                     'lib/assets/Rectangle.png',
                     width: screenWidth * 0.42,
                   ),
-                const SizedBox(height: 5.0),
-                Text(
-                  project['name_project'],
+                const SizedBox(height: 2.0),
+              Text(
+                  _shortenText(project['name_project'], 25),
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.042,
-                      color: const Color.fromARGB(255, 0, 0, 0)),
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.042,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 3.0),
                 Text(
@@ -521,3 +531,12 @@ class CardWidget2 extends StatelessWidget {
     );
   }
 }
+
+String _shortenText(String text, int maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    return text.substring(0, maxLength) + '...';
+  }
+}
+

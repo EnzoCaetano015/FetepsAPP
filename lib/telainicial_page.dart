@@ -31,7 +31,7 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                     padding: const EdgeInsets.only(top: 15.0),
                     child: Image.asset(
                       'lib/assets/logo.png',
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.65,
                     ),
                   )
                 ],
@@ -102,17 +102,15 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.48,
+                    width: MediaQuery.of(context).size.width * 0.45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25.0),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Color(0xFFFFD35F), Color(0xFF572B11)],
-                      ),
+                      color: const Color(0xFFB6382B),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 3.5, right: 4),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.012,
+                          right: MediaQuery.of(context).size.width * 0.012),
                       child: ElevatedButton(
                         onPressed: () {
                           //Ir para a tela de login
@@ -138,7 +136,7 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                           style: GoogleFonts.oswald(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: MediaQuery.of(context).size.width * 0.048,
+                            fontSize: MediaQuery.of(context).size.width * 0.045,
                           ),
                         ),
                       ),

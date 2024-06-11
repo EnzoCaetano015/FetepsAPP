@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class DetalheProjectPage extends StatelessWidget {
   final Map<String, dynamic> project;
 
@@ -11,14 +10,13 @@ class DetalheProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-     final double screenHeight = MediaQuery.of(context).size.height;
-      final String? bannerUrl = project['banner'];
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final String? bannerUrl = project['banner'];
     // Converte o 'id_ods' para string e fornece um valor padrão se for null
     String odsId =
         project['ods']['id_ods']?.toString() ?? 'ID ODS Não Disponível';
     String nameOds =
         project['ods']['name_ods']?.toString() ?? 'Nome ODS Não Disponível';
-        
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -38,7 +36,8 @@ class DetalheProjectPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(
+                    icon: Icon(
+                      size: MediaQuery.of(context).size.width * 0.075,
                       Icons.arrow_back_sharp,
                       color: Color(0xFF0E414F),
                     )),
@@ -62,7 +61,7 @@ class DetalheProjectPage extends StatelessWidget {
                 // Exibe o ID ODS convertido para string
                 'ODS $odsId: $nameOds',
                 style: GoogleFonts.inter(
-                  fontSize:  MediaQuery.of(context).size.width * 0.055,
+                  fontSize: MediaQuery.of(context).size.width * 0.055,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -70,38 +69,47 @@ class DetalheProjectPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-             if (bannerUrl != null && bannerUrl.isNotEmpty)
-                  Image.network(
-                    bannerUrl,
-                    width: screenWidth * 0.42,
-                    height: screenHeight * 0.19,
-                    
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(
-                        'lib/assets/Rectangle.png',
-                        width: screenWidth * 0.42,
-                      );
-                    },
-                  )
-                else
-                  Image.asset(
-                    'lib/assets/Rectangle.png',
-                    width: screenWidth * 0.42,
-                  ),
+            if (bannerUrl != null && bannerUrl.isNotEmpty)
+              Container(
+                 height: screenHeight * 0.25,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                  color: Colors.black,
+                  width: 2.5, 
+                )),
+                child: Image.network(
+                  bannerUrl,
+                  width: screenWidth * 0.42,
+                  height: screenHeight * 0.19,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      'lib/assets/Rectangle.png',
+                      width: screenWidth * 0.42,
+                    );
+                  },
+                ),
+              )
+            else
+              Image.asset(
+                'lib/assets/Rectangle.png',
+                width: screenWidth * 0.42,
+              ),
             const SizedBox(height: 20),
             Text(
               project['name_project'] ?? 'Nome do Projeto',
               style: GoogleFonts.inter(
-                fontSize: 25.0,
+                fontSize: screenWidth * 0.06,
                 fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 14, 56, 70),
+                color: Colors.black,
               ),
+              textAlign: TextAlign.left,
             ),
             const SizedBox(height: 20),
             Text(
               'Resumo',
               style: GoogleFonts.inter(
-                fontSize: 18.0,
+                fontSize: screenWidth * 0.048,
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(255, 208, 20, 20),
               ),
@@ -110,8 +118,8 @@ class DetalheProjectPage extends StatelessWidget {
             Text(
               project['project_abstract'] ?? 'Lorem ipsum dolor sit amet...',
               style: GoogleFonts.inter(
-                fontSize: 15.0,
-                color: const Color.fromARGB(255, 14, 56, 70),
+                fontSize: screenWidth * 0.042,
+                color: Colors.black,
               ),
             ),
             const Divider(
@@ -122,7 +130,7 @@ class DetalheProjectPage extends StatelessWidget {
             Text(
               "Integrantes",
               style: GoogleFonts.inter(
-                fontSize: 18.0,
+                fontSize: screenWidth * 0.055,
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(255, 14, 56, 70),
               ),

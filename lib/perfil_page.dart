@@ -37,7 +37,8 @@ class PerfilPage extends StatelessWidget {
                         ),
                       );
                     },
-                    icon: const Icon(
+                    icon: Icon(
+                      size: MediaQuery.of(context).size.width * 0.075,
                       Icons.arrow_back_sharp,
                       color: Color(0xFF0E414F),
                     )),
@@ -130,12 +131,26 @@ class PerfilPage extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(
                                       left: screenWidth * 0.025),
-                                  child: Text(
-                                    'Olá \nFulano da Silva',
+                                  child: RichText(
                                     textAlign: TextAlign.start,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: screenWidth * 0.069,
-                                    ),
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                        text: 'Olá\n',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: screenWidth * 0.069,
+                                          color: Colors
+                                              .black, 
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: 'Fulano da Silva',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: screenWidth * 0.069,
+                                          color:const Color(0xFFD4A03D), 
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    ]),
                                   ),
                                 ),
                               ],
@@ -321,7 +336,7 @@ class PerfilPage extends StatelessWidget {
                     children: [
                       Image.asset(
                         'lib/assets/documentos.png',
-                        width: screenWidth * 0.8,
+                        width: screenWidth * 0.7,
                       ),
                     ],
                   ),

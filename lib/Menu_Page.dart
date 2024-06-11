@@ -14,18 +14,18 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(
-              color: const Color(0xFFF5F5F5),
+      child: Container(
+        color: Color(0xFFFFE7A9),
+        child: Column(
+          children: [
+            Expanded(
               child: ListView(
                 children: <Widget>[
                   SizedBox(
                     height: 112,
                     child: DrawerHeader(
                       decoration: const BoxDecoration(
-                        color: Color(0xFFF5F5F5),
+                        color: Color(0xFFFFE7A9),
                       ),
                       child: Builder(builder: (BuildContext context) {
                         return IconButton(
@@ -37,7 +37,7 @@ class MenuPage extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.arrow_back_sharp,
-                                color: Color(0xFF0E414F),
+                                color: Colors.black,
                                 size: 45,
                               ),
                             ],
@@ -148,61 +148,59 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(16),
-            color: const Color(0xFFF5F5F5),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                width: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFFFFD35F), Color(0xFF572B11)],
+            Container(
+              padding: const EdgeInsets.all(10),
+              color: Color(0xFFFFE7A9),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  width: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Color(0xFFB6382B),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 3.5, right: 4),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      bool saiu = await sair();
-                      if (saiu) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TelaInicialPage(),
-                          ),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(100, 39),
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.transparent,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: const BorderSide(
-                            color: Colors.transparent, width: 0),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.012,
+                        right: MediaQuery.of(context).size.width * 0.012),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        bool saiu = await sair();
+                        if (saiu) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const TelaInicialPage(),
+                            ),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(100, 39),
+                        backgroundColor: Color(0xFFFFE7A9),
+                        shadowColor: Colors.transparent,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: const BorderSide(
+                              color: Colors.transparent, width: 0),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      "Log-out",
-                      style: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
+                      child: Text(
+                        "Log-out",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

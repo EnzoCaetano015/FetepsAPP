@@ -70,13 +70,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - 'lib/assets/fundoSplash.png'
     - 'lib/assets/fundo.png'
     - 'lib/assets/logo.png'
-    - 'lib/assets/alunos.png'
+    - 'lib/assets/alunos.jpg'
     - 'lib/assets/banner2.png'
-    - 'lib/assets/estudantes.png'
+    - 'lib/assets/estudantes.jpeg'
     - 'lib/assets/Rectangle.png'
-    - 'lib/assets/calendario.jpg'
+    - 'lib/assets/calendario.png'
     - 'lib/assets/user2.png'
     - 'lib/assets/documentos.png'
     - 'lib/assets/user.png'

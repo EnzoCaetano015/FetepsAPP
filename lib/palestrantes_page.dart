@@ -3,13 +3,12 @@ import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class PalestrantesPage extends StatelessWidget {
   const PalestrantesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-     final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -27,7 +26,8 @@ class PalestrantesPage extends StatelessWidget {
                     ),
                   );
                 },
-                icon: const Icon(
+                icon: Icon(
+                  size: MediaQuery.of(context).size.width * 0.075,
                   Icons.arrow_back_sharp,
                   color: Color(0xFF0E414F),
                 ),
@@ -86,27 +86,27 @@ class PalestrantesPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                  Padding(
-                padding: EdgeInsets.only(
-                    bottom: screenHeight * 0.055,
-                    left: screenWidth * 0.06,
-                    right: screenWidth * 0.06),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Pesquise um projeto...',
-                    hintStyle: TextStyle(color: Colors.grey),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        width: 3.0,
-                        color: Color.fromARGB(255, 255, 209, 64),
-                        style: BorderStyle.solid,
+                Padding(
+                  padding: EdgeInsets.only(
+                      bottom: screenHeight * 0.055,
+                      left: screenWidth * 0.06,
+                      right: screenWidth * 0.06),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Pesquise um projeto...',
+                      hintStyle: TextStyle(color: Colors.grey),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3.0,
+                          color: Color.fromARGB(255, 255, 209, 64),
+                          style: BorderStyle.solid,
+                        ),
                       ),
+                      prefixIcon: Icon(Icons.search,
+                          color: Color.fromARGB(255, 255, 209, 64)),
                     ),
-                    prefixIcon: Icon(Icons.search,
-                        color: Color.fromARGB(255, 255, 209, 64)),
                   ),
                 ),
-              ),
                 Padding(
                   padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * 0.02,
@@ -254,7 +254,7 @@ class CardWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
       child: Card(
-        color: const Color.fromARGB(255, 179, 0, 0),
+        color: Color(0xFFFFD35F),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),

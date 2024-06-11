@@ -75,7 +75,8 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                       ),
                     );
                   },
-                  icon: const Icon(
+                  icon: Icon(
+                    size: MediaQuery.of(context).size.width * 0.075,
                     Icons.arrow_back_sharp,
                     color: Color(0xFF0E414F),
                   ),
@@ -116,7 +117,8 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
           ),
           endDrawer: MenuPage(),
           body: _isLoading
-              ? const Center(child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
+              ? const Center(
+                  child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
               : ListView(
                   children: [
                     Column(
@@ -132,7 +134,8 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                                     style: GoogleFonts.poppins(
                                         fontSize: screenWidth * 0.09,
                                         fontWeight: FontWeight.bold,
-                                        color: const Color.fromARGB(255, 14, 56, 70))),
+                                        color: const Color.fromARGB(
+                                            255, 14, 56, 70))),
                               ),
                             ],
                           ),
@@ -170,7 +173,7 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                           color: Colors.grey,
                           thickness: 1.5,
                         ),
-                        _buildProjectSection('Convidados', 'OUTROS'),
+                        _buildProjectSection('Outras Instituições', 'OUTROS'),
                       ],
                     ),
                   ],
@@ -233,11 +236,11 @@ class CardWidget2 extends StatelessWidget {
   Color Cor(String classification) {
     switch (classification) {
       case 'ETEC':
-        return const Color.fromARGB(220, 69, 46, 172);
+        return const Color(0xFF830000);
       case 'FATEC':
-        return const Color.fromARGB(220, 255, 209, 64);
+        return const Color(0xFF1A5B97);
       case 'OUTROS':
-        return const Color(0xFFB6382B);
+        return const Color(0xFFDDA73A);
       default:
         return Colors.grey;
     }
@@ -273,17 +276,24 @@ class CardWidget2 extends StatelessWidget {
               children: [
                 const SizedBox(height: 10.0),
                 if (bannerUrl != null && bannerUrl.isNotEmpty)
-                  Image.network(
-                    bannerUrl,
-                    width: screenWidth * 0.42,
-                    height: screenHeight * 0.19,
-                    
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(
-                        'lib/assets/Rectangle.png',
-                        width: screenWidth * 0.42,
-                      );
-                    },
+                  Container(
+                    height: screenHeight * 0.15,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.black,
+                      width: 2.5,
+                    )),
+                    child: Image.network(
+                      bannerUrl,
+                      width: screenWidth * 0.42,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'lib/assets/Rectangle.png',
+                          width: screenWidth * 0.42,
+                        );
+                      },
+                    ),
                   )
                 else
                   Image.asset(
@@ -292,11 +302,13 @@ class CardWidget2 extends StatelessWidget {
                   ),
                 const SizedBox(height: 5.0),
                 Text(
-                  project['name_project'],
+                  _shortenText(project['name_project'], 25),
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.042,
-                      color: const Color.fromARGB(255, 255, 255, 255)),
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.042,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 3.0),
                 Text(
@@ -311,5 +323,13 @@ class CardWidget2 extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String _shortenText(String text, int maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    return text.substring(0, maxLength) + '...';
   }
 }

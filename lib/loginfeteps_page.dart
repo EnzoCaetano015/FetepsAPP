@@ -40,15 +40,16 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                       ),
                     );
                   },
-                  icon: const Icon(
+                  icon: Icon(
+                    size: MediaQuery.of(context).size.width * 0.075,
                     Icons.arrow_back_sharp,
-                    color: Color(0xFF0E414F),
+                    color: const Color(0xFF0E414F),
                   )),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0, left: 10, right: 10),
+                padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
                 child: Image.asset(
                   'lib/assets/logo.png',
-                  width: MediaQuery.of(context).size.width * 0.7,
+                  width: MediaQuery.of(context).size.width * 0.65,
                 ),
               )
             ],
@@ -195,21 +196,17 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.48,
+                                width: MediaQuery.of(context).size.width * 0.45,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Color(0xFFFFD35F),
-                                      Color(0xFF572B11)
-                                    ],
-                                  ),
+                                  color: Color(0xFFB6382B),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 3.5, right: 4),
+                                  padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).size.width *
+                                          0.012,
+                                      right: MediaQuery.of(context).size.width *
+                                          0.012),
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       FocusScopeNode currentFocus =
@@ -223,7 +220,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => const SobrePage(),
+                                              builder: (context) =>
+                                                  const SobrePage(),
                                             ),
                                           );
                                         } else {
@@ -261,6 +259,23 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                               )
                             ],
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "Esqueci minha senha",
+                                    style: GoogleFonts.oswald(
+                                      color: Color(0xFF0E414F),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.042,
+                                    ),
+                                  ))
+                            ],
+                          )
                         ],
                       ),
                     ),
