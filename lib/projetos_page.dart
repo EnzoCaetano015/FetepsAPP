@@ -1,4 +1,5 @@
 import 'package:feteps/DetalheProject_page.dart';
+import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -79,9 +80,14 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+               onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SobrePage(),
+                        ),
+                      );
+                    },
               icon: Icon(
                 size: MediaQuery.of(context).size.width * 0.075,
                 Icons.arrow_back_sharp,

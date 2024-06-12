@@ -97,19 +97,15 @@ class _SobrePageState extends State<SobrePage> {
                         children: [
                           Column(
                             children: [
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.32,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'lib/assets/alunos.jpg',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.7,
-                                    )
-                                  ],
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'lib/assets/alunos.png',
+                                    width: MediaQuery.of(context).size.width *
+                                        0.65,
+                                  )
+                                ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -154,18 +150,15 @@ class _SobrePageState extends State<SobrePage> {
                         scrollDirection: Axis.vertical,
                         children: [
                           Column(children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.32,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'lib/assets/calendario.png',
-                                    width: MediaQuery.of(context).size.width *
-                                        0.85,
-                                  )
-                                ],
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'lib/assets/calendario.png',
+                                  width: MediaQuery.of(context).size.width *
+                                      0.6,
+                                )
+                              ],
                             ),
                           ]),
                         ],

@@ -303,10 +303,6 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     final url = Uri.parse(
         'https://profandersonvanin.com.br/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
 
-    // Aqui usei a interpolação direto na url pois na api, o nome de usuário e senha
-    // são passados como parâmetros e não no corpo como um Json
-
-    // crio um corpo vazio pois é um argumento obrigatório no post
     final corpo = jsonEncode(<String, String>{});
     final resposta = await http.post(
       url,
@@ -314,19 +310,39 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     );
 
     if (resposta.statusCode == 200) {
-      //print(jsonDecode(resposta.body)['accessToken']);
       final url2 = Uri.parse(
           'https://profandersonvanin.com.br/appfeteps/pages/Users/authUser.php');
 
       final response = await http.get(url2);
-      String meuToken = (json.decode(response.body)['token']);
-      //print(meuToken);
-      await sharedPreferences.setString('token', 'meuToken');
+      String meuToken = json.decode(response.body)['token'];
+
+      await sharedPreferences.setString('token', meuToken);
 
       return true;
     } else {
-      //print(jsonDecode(resposta.body));
-      //print('Deu erro');
+      return false;
+    }
+  }
+
+  Future<bool> verificarToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? token = sharedPreferences.getString('token');
+
+    if (token != null) {
+      final url = Uri.parse('https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+      final response = await http.post(
+        url,
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
       return false;
     }
   }

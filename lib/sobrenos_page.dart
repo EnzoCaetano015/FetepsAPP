@@ -94,8 +94,11 @@ class _SobreNosPageState extends State<SobreNosPage> {
                 children: [
                   SizedBox(
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      margin: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05,
+                        vertical: MediaQuery.of(context).size.height * 0.01,
+                      ),
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
@@ -132,15 +135,16 @@ class _SobreNosPageState extends State<SobreNosPage> {
                       )
                     ],
                   ),
-                   SizedBox(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.04,)),
+                  SizedBox(
+                      child: Container(
+                    height: MediaQuery.of(context).size.height * 0.018,
+                  )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'lib/assets/estudantes.jpeg',
-                        width: MediaQuery.of(context).size.width * 0.7,
+                        'lib/assets/estudantes.png',
+                        width: MediaQuery.of(context).size.width * 0.55,
                       )
                     ],
                   )

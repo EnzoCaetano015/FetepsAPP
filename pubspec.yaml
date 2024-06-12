@@ -45,6 +45,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   dropdown_search: ^5.0.3
+  dart_jsonwebtoken: ^2.14.0
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -73,14 +75,15 @@ flutter:
     - 'lib/assets/fundoSplash.png'
     - 'lib/assets/fundo.png'
     - 'lib/assets/logo.png'
-    - 'lib/assets/alunos.jpg'
+    - 'lib/assets/alunos.png'
     - 'lib/assets/banner2.png'
-    - 'lib/assets/estudantes.jpeg'
+    - 'lib/assets/estudantes.png'
     - 'lib/assets/Rectangle.png'
     - 'lib/assets/calendario.png'
     - 'lib/assets/user2.png'
     - 'lib/assets/documentos.png'
     - 'lib/assets/user.png'
+    - 'lib/assets/senha.png'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

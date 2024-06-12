@@ -1,6 +1,12 @@
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'loginfeteps_page.dart';
+import 'sobre_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});
@@ -28,11 +34,24 @@ class _SplashScreenState extends State<SplashScreenPage>
       curve: Curves.easeInOut,
     ));
 
-    Timer(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const TelaInicialPage()),
+    _navigateToNextScreen();
+  }
+
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(Duration(seconds: 5));     
+    bool isLoggedIn = await verificarToken();
+
+    if (isLoggedIn) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SobrePage()),
       );
-    });
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => TelaInicialPage()),
+      );
+    }
   }
 
   @override
@@ -93,5 +112,46 @@ class _SplashScreenState extends State<SplashScreenPage>
         ),
       ),
     );
+  }
+}
+
+Future<bool> verificarToken() async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  String? token = sharedPreferences.getString('token');
+
+  if (token != null) {
+    final url = Uri.parse(
+        'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+    final response = await http.post(
+      url,
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+Future<Map<String, dynamic>?> getTokenData() async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  String? token = sharedPreferences.getString('token');
+
+  if (token != null) {
+    try {
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+      return decodedToken;
+    } catch (e) {
+      print('Erro decoding token: $e');
+      return null;
+    }
+  } else {
+    return null;
   }
 }

@@ -189,13 +189,13 @@ class AlterarSenhaPage extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: screenHeight * 0.03),
+                      padding: EdgeInsets.only(top: screenHeight * 0.025),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'lib/assets/documentos.png',
-                            width: screenWidth * 0.8,
+                            'lib/assets/senha.png',
+                            width: screenWidth * 0.75,
                           ),
                         ],
                       ),

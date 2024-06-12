@@ -1,15 +1,35 @@
-import 'package:feteps/telainicial_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'altsenha_page.dart';
-import 'package:feteps/atualizaperfil_page.dart';
-import 'package:feteps/home_page.dart';
-import 'package:feteps/Menu_Page.dart';
-import 'package:feteps/sobre_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:feteps/SplashScreen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'altsenha_page.dart';
+import 'atualizaperfil_page.dart';
+import 'Menu_Page.dart';
+import 'sobre_page.dart';
+import 'telainicial_page.dart';
 
-class PerfilPage extends StatelessWidget {
+class PerfilPage extends StatefulWidget {
+  @override
+  _PerfilPageState createState() => _PerfilPageState();
+}
+
+class _PerfilPageState extends State<PerfilPage> {
+  String? _username;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUsername();
+  }
+
+  Future<void> _loadUsername() async {
+    Map<String, dynamic>? tokenData = await getTokenData();
+    setState(() {
+      _username = tokenData?['userName'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -138,17 +158,16 @@ class PerfilPage extends StatelessWidget {
                                         text: 'Olá\n',
                                         style: GoogleFonts.poppins(
                                           fontSize: screenWidth * 0.069,
-                                          color: Colors
-                                              .black, 
+                                          color: Colors.black,
                                         ),
                                       ),
                                       TextSpan(
-                                        text: 'Fulano da Silva',
+                                        text: _username ??
+                                            'Carregando...', //EXIBINDO O NOME DO USUÁRIO
                                         style: GoogleFonts.poppins(
-                                          fontSize: screenWidth * 0.069,
-                                          color:const Color(0xFFD4A03D), 
-                                          fontWeight: FontWeight.bold
-                                        ),
+                                            fontSize: screenWidth * 0.069,
+                                            color: const Color(0xFFD4A03D),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ]),
                                   ),
@@ -336,7 +355,7 @@ class PerfilPage extends StatelessWidget {
                     children: [
                       Image.asset(
                         'lib/assets/documentos.png',
-                        width: screenWidth * 0.7,
+                        width: screenWidth * 0.68,
                       ),
                     ],
                   ),
