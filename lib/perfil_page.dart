@@ -34,6 +34,7 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

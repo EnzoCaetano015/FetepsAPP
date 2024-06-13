@@ -7,6 +7,47 @@ class DetalheProjectPage extends StatelessWidget {
 
   const DetalheProjectPage({super.key, required this.project});
 
+    static Color cor(int ods) {
+    switch (ods) {
+      case 1:
+        return const Color.fromARGB(255, 179, 0, 0);
+      case 2:
+        return const Color.fromARGB(255, 201, 177, 0);
+      case 3:
+        return const Color.fromARGB(255, 60, 131, 66);
+      case 4:
+        return const Color.fromARGB(255, 127, 13, 13);
+      case 5:
+        return const Color.fromARGB(255, 201, 59, 7);
+      case 6:
+        return const Color.fromARGB(255, 22, 149, 199);
+      case 7:
+        return const Color.fromARGB(255, 255, 234, 71);
+      case 8:
+        return const Color.fromARGB(255, 88, 3, 27);
+      case 9:
+        return const Color.fromARGB(255, 225, 107, 16);
+      case 10:
+        return const Color.fromARGB(255, 222, 79, 48);
+      case 11:
+        return const Color.fromARGB(255, 241, 150, 1);
+      case 12:
+        return const Color.fromARGB(255, 229, 194, 1);
+      case 13:
+        return const Color.fromARGB(255, 51, 128, 56);
+      case 14:
+        return const Color.fromARGB(255, 36, 119, 198);
+      case 15:
+        return const Color.fromARGB(255, 94, 147, 48);
+      case 16:
+        return const Color.fromARGB(255, 14, 101, 184);
+      case 17:
+        return const Color.fromARGB(255, 22, 71, 141);
+      default:
+        return const Color.fromARGB(255, 0, 0, 0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -63,7 +104,7 @@ class DetalheProjectPage extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: MediaQuery.of(context).size.width * 0.055,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: cor(project["ods"]["id_ods"]),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -184,4 +225,4 @@ class IconPerson extends StatelessWidget {
       ],
     );
   }
-}
+} 
