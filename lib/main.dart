@@ -23,9 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Feteps 2024',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(),
+       
       //parametros para o calendario funcionar
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

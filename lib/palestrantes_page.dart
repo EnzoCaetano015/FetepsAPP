@@ -11,7 +11,7 @@ class PalestrantesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: PalestrantesHomePage(),
@@ -64,7 +64,8 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
     for (var palestrante in palestrantes) {
       final eventType = palestrante['type_event'];
       if (eventType != null && eventType['description'] == 'Palestra') {
-        String data = palestrante['date_time'].substring(5, 10).replaceAll('-', '/');
+        String data =
+            palestrante['date_time'].substring(5, 10).replaceAll('-', '/');
         String fixedDate = _mapDate(palestrante['date_time']);
 
         if (_palestrantesPorData.containsKey(data)) {
@@ -126,7 +127,7 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
                   child: Icon(
                     Icons.menu,
                     size: MediaQuery.of(context).size.width * 0.095,
-                    color: Color(0xFF0E414F),
+                    color: const Color(0xFF0E414F),
                   ),
                 ),
                 onPressed: () {
@@ -137,9 +138,10 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
           ),
         ],
       ),
-      endDrawer: MenuPage(),
+      endDrawer: const MenuPage(),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
+          ? const Center(
+              child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
           : ListView(
               children: [
                 Column(
@@ -151,7 +153,8 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
                           Text(
                             'Palestrantes',
                             style: GoogleFonts.poppins(
-                              fontSize: MediaQuery.of(context).size.width * 0.09,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.09,
                               fontWeight: FontWeight.bold,
                               color: const Color.fromARGB(255, 14, 56, 70),
                             ),
@@ -206,7 +209,10 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
               child: Row(
                 children: palestrantes.isNotEmpty
                     ? palestrantes.map((palestrante) {
-                        return CardWidget(palestrante: palestrante, lista: palestrantes, total: _palestrantesPorData);
+                        return CardWidget(
+                            palestrante: palestrante,
+                            lista: palestrantes,
+                            total: _palestrantesPorData);
                       }).toList()
                     : [
                         Padding(
@@ -216,7 +222,8 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
                           child: Text(
                             'Ainda não há palestrantes para este dia.',
                             style: GoogleFonts.poppins(
-                              fontSize: MediaQuery.of(context).size.width * 0.04,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
                               color: const Color.fromARGB(255, 0, 0, 0),
                             ),
                           ),
@@ -231,29 +238,33 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
   }
 }
 
-  class CardWidget extends StatelessWidget {
+class CardWidget extends StatelessWidget {
   final Map<String, dynamic> palestrante;
   final Map<String, List<dynamic>> total;
   final List<dynamic> lista;
 
-  CardWidget({required this.palestrante, required this.lista, required this.total});
+  CardWidget(
+      {required this.palestrante, required this.lista, required this.total});
 
   @override
   Widget build(BuildContext context) {
-    final exhibitor = (palestrante["exhibitors"] as List).isNotEmpty ? palestrante["exhibitors"][0] : null;
+    final exhibitor = (palestrante["exhibitors"] as List).isNotEmpty
+        ? palestrante["exhibitors"][0]
+        : null;
     return Padding(
       padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
       child: InkWell(
-         onTap: () {
+        onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => tela_palestrante(lista: lista, palestrante: palestrante, totalP: total),
+              builder: (context) => tela_palestrante(
+                  lista: lista, palestrante: palestrante, totalP: total),
             ),
           );
         },
         child: Card(
-          color: Color(0xFFFFD35F),
+          color: const Color(0xFFFFD35F),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -265,30 +276,30 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.015),
                 if (exhibitor["photo"] != null && exhibitor["photo"].isNotEmpty)
-                   Container(
-                      height: MediaQuery.of(context).size.height * 0.185,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                        color: Colors.black,
-                        width: 2.5,
-                      )),
-                      child: Image.network(
-                        exhibitor["photo"],
-                        width: MediaQuery.of(context).size.width * 0.42,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            'lib/assets/Rectangle.png',
-                            width: MediaQuery.of(context).size.width * 0.42,
-                          );
-                        },
-                      ),
-                    )
-                  else
-                    Image.asset(
-                      'lib/assets/Rectangle.png',
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.185,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.black,
+                      width: 2.5,
+                    )),
+                    child: Image.network(
+                      exhibitor["photo"],
                       width: MediaQuery.of(context).size.width * 0.42,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'lib/assets/Rectangle.png',
+                          width: MediaQuery.of(context).size.width * 0.42,
+                        );
+                      },
                     ),
+                  )
+                else
+                  Image.asset(
+                    'lib/assets/Rectangle.png',
+                    width: MediaQuery.of(context).size.width * 0.42,
+                  ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.005),
                 exhibitor != null
                     ? Text(

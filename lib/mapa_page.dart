@@ -95,10 +95,9 @@ class MapaPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           InteractiveViewer(
-                              boundaryMargin: const EdgeInsets.all(8.0),
                             panEnabled: true,
                             minScale: 0.5,
-                            maxScale: 4.0,
+                            maxScale: 6.0,
                             child: Image.asset(
                               'lib/assets/MapaFeira.png',
                               width: screenWidth * 0.9,

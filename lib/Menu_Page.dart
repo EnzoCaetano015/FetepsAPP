@@ -1,4 +1,5 @@
 import 'package:feteps/avaliar_page.dart';
+import 'package:feteps/creditos_page.dart';
 import 'package:feteps/curiosidades_page.dart';
 import 'package:feteps/instituicoes_page.dart';
 import 'package:feteps/mapa_page.dart';
@@ -103,7 +104,7 @@ class MenuPage extends StatelessWidget {
                     icon: Icons.place,
                     text: 'Mapa',
                     onTap: () {
-                       Navigator.pushReplacement(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const MapaPage(),
@@ -127,10 +128,10 @@ class MenuPage extends StatelessWidget {
                     icon: Icons.help,
                     text: 'Curiosidade',
                     onTap: () {
-                       Navigator.pushReplacement(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  const CuriosidadePage(),
+                          builder: (context) => const CuriosidadePage(),
                         ),
                       );
                     },
@@ -142,7 +143,7 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  const PatrocinadoresPage(),
+                          builder: (context) => const PatrocinadoresPage(),
                         ),
                       );
                     },
@@ -175,7 +176,6 @@ class MenuPage extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(10),
               color: const Color(0xFFFFE7A9),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -224,7 +224,24 @@ class MenuPage extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreditosPage(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Creditos',
+                  style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      decoration: TextDecoration.underline),
+                ))
           ],
         ),
       ),

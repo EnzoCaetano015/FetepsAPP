@@ -10,11 +10,11 @@ class tela_palestrante extends StatelessWidget {
   final Map<String, List<dynamic>> totalP;
 
   const tela_palestrante({
-    Key? key,
+    super.key,
     required this.lista,
     required this.palestrante,
     required this.totalP,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,8 @@ class tela_palestrante extends StatelessWidget {
     final allSpeakers = totalP.values.expand((list) => list).toList();
 
     // Filtra a lista para excluir o palestrante atual
-    final outrosPalestrantes = allSpeakers.where((p) => p != palestrante).toList();
+    final outrosPalestrantes =
+        allSpeakers.where((p) => p != palestrante).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -103,7 +104,8 @@ class tela_palestrante extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   child: Row(
                     children: [
                       Text(
@@ -132,7 +134,8 @@ class tela_palestrante extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   child: Row(
                     children: [
                       Text(
@@ -220,9 +223,7 @@ class CardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 10.0),
-                if (ex != null &&
-                    ex["photo"] != null &&
-                    ex["photo"].isNotEmpty)
+                if (ex != null && ex["photo"] != null && ex["photo"].isNotEmpty)
                   Container(
                     height: MediaQuery.of(context).size.height * 0.185,
                     decoration: BoxDecoration(
@@ -278,6 +279,6 @@ String _shortenText(String text, int maxLength) {
   if (text.length <= maxLength) {
     return text;
   } else {
-    return text.substring(0, maxLength) + '...';
+    return '${text.substring(0, maxLength)}...';
   }
 }
