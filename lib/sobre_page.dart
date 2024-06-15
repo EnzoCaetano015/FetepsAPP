@@ -47,13 +47,13 @@ class _SobrePageState extends State<SobrePage> {
                   builder: (BuildContext context) {
                     return IconButton(
                       icon: Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 9.5,
                         ),
                         child: Icon(
                           Icons.menu,
                           size: MediaQuery.of(context).size.width * 0.095,
-                          color: Color(0xFF0E414F),
+                          color: const Color(0xFF0E414F),
                         ),
                       ),
                       onPressed: () {
@@ -79,12 +79,12 @@ class _SobrePageState extends State<SobrePage> {
                   ),
                 ),
                 TabBar(
-                  indicatorColor: Color(0xFFFFD35F),
+                  indicatorColor: const Color(0xFFFFD35F),
                   labelColor: Colors.black,
                   labelStyle: GoogleFonts.poppins(
                       fontSize: MediaQuery.of(context).size.width * 0.043,
                       fontWeight: FontWeight.bold),
-                  tabs: [
+                  tabs: const [
                     Tab(text: 'Feteps'),
                     Tab(text: 'Programação'),
                   ],
@@ -150,13 +150,35 @@ class _SobrePageState extends State<SobrePage> {
                         scrollDirection: Axis.vertical,
                         children: [
                           Column(children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).size.height * 0.025,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Programação:',
+                                    style: GoogleFonts.poppins(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.064,
+                                      color: const Color(0xFF0E414F),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            const EventTable(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'lib/assets/calendario.png',
-                                  width: MediaQuery.of(context).size.width *
-                                      0.6,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.55,
                                 )
                               ],
                             ),
@@ -176,5 +198,60 @@ class _SobrePageState extends State<SobrePage> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
     return true;
+  }
+}
+
+class EventTable extends StatelessWidget {
+  const EventTable({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.95,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: const Color(0xFF0E414F)),
+      ),
+      child: Table(
+        columnWidths: {
+          0: const FlexColumnWidth(1),
+          1: const FlexColumnWidth(2),
+        },
+        children: [
+          _buildTableRow(
+            '10/10/2023\n25/03/2024',
+            'Submissão dos Trabalhos [Prorrogado]',
+            Color(0xFFFFD35F),
+          ),
+          _buildTableRow(
+              '22/04/2024', 'Início da Etapa de Avaliação', Colors.white),
+          _buildTableRow(
+              '15/05/2024', 'Divulgação dos Finalistas', Color(0xFFFFD35F)),
+          _buildTableRow('19, 20, 21 e 22/07/2024',
+              'Feira Presencial: São Paulo Expo - Pavilhão 7', Colors.white),
+        ],
+      ),
+    );
+  }
+
+  TableRow _buildTableRow(
+      String date, String description, Color backgroundColor) {
+    return TableRow(
+      children: [
+        Container(
+          color: backgroundColor,
+          padding: const EdgeInsets.all(20.66), // Aumenta a altura da linha
+          child: Text(
+            date,
+            style: TextStyle(fontSize: 13, color: Color(0xFF0E414F), fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          color: backgroundColor,
+          padding: const EdgeInsets.all(20.0), // Aumenta a altura da linha
+          child: Text(description, style: TextStyle(color: Color(0xFF0E414F), fontWeight: FontWeight.bold),),
+        ),
+      ],
+    );
   }
 }
