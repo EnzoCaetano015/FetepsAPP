@@ -1,5 +1,6 @@
 import 'package:feteps/avaliar_page.dart';
 import 'package:feteps/instituicoes_page.dart';
+import 'package:feteps/patrocinadores_page.dart';
 import 'package:feteps/perfil_page.dart';
 import 'package:feteps/projetos_page.dart';
 import 'package:feteps/palestrantes_page.dart';
@@ -119,7 +120,14 @@ class MenuPage extends StatelessWidget {
                   _buildDrawerItem(
                     icon: Icons.group,
                     text: 'Patrocinadores',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>  const PatrocinadoresPage(),
+                        ),
+                      );
+                    },
                   ),
                   _buildDrawerItem(
                     icon: Icons.info,
