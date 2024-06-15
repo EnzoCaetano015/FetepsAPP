@@ -85,6 +85,9 @@ flutter:
     - 'lib/assets/user.png'
     - 'lib/assets/senha.png'
     - 'lib/assets/dinheiro.png'
+    -  'lib/assets/curiosidade.png'
+    - 'lib/assets/MapaFeira.png'
+    - 'lib/assets/Mapa.png'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

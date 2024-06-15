@@ -80,6 +80,7 @@ class DetalheProjectPage extends StatelessWidget {
                     icon: Icon(
                       size: MediaQuery.of(context).size.width * 0.075,
                       Icons.arrow_back_sharp,
+                      // ignore: prefer_const_constructors
                       color: Color(0xFF0E414F),
                     )),
                 Padding(

@@ -29,7 +29,7 @@ class CadastroInstituicaoPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Cadastro1Page(),
+                          builder: (context) => const Cadastro1Page(),
                         ),
                       );
                     },

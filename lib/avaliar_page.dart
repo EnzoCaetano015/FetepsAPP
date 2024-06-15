@@ -67,7 +67,7 @@ class AvaliacaoPage extends StatelessWidget {
             ),
           ],
         ),
-        endDrawer: MenuPage(),
+        endDrawer: const MenuPage(),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,

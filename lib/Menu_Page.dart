@@ -1,5 +1,7 @@
 import 'package:feteps/avaliar_page.dart';
+import 'package:feteps/curiosidades_page.dart';
 import 'package:feteps/instituicoes_page.dart';
+import 'package:feteps/mapa_page.dart';
 import 'package:feteps/patrocinadores_page.dart';
 import 'package:feteps/perfil_page.dart';
 import 'package:feteps/projetos_page.dart';
@@ -12,11 +14,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuPage extends StatelessWidget {
+  const MenuPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Color(0xFFFFE7A9),
+        color: const Color(0xFFFFE7A9),
         child: Column(
           children: [
             Expanded(
@@ -66,7 +70,7 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PerfilPage(),
+                          builder: (context) => const PerfilPage(),
                         ),
                       );
                     },
@@ -78,7 +82,7 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProjetosPage(),
+                          builder: (context) => const ProjetosPage(),
                         ),
                       );
                     },
@@ -98,7 +102,14 @@ class MenuPage extends StatelessWidget {
                   _buildDrawerItem(
                     icon: Icons.place,
                     text: 'Mapa',
-                    onTap: () {},
+                    onTap: () {
+                       Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MapaPage(),
+                        ),
+                      );
+                    },
                   ),
                   _buildDrawerItem(
                     icon: Icons.mic_none,
@@ -115,7 +126,14 @@ class MenuPage extends StatelessWidget {
                   _buildDrawerItem(
                     icon: Icons.help,
                     text: 'Curiosidade',
-                    onTap: () {},
+                    onTap: () {
+                       Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>  const CuriosidadePage(),
+                        ),
+                      );
+                    },
                   ),
                   _buildDrawerItem(
                     icon: Icons.group,
@@ -148,7 +166,7 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AvaliacaoPage(),
+                          builder: (context) => const AvaliacaoPage(),
                         ),
                       );
                     },
@@ -158,14 +176,14 @@ class MenuPage extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(10),
-              color: Color(0xFFFFE7A9),
+              color: const Color(0xFFFFE7A9),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Container(
                   width: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
-                    color: Color(0xFFB6382B),
+                    color: const Color(0xFFB6382B),
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -185,7 +203,7 @@ class MenuPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(100, 39),
-                        backgroundColor: Color(0xFFFFE7A9),
+                        backgroundColor: const Color(0xFFFFE7A9),
                         shadowColor: Colors.transparent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(

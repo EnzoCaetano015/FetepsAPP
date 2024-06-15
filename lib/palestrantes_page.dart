@@ -77,7 +77,6 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
     }
   }
 
-
   String _mapDate(String date) {
     DateTime dataC = DateTime.parse(date);
     return "${dataC.day}/${dataC.month}";
@@ -207,7 +206,7 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
               child: Row(
                 children: palestrantes.isNotEmpty
                     ? palestrantes.map((palestrante) {
-                        return CardWidget(palestrante: palestrante);
+                        return CardWidget(palestrante: palestrante, lista: palestrantes, total: _palestrantesPorData);
                       }).toList()
                     : [
                         Padding(
@@ -234,8 +233,10 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
 
   class CardWidget extends StatelessWidget {
   final Map<String, dynamic> palestrante;
+  final Map<String, List<dynamic>> total;
+  final List<dynamic> lista;
 
-  CardWidget({required this.palestrante});
+  CardWidget({required this.palestrante, required this.lista, required this.total});
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +248,7 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const tela_palestrante(),
+              builder: (context) => tela_palestrante(lista: lista, palestrante: palestrante, totalP: total),
             ),
           );
         },

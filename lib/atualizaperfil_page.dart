@@ -47,109 +47,107 @@ class AtualizarDadosPage extends StatelessWidget {
             ),
           ),
         ),
-        body: Container(
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            children: [
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: screenHeight * 0.03,
-                      left: screenWidth * 0.07,
-                      bottom: screenHeight * 0.04,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Atualizar dados",
-                          style: GoogleFonts.poppins(
-                            fontSize: screenWidth * 0.069,
-                            color: const Color(0xFF0E414F),
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: screenHeight * 0.03,
+                    left: screenWidth * 0.07,
+                    bottom: screenHeight * 0.04,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Atualizar dados",
+                        style: GoogleFonts.poppins(
+                          fontSize: screenWidth * 0.069,
+                          color: const Color(0xFF0E414F),
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'lib/assets/user.png',
-                          width: screenWidth * 0.45,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: screenHeight * 0.015),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'lib/assets/user.png',
+                        width: screenWidth * 0.45,
+                      ),
+                    ],
+                  ),
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Email:',
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Estado:',
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Cidade:',
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Instituição:',
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: screenHeight * 0.04, bottom: screenHeight * 0.02),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                          color: const Color(0xFFB6382B),
                         ),
-                      ],
-                    ),
-                  ),
-                  buildTextField(
-                    context,
-                    labelText: 'Email:',
-                  ),
-                  buildTextField(
-                    context,
-                    labelText: 'Estado:',
-                  ),
-                  buildTextField(
-                    context,
-                    labelText: 'Cidade:',
-                  ),
-                  buildTextField(
-                    context,
-                    labelText: 'Instituição:',
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: screenHeight * 0.04, bottom: screenHeight * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25.0),
-                            color: const Color(0xFFB6382B),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.width * 0.012,
-                                right:
-                                    MediaQuery.of(context).size.width * 0.012),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: const Size(100, 39),
-                                backgroundColor: Colors.white,
-                                shadowColor: Colors.transparent,
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  side: const BorderSide(
-                                      color: Colors.transparent),
-                                ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * 0.012,
+                              right:
+                                  MediaQuery.of(context).size.width * 0.012),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(100, 39),
+                              backgroundColor: Colors.white,
+                              shadowColor: Colors.transparent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50.0),
+                                side: const BorderSide(
+                                    color: Colors.transparent),
                               ),
-                              child: Text(
-                                "Atualizar",
-                                style: GoogleFonts.oswald(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width * 0.045,
-                                ),
+                            ),
+                            child: Text(
+                              "Atualizar",
+                              style: GoogleFonts.oswald(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

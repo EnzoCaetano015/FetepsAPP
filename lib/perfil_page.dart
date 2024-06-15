@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:feteps/SplashScreen_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,8 @@ import 'sobre_page.dart';
 import 'telainicial_page.dart';
 
 class PerfilPage extends StatefulWidget {
+  const PerfilPage({super.key});
+
   @override
   _PerfilPageState createState() => _PerfilPageState();
 }

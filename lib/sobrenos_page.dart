@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:feteps/instituicoes_page.dart';
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';

@@ -78,7 +78,7 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                   icon: Icon(
                     size: MediaQuery.of(context).size.width * 0.075,
                     Icons.arrow_back_sharp,
-                    color: Color(0xFF0E414F),
+                    color: const Color(0xFF0E414F),
                   ),
                 ),
                 Padding(
@@ -104,7 +104,7 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
                       child: Icon(
                         Icons.menu,
                         size: MediaQuery.of(context).size.width * 0.095,
-                        color: Color(0xFF0E414F),
+                        color: const Color(0xFF0E414F),
                       ),
                     ),
                     onPressed: () {
@@ -115,7 +115,7 @@ class _InstituicoesPageState extends State<InstituicoesPage> {
               ),
             ],
           ),
-          endDrawer: MenuPage(),
+          endDrawer: const MenuPage(),
           body: _isLoading
               ? const Center(
                   child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
@@ -231,7 +231,7 @@ class CardWidget2 extends StatelessWidget {
   final Map<String, dynamic> project;
   final String classification;
 
-  CardWidget2({required this.project, required this.classification});
+  const CardWidget2({super.key, required this.project, required this.classification});
 
   Color Cor(String classification) {
     switch (classification) {
@@ -330,6 +330,6 @@ String _shortenText(String text, int maxLength) {
   if (text.length <= maxLength) {
     return text;
   } else {
-    return text.substring(0, maxLength) + '...';
+    return '${text.substring(0, maxLength)}...';
   }
 }

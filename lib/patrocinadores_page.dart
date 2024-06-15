@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
@@ -68,11 +70,11 @@ class PatrocinadoresPage extends StatelessWidget {
                 ),
               ],
             ),
-            endDrawer: MenuPage(),
+            endDrawer: const MenuPage(),
             body: ListView(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: screenHeight * 0.03),
+                    padding: EdgeInsets.all(screenWidth * 0.025),
                   child: Column(
                     children: [
                       Padding(
@@ -101,9 +103,18 @@ class PatrocinadoresPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 7),
-                        child: Divider(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'lib/assets/dinheiro.png',
+                            width: screenWidth * 0.45,
+                          )
+                        ],
+                      ),
+                       Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02, vertical: screenHeight * 0.02),
+                        child: const Divider(
                           thickness: 1.5,
                           color: Colors.grey,
                         ),
@@ -120,15 +131,7 @@ class PatrocinadoresPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'lib/assets/dinheiro.png',
-                            width: screenWidth * 0.65,
-                          )
-                        ],
-                      )
+                      
                     ],
                   ),
                 ),
@@ -141,7 +144,7 @@ class PatrocinadoresPage extends StatelessWidget {
 
 class CardWidget extends StatelessWidget {
   final int index;
-  CardWidget({required this.index});
+  const CardWidget({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -150,15 +153,15 @@ class CardWidget extends StatelessWidget {
     bool isBlue = (index ~/ 2) % 2 == 0;
 
     return Padding(
-      padding: EdgeInsets.all(screenWidth * 0.010),
+      padding: EdgeInsets.all(screenWidth * 0.012),
       child: Card(
         color: isBlue ? const Color(0xFF1A5B97) : const Color(0xFF830000),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(screenWidth * 0.025),
         ),
         child: SizedBox(
-          width: screenWidth * 0.45,
-          height: screenHeight * 0.28,
+          width: screenWidth * 0.42,
+          height: screenHeight * 0.26,
           child: Center(
             child: Stack(
               children: [
@@ -168,7 +171,7 @@ class CardWidget extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.015),
                     Image.asset(
                       'lib/assets/Rectangle.png',
-                      width: screenWidth * 0.35,
+                      width: screenWidth * 0.33,
                     ),
                     SizedBox(height: screenHeight * 0.005),
                     Text(
@@ -198,7 +201,7 @@ class CardWidget extends StatelessWidget {
                     ),
                     child: Icon(
                       Icons.arrow_forward,
-                      size: screenWidth * 0.05,
+                      size: screenWidth * 0.04,
                       color: Colors.black,
                     ),
                   ),
