@@ -21,7 +21,7 @@ class _CreditosPageState extends State<CreditosPage>
     _controller = AnimationController(
       duration: const Duration(
           seconds:
-              400), // Reduzindo a duração da animação para aumentar a velocidade
+              20), // Reduzindo a duração da animação para aumentar a velocidade
       vsync: this,
     );
 
