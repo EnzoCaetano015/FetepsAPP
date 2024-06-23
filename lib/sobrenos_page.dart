@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:feteps/instituicoes_page.dart';
+import 'package:feteps/NossaEquipe_page.dart';
+import 'package:feteps/participantes_page.dart';
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
@@ -139,15 +140,41 @@ class _SobreNosPageState extends State<SobreNosPage> {
                   ),
                   SizedBox(
                       child: Container(
-                    height: MediaQuery.of(context).size.height * 0.018,
+                    height: MediaQuery.of(context).size.height * 0.02,
                   )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         'lib/assets/estudantes.png',
-                        width: MediaQuery.of(context).size.width * 0.55,
+                        width: MediaQuery.of(context).size.width * 0.45,
                       )
+                    ],
+                  ),
+                  SizedBox(
+                      child: Container(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NossaEquipePage(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Nossa Equipe',
+                            style: GoogleFonts.poppins(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.0,
+                                decoration: TextDecoration.underline),
+                          ))
                     ],
                   )
                 ],

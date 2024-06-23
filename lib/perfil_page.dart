@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:feteps/SplashScreen_page.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +36,6 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -376,7 +373,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           "*Política de privacidade",
                           style: GoogleFonts.poppins(
                             fontSize: screenWidth * 0.04,
-                            color: const Color(0xFF572B11),
+                            color: const Color(0xFFD4A03D),
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                           ),

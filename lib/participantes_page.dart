@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class InstituicoesPage extends StatefulWidget {
-  const InstituicoesPage({super.key});
+class ParticipantesPage extends StatefulWidget {
+  const ParticipantesPage({super.key});
 
   @override
-  State<InstituicoesPage> createState() => _InstituicoesPageState();
+  State<ParticipantesPage> createState() => _InstituicoesPageState();
 }
 
-class _InstituicoesPageState extends State<InstituicoesPage> {
+class _InstituicoesPageState extends State<ParticipantesPage> {
   Map<String, List<dynamic>> _projectsCache = {
     "ETEC": [],
     "FATEC": [],

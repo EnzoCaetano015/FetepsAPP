@@ -1,7 +1,7 @@
 import 'package:feteps/avaliar_page.dart';
-import 'package:feteps/creditos_page.dart';
+import 'package:feteps/NossaEquipe_page.dart';
 import 'package:feteps/curiosidades_page.dart';
-import 'package:feteps/instituicoes_page.dart';
+import 'package:feteps/participantes_page.dart';
 import 'package:feteps/mapa_page.dart';
 import 'package:feteps/patrocinadores_page.dart';
 import 'package:feteps/perfil_page.dart';
@@ -95,7 +95,7 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const InstituicoesPage(),
+                          builder: (context) => const ParticipantesPage(),
                         ),
                       );
                     },
@@ -225,23 +225,23 @@ class MenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreditosPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'Creditos',
-                  style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      decoration: TextDecoration.underline),
-                ))
+            // TextButton(
+            //     onPressed: () {
+            //       Navigator.pushReplacement(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => const CreditosPage(),
+            //         ),
+            //       );
+            //     },
+            //     child: Text(
+            //       'Creditos',
+            //       style: GoogleFonts.poppins(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           fontSize: 16.0,
+            //           decoration: TextDecoration.underline),
+            //     ))
           ],
         ),
       ),

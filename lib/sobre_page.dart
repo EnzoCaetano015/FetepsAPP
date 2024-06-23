@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:feteps/instituicoes_page.dart';
+import 'package:feteps/participantes_page.dart';
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:feteps/telainicial_page.dart';
