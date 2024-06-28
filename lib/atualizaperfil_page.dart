@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AtualizarDadosPage extends StatelessWidget {
+  const AtualizarDadosPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -27,7 +29,7 @@ class AtualizarDadosPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PerfilPage(),
+                          builder: (context) => const PerfilPage(),
                         ),
                       );
                     },

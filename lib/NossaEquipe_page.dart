@@ -1,6 +1,7 @@
 import 'package:feteps/NossaEquipe/Breno_page.dart';
 import 'package:feteps/NossaEquipe/Caetano_page.dart';
 import 'package:feteps/NossaEquipe/Cintia_page.dart';
+import 'package:feteps/NossaEquipe/Krebs_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,10 +64,10 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       "page": "EnzoCaetanoPage"
     },
     {
-      "name": "Frank",
-      "email": "",
-      "image": "lib/assets/Rectangle.png",
-      "page": "FrankPage"
+      "name": "Enzo Krebs Silva",
+      "email": "Backend",
+      "image": "lib/assets/Krebs.jpg",
+      "page": "EnzoKrebsPage"
     },
     {
       "name": "Grace",
@@ -220,6 +221,9 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
         break;
        case 'EnzoCaetanoPage':
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EnzoCaetanoPage()));
+        break;
+         case 'EnzoKrebsPage':
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EnzoKrebsPage()));
         break;
     }
   }

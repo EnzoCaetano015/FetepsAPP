@@ -91,6 +91,7 @@ flutter:
     - 'lib/assets/breno.png'
     - 'lib/assets/caetano.jpg'
     - 'lib/assets/cintia.jpg'
+    - 'lib/assets/Krebs.jpg'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

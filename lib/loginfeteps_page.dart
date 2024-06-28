@@ -310,6 +310,12 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
       url,
       body: corpo,
     );
+    //print('Resposta do Login: ' + resposta);
+    print('Token Login: ' + jsonDecode(resposta.body)['token']);
+    print('Nome Usuario: ' + jsonDecode(resposta.body)['userName']);
+    String nomeUsuario = jsonDecode(resposta.body)['userName'];
+    String idUsuario = (jsonDecode(resposta.body)['userId']).toString();
+    print('Id Usuario: ' + (jsonDecode(resposta.body)['userId']).toString());
 
     if (resposta.statusCode == 200) {
       final url2 = Uri.parse(
@@ -318,7 +324,11 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
       final response = await http.get(url2);
       String meuToken = json.decode(response.body)['token'];
 
+      print('Token depois de Logado: ' + json.decode(response.body)['token']);
+
       await sharedPreferences.setString('token', meuToken);
+      await sharedPreferences.setString('nomeUsuario', nomeUsuario);
+      await sharedPreferences.setString('idUsuario', idUsuario);
 
       return true;
     } else {
@@ -331,7 +341,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     String? token = sharedPreferences.getString('token');
 
     if (token != null) {
-      final url = Uri.parse('https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+      final url = Uri.parse(
+          'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
       final response = await http.post(
         url,
         headers: {

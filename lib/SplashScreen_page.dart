@@ -1,13 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'loginfeteps_page.dart';
 import 'sobre_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -40,18 +36,18 @@ class _SplashScreenState extends State<SplashScreenPage>
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(Duration(seconds: 5));     
+    await Future.delayed(const Duration(seconds: 5));
     bool isLoggedIn = await verificarToken();
 
     if (isLoggedIn) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => SobrePage()),
+        MaterialPageRoute(builder: (context) => const SobrePage()),
       );
     } else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => TelaInicialPage()),
+        MaterialPageRoute(builder: (context) => const TelaInicialPage()),
       );
     }
   }
@@ -64,8 +60,6 @@ class _SplashScreenState extends State<SplashScreenPage>
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -91,7 +85,7 @@ class _SplashScreenState extends State<SplashScreenPage>
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Color(0xFF85491A),
+                          color: const Color(0xFF85491A),
                           width: 3.5,
                         )),
                     child: ClipOval(
