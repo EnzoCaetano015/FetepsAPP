@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:feteps/cadastroInstitu_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
@@ -139,8 +140,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const TelaInicialPage(),
+                        PageTransition(
+                          child: const TelaInicialPage(),
+                          type: PageTransitionType.leftToRightWithFade,
                         ),
                       );
                     },
@@ -439,9 +441,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const CadastroInstituicaoPage(),
+                                      PageTransition(
+                                        child: const CadastroInstituicaoPage(),
+                                        type: PageTransitionType.bottomToTop,
                                       ),
                                     );
                                   },

@@ -2,6 +2,7 @@ import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AvaliacaoPage extends StatelessWidget {
@@ -23,9 +24,9 @@ class AvaliacaoPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const SobrePage(),
-                    ),
+                    PageTransition(
+                        child: const SobrePage(),
+                        type: PageTransitionType.topToBottom),
                   );
                 },
                 icon: const Icon(

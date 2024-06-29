@@ -1,5 +1,6 @@
 import 'package:feteps/cadastro1_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/loginfeteps_page.dart';
 
@@ -116,8 +117,9 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                           //Ir para a tela de login
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginFetepsPage(),
+                            PageTransition(
+                              child:  const LoginFetepsPage(),
+                              type: PageTransitionType.rightToLeftWithFade
                             ),
                           );
                         },
@@ -151,9 +153,10 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const Cadastro1Page(),
-                          ),
+                           PageTransition(
+                              child:  const Cadastro1Page(),
+                              type: PageTransitionType.rightToLeftWithFade
+                            ),
                         );
                       },
                       child: Text(

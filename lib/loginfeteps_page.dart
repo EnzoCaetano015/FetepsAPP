@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/home_page.dart';
 import 'package:feteps/telainicial_page.dart';
@@ -37,9 +38,9 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const TelaInicialPage(),
-                      ),
+                      PageTransition(
+                          child: const TelaInicialPage(),
+                          type: PageTransitionType.leftToRightWithFade),
                     );
                   },
                   icon: Icon(
@@ -221,10 +222,10 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                         if (deuCerto) {
                                           Navigator.pushReplacement(
                                             context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SobrePage(),
-                                            ),
+                                            PageTransition(
+                                                child: const SobrePage(),
+                                                type: PageTransitionType
+                                                    .bottomToTop),
                                           );
                                         } else {
                                           _passwordController.clear();

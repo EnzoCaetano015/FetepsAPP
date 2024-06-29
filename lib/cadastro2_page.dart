@@ -2,6 +2,7 @@ import 'package:feteps/cadastro1_page.dart';
 import 'package:feteps/loginfeteps_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:http/http.dart' as http;
@@ -91,8 +92,9 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
       Future.delayed(const Duration(seconds: 3), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (context) => const LoginFetepsPage(),
+          PageTransition(
+            child: const LoginFetepsPage(),
+            type: PageTransitionType.bottomToTop,
           ),
         );
       });
@@ -118,9 +120,9 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const Cadastro1Page(),
-                        ),
+                        PageTransition(
+                            child: const Cadastro1Page(),
+                            type: PageTransitionType.leftToRightWithFade),
                       );
                     },
                     icon: Icon(
@@ -527,5 +529,3 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
         ));
   }
 }
-
-//  

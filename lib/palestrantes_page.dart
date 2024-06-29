@@ -2,6 +2,7 @@ import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:feteps/tela_palestrante.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
@@ -94,9 +95,9 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const SobrePage(),
-                  ),
+                  PageTransition(
+                      child: const SobrePage(),
+                      type: PageTransitionType.topToBottom),
                 );
               },
               icon: const Icon(

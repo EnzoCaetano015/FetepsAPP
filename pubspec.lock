@@ -590,7 +590,7 @@ packages:
     source: hosted
     version: "1.0.2"
   page_transition:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: page_transition
       sha256: "12776be3ffb2d080095e912fc4e820a85be8846913a93261148b75256b9c7691"

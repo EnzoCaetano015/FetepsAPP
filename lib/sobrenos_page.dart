@@ -5,6 +5,7 @@ import 'package:feteps/participantes_page.dart';
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SobreNosPage extends StatefulWidget {
@@ -34,9 +35,9 @@ class _SobreNosPageState extends State<SobreNosPage> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const SobrePage(),
-                          ),
+                          PageTransition(
+                              child: const SobrePage(),
+                              type: PageTransitionType.topToBottom),
                         );
                       },
                       icon: const Icon(

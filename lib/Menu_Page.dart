@@ -11,7 +11,9 @@ import 'package:feteps/sobre_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuPage extends StatelessWidget {
@@ -58,8 +60,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const SobrePage(),
+                        PageTransition(
+                          child: const SobrePage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -70,8 +73,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const PerfilPage(),
+                        PageTransition(
+                         child:  const PerfilPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -82,8 +86,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProjetosPage(),
+                        PageTransition(
+                          child:  const ProjetosPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -94,8 +99,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const ParticipantesPage(),
+                        PageTransition(
+                          child:  const ParticipantesPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -106,8 +112,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const MapaPage(),
+                        PageTransition(
+                          child:  const MapaPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -118,8 +125,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const PalestrantesPage(),
+                        PageTransition(
+                          child:  const PalestrantesPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -130,8 +138,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const CuriosidadePage(),
+                        PageTransition(
+                          child:  const CuriosidadePage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -142,8 +151,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const PatrocinadoresPage(),
+                        PageTransition(
+                          child:  const PatrocinadoresPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -154,8 +164,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const SobreNosPage(),
+                        PageTransition(
+                          child:  const SobreNosPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -166,8 +177,9 @@ class MenuPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const AvaliacaoPage(),
+                        PageTransition(
+                          child:  const AvaliacaoPage(),
+                          type: PageTransitionType.fade
                         ),
                       );
                     },
@@ -195,8 +207,9 @@ class MenuPage extends StatelessWidget {
                         if (saiu) {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const TelaInicialPage(),
+                            PageTransition(
+                              child:  TelaInicialPage(),
+                              type: PageTransitionType.topToBottom
                             ),
                           );
                         }
@@ -213,7 +226,7 @@ class MenuPage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        "Log-out",
+                        "Sair",
                         style: GoogleFonts.poppins(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

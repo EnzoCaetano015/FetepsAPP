@@ -1,6 +1,7 @@
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CuriosidadePage extends StatelessWidget {
@@ -25,9 +26,9 @@ class CuriosidadePage extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const SobrePage(),
-                            ),
+                            PageTransition(
+                                child: const SobrePage(),
+                                type: PageTransitionType.topToBottom),
                           );
                         },
                         icon: Icon(
@@ -74,7 +75,7 @@ class CuriosidadePage extends StatelessWidget {
                 body: ListView(
                   children: [
                     Padding(
-                        padding: EdgeInsets.all(screenWidth * 0.025),
+                      padding: EdgeInsets.all(screenWidth * 0.025),
                       child: Column(
                         children: [
                           Padding(
@@ -104,7 +105,8 @@ class CuriosidadePage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding:  EdgeInsets.symmetric(vertical: screenHeight * 0.025 ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenHeight * 0.025),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -299,7 +301,8 @@ class CuriosityCard extends StatelessWidget {
   final String text;
   final double screenWidth;
 
-  const CuriosityCard({super.key, 
+  const CuriosityCard({
+    super.key,
     required this.text,
     required this.screenWidth,
   });

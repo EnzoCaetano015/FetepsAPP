@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -115,8 +116,9 @@ class _PerfilPageState extends State<PerfilPage> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const SobrePage(),
+                    PageTransition(
+                      child:  const SobrePage(),
+                      type: PageTransitionType.topToBottom
                     ),
                   );
                 },

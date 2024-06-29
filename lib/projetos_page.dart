@@ -1,6 +1,7 @@
 import 'package:feteps/DetalheProject_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -80,14 +81,14 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-               onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SobrePage(),
-                        ),
-                      );
-                    },
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: const SobrePage(),
+                      type: PageTransitionType.topToBottom),
+                );
+              },
               icon: Icon(
                 size: MediaQuery.of(context).size.width * 0.075,
                 Icons.arrow_back_sharp,
@@ -512,7 +513,7 @@ class CardWidget2 extends StatelessWidget {
                     width: screenWidth * 0.42,
                   ),
                 const SizedBox(height: 2.0),
-              Text(
+                Text(
                   _shortenText(project['name_project'], 25),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
@@ -545,5 +546,3 @@ String _shortenText(String text, int maxLength) {
     return text.substring(0, maxLength) + '...';
   }
 }
-
-

@@ -2,6 +2,7 @@ import 'package:feteps/DetalheProject_page.dart';
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -70,9 +71,9 @@ class _InstituicoesPageState extends State<ParticipantesPage> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const SobrePage(),
-                      ),
+                      PageTransition(
+                          child: const SobrePage(),
+                          type: PageTransitionType.topToBottom),
                     );
                   },
                   icon: Icon(
@@ -231,7 +232,8 @@ class CardWidget2 extends StatelessWidget {
   final Map<String, dynamic> project;
   final String classification;
 
-  const CardWidget2({super.key, required this.project, required this.classification});
+  const CardWidget2(
+      {super.key, required this.project, required this.classification});
 
   Color Cor(String classification) {
     switch (classification) {
