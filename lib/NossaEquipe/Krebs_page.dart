@@ -1,8 +1,17 @@
 import 'package:feteps/NossaEquipe_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 class EnzoKrebsPage extends StatelessWidget {
+  final String githubUrl = "https://github.com/enzokrebs8";
+  final String linkedinUrl =
+      "https://www.linkedin.com/in/enzo-krebs-999152288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app";
+  final String email = "enzokrebs8@gmail.com ";
+
+  const EnzoKrebsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -53,17 +62,25 @@ class EnzoKrebsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Participante do Projeto',
+                      style: GoogleFonts.poppins(
+                        fontSize: screenWidth * 0.06,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1,
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 2.5,
-                      ),
-                    ),
+                      horizontal: screenWidth * 0.1,
+                      vertical: screenHeight * 0.02),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
                       'lib/assets/Krebs.jpg',
                       height: screenHeight * 0.35,
@@ -74,26 +91,21 @@ class EnzoKrebsPage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.08,
-                      vertical: screenHeight * 0.02),
-                  child: Text(
-                    'Enzo Krebs Silva',
-                    style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.07,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF1A5B97),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.08,
-                      vertical: screenHeight * 0.02),
-                  child: Text(
-                    'Função: Desenvolvimento Mobile',
-                    style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.048,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF830000),
+                      vertical: screenHeight * 0.03),
+                  child: Container(
+                    color: const Color(0xFFFFD35F),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                      child: Text(
+                        'Enzo Krebs',
+                        style: GoogleFonts.poppins(
+                          fontSize: screenWidth * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
@@ -101,28 +113,38 @@ class EnzoKrebsPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.08,
                   ),
+                  child: Container(
+                    color: const Color(0xFFD9D9D9),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                      child: Text(
+                        'Desenvolvimento Mobile',
+                        style: GoogleFonts.inter(
+                          fontSize: screenWidth * 0.048,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.08,
+                      vertical: screenHeight * 0.025),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Github:',
+                        'Aluno da ETEC Prof Maria Cristina Medeiros',
                         style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
                           fontSize: screenWidth * 0.048,
-                          color: const Color(0xFFFFD35F),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          'https://github.com/EnzoCaetano015?tab=repositories',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenWidth * 0.04,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -130,59 +152,25 @@ class EnzoKrebsPage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.08,
-                      vertical: screenHeight * 0.04),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'LinkedIn:',
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.048,
-                          color: const Color(0xFFFFD35F),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          'https://www.linkedin.com/in/enzo-caetano-peracio-rodrigues-814736290/    ',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenWidth * 0.04,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.08,
-                  ),
-                  child: Text(
-                    'Email para contato:',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.048,
-                      color: const Color(0xFFFFD35F),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.08,
-                  ),
+                      vertical: screenHeight * 0.01),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        'peracioenzo@gmail.com',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenWidth * 0.048,
-                            color: Colors.black),
-                      )
+                      IconButton(
+                        icon: Icon(Icons.home,
+                            color: Colors.black, size: screenWidth * 0.1),
+                        onPressed: () => _launchURL(githubUrl),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.work,
+                            color: Colors.blue, size: screenWidth * 0.1),
+                        onPressed: () => _launchURL(linkedinUrl),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.email,
+                            color: Colors.orange, size: screenWidth * 0.1),
+                        onPressed: () => _copyToClipboard(email, context),
+                      ),
                     ],
                   ),
                 )
@@ -191,6 +179,22 @@ class EnzoKrebsPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void _copyToClipboard(String text, BuildContext context) {
+    Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+          content: Text('Email copiado para a área de transferência')),
     );
   }
 }

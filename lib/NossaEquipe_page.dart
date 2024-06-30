@@ -1,7 +1,13 @@
+import 'package:feteps/NossaEquipe/Andrey_page.dart';
 import 'package:feteps/NossaEquipe/Breno_page.dart';
 import 'package:feteps/NossaEquipe/Caetano_page.dart';
 import 'package:feteps/NossaEquipe/Cintia_page.dart';
 import 'package:feteps/NossaEquipe/Krebs_page.dart';
+import 'package:feteps/NossaEquipe/Lele_page.dart';
+import 'package:feteps/NossaEquipe/Luana_page.dart';
+import 'package:feteps/NossaEquipe/Rapha_page.dart';
+import 'package:feteps/NossaEquipe/Ribas_page.dart';
+import 'package:feteps/NossaEquipe/carol_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,71 +22,65 @@ class NossaEquipePage extends StatefulWidget {
 class _NossaEquipePageState extends State<NossaEquipePage> {
   final List<Map<String, String>> orientadores = [
     {
-      "name": "Cíntia Pinho",
-      "email": "Orientadora",
+      "name": "Cíntia",
       "image": "lib/assets/cintia.jpg",
       "page": "CintiaPinhoPage"
     },
     {
-      "name": "Anderson Vanin",
-      "email": "Orientador",
+      "name": "Anderson",
       "image": "lib/assets/Rectangle.png",
       "page": "AndersonVaninPage"
+    },
+  ];
+
+  final List<Map<String, String>> modelagemFigma = [
+    {
+      "name": "Carolina",
+      "image": "lib/assets/carol.jpg",
+      "page": "CarolinaPage"
+    },
+    {"name": "Leticia", "image": "lib/assets/lele.jpg", "page": "LeticiaPage"},
+    {"name": "Luana", "image": "lib/assets/luana.jpg", "page": "LuanaPage"},
+    {"name": "Raphaela", "image": "lib/assets/rapha.jpg", "page": "RaphaPage"},
+  ];
+
+  final List<Map<String, String>> desenvolvimentoMobile = [
+    {
+      "name": "Breno Cardozo",
+      "image": "lib/assets/breno.png",
+      "page": "BrenoCardozoPage"
+    },
+    {
+      "name": "Enzo Caetano",
+      "image": "lib/assets/caetano.jpg",
+      "page": "EnzoCaetanoPage"
+    },
+    {
+      "name": "Enzo Krebs",
+      "image": "lib/assets/Krebs.jpg",
+      "page": "EnzoKrebsPage"
     }
   ];
 
   final List<Map<String, String>> desenvolvimentoWeb = [
     {
-      "name": "Breno Cardozo",
-      "email": "Backend/Frontend",
+      "name": "Breno",
       "image": "lib/assets/breno.png",
       "page": "BrenoCardozoPage"
     },
+    {"name": "Ribas", "image": "lib/assets/ribas.png", "page": "RibasPage"}
+  ];
+
+  final List<Map<String, String>> desenvolvimentoBackend = [
     {
-      "name": "Bob",
-      "email": "",
-      "image": "lib/assets/Rectangle.png",
-      "page": "BobPage"
-    },
-    {
-      "name": "Charlie",
-      "email": "",
-      "image": "lib/assets/Rectangle.png",
-      "page": "CharliePage"
-    },
-    {
-      "name": "David",
-      "email": "",
-      "image": "lib/assets/Rectangle.png",
-      "page": "DavidPage"
+      "name": "Andrey",
+      "image": "lib/assets/andrey.png",
+      "page": "AndreyPage"
     }
   ];
 
-  final List<Map<String, String>> desenvolvimentoMobile = [
-    {
-      "name": "Enzo Caetano",
-      "email": "Backend/Frontend",
-      "image": "lib/assets/caetano.jpg",
-      "page": "EnzoCaetanoPage"
-    },
-    {
-      "name": "Enzo Krebs Silva",
-      "email": "Backend",
-      "image": "lib/assets/Krebs.jpg",
-      "page": "EnzoKrebsPage"
-    },
-    {
-      "name": "Grace",
-      "email": "",
-      "image": "lib/assets/Rectangle.png",
-      "page": "GracePage"
-    },
-    {
-      "name": "Hank",
-      "email": "",
-      "image": "lib/assets/Rectangle.png",
-      "page": "HankPage"
-    }
+  final List<Map<String, String>> ilustracoes = [
+    {"name": "Richard", "image": "lib/assets/Rectangle.png", "page": "NomePage"}
   ];
 
   @override
@@ -89,9 +89,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     final screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+      theme: ThemeData(),
       home: Scaffold(
         appBar: AppBar(
           title: SizedBox(
@@ -153,21 +151,21 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                       ],
                     ),
                   ),
-                  _buildProjectSection('Orientador(a)', orientadores),
-                  SizedBox(height: screenHeight * 0.01),
-                  const Divider(
-                    color: Colors.grey,
-                    thickness: 1.5,
-                  ),
                   _buildProjectSection(
-                      'Desenvolvimento web', desenvolvimentoWeb),
-                  SizedBox(height: screenHeight * 0.01),
-                  const Divider(
-                    color: Colors.grey,
-                    thickness: 1.5,
+                    'Orientadores',
+                    orientadores,
+                    const Color(0xFFFFD35F),
                   ),
+                  _buildProjectSection('Modelagem Figma', modelagemFigma,
+                      const Color.fromARGB(255, 112, 70, 132)),
+                  _buildProjectSection('Desenvolvimento Mobile',
+                      desenvolvimentoMobile, const Color(0xFF0E414F)),
+                  _buildProjectSection('Desenvolvimento Web',
+                      desenvolvimentoWeb, const Color(0xFF136A9F)),
+                  _buildProjectSection('Desenvolvimento do back-end',
+                      desenvolvimentoBackend, const Color(0xFFF26A2E)),
                   _buildProjectSection(
-                      'Desenvolvimento mobile', desenvolvimentoMobile),
+                      'Ilustrações', ilustracoes, const Color(0xFF830000)),
                 ],
               ),
             ],
@@ -178,7 +176,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   }
 
   Widget _buildProjectSection(
-      String title, List<Map<String, String>> teamMembers) {
+      String title, List<Map<String, String>> teamMembers, Color color) {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Column(
@@ -189,7 +187,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
           child: Text(
             title,
             style: GoogleFonts.inter(
-              fontSize: screenWidth * 0.07,
+              fontSize: screenWidth * 0.065,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
@@ -199,11 +197,11 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            mainAxisAlignment: title == 'Orientador(a)'
+            mainAxisAlignment: title == 'Orientadores'
                 ? MainAxisAlignment.center
                 : MainAxisAlignment.start,
             children: List.generate(teamMembers.length, (index) {
-              return _buildCard(teamMembers[index], index);
+              return _buildCard(teamMembers[index], color);
             }),
           ),
         ),
@@ -214,25 +212,51 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   void _navigateToPage(String page, BuildContext context) {
     switch (page) {
       case 'CintiaPinhoPage':
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CintiaPinhoPage()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const CintiaPinhoPage()));
         break;
       case 'BrenoCardozoPage':
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BrenoCardozoPage()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const BrenoCardozoPage()));
         break;
-       case 'EnzoCaetanoPage':
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EnzoCaetanoPage()));
+      case 'EnzoCaetanoPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const EnzoCaetanoPage()));
         break;
-         case 'EnzoKrebsPage':
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EnzoKrebsPage()));
+      case 'EnzoKrebsPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const EnzoKrebsPage()));
+        break;
+      case 'CarolinaPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const CarolinaPage()));
+        break;
+      case 'LeticiaPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LeticiaPage()));
+        break;
+      case 'LuanaPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LuanaPage()));
+        break;
+      case 'RaphaPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const RaphaPage()));
+        break;
+         case 'RibasPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const RibasPage()));
+        break;
+         case 'AndreyPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const AndreyPage()));
         break;
     }
   }
 
-  Widget _buildCard(Map<String, String> member, int index) {
+  Widget _buildCard(Map<String, String> member, Color borderColor) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final colors = [const Color(0xFF1A5B97), const Color(0xFFFFD35F)];
-    final color = colors[index % colors.length];
 
     return GestureDetector(
       onTap: () {
@@ -241,68 +265,30 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       child: Padding(
         padding: EdgeInsets.all(screenWidth * 0.0125),
         child: Card(
-          color: color,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(screenWidth * 0.025),
+            side: BorderSide(color: borderColor, width: 13),
+            borderRadius: BorderRadius.circular(18),
           ),
           child: SizedBox(
-            width: screenWidth * 0.45,
+            width: screenWidth * 0.5,
             height: screenHeight * 0.3,
-            child: Stack(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: screenHeight * 0.015),
-                    Center(
-                      child: Container(
-                        height: screenHeight * 0.15,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                          color: Colors.black,
-                          width: 2.5,
-                        )),
-                        child: Image.asset(
-                          member['image']!,
-                          width: screenWidth * 0.35,
-                          height: screenHeight * 0.15,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.0075),
-                    Text(
-                      member['name']!,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: screenWidth * 0.045,
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.003),
-                    Text(
-                      member['email']!,
-                      style: GoogleFonts.poppins(
-                        fontSize: screenWidth * 0.035,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                Padding(
+                  padding: EdgeInsets.all(screenWidth * 0.07),
+                  child: Image.asset(
+                    member['image']!,
+                    width: screenWidth * 0.5,
+                    height: screenHeight * 0.16,
+                  ),
                 ),
-                Positioned(
-                  bottom: screenHeight * 0.015,
-                  right: screenWidth * 0.025,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: Icon(
-                      Icons.arrow_forward,
-                      size: screenWidth * 0.045,
-                      color: color,
-                    ),
+                Text(
+                  member['name']!,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.05,
+                    color: Colors.black,
                   ),
                 ),
               ],
@@ -313,5 +299,3 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     );
   }
 }
-
-

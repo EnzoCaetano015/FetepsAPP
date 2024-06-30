@@ -4,13 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 
-class EnzoCaetanoPage extends StatelessWidget {
-  final String githubUrl = "https://github.com/EnzoCaetano015?tab=repositories";
-  final String linkedinUrl =
-      "https://www.linkedin.com/in/enzo-caetano-peracio-rodrigues-814736290/";
-  final String email = "peracioenzo@gmail.com";
+class LeticiaPage extends StatelessWidget {
+  final String githubUrl = "https://github.com/LeticiaAlmeida16";
+  final String linkedinUrl ="https://www.linkedin.com/in/leticianascimentodealmeida?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app";
+  final String email = "leticia.almeida173@etec.sp.gov.br";
 
-  const EnzoCaetanoPage({super.key});
+  const LeticiaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +81,7 @@ class EnzoCaetanoPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/caetano.jpg',
+                      'lib/assets/lele.jpg',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),
@@ -98,7 +97,7 @@ class EnzoCaetanoPage extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: screenHeight * 0.02),
                       child: Text(
-                        'Enzo Caetano',
+                        'Letícia Nascimento de Almeida',
                         style: GoogleFonts.poppins(
                           fontSize: screenWidth * 0.055,
                           fontWeight: FontWeight.bold,
@@ -119,7 +118,7 @@ class EnzoCaetanoPage extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: screenHeight * 0.02),
                       child: Text(
-                        'Desenvolvimento Mobile',
+                        'Modelagem Figma',
                         style: GoogleFonts.inter(
                           fontSize: screenWidth * 0.048,
                           fontWeight: FontWeight.bold,
@@ -138,7 +137,7 @@ class EnzoCaetanoPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Aluno da ETEC Prof Maria Cristina Medeiros',
+                        'Aluna da ETEC Prof Maria Cristina Medeiros',
                         style: GoogleFonts.inter(
                           fontSize: screenWidth * 0.048,
                           fontWeight: FontWeight.bold,

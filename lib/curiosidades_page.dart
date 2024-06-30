@@ -1,4 +1,5 @@
 import 'package:feteps/Menu_Page.dart';
+import 'package:feteps/curiosidades2_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -81,11 +82,12 @@ class CuriosidadePage extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(screenWidth * 0.025),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Curiosidades',
                                   style: GoogleFonts.poppins(
-                                      fontSize: screenWidth * 0.085,
+                                      fontSize: screenWidth * 0.08,
                                       fontWeight: FontWeight.bold,
                                       color: const Color.fromARGB(
                                           255, 14, 56, 70)),
@@ -93,199 +95,134 @@ class CuriosidadePage extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(screenWidth * 0.025),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Curiosidades sobre a nossa feira!!',
-                                    style: TextStyle(
-                                        fontSize: screenWidth * 0.047)),
-                              ],
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF0C414F),
+                                  border: Border(
+                                    left: BorderSide(
+                                        color: Colors.black, width: 2),
+                                    top: BorderSide(
+                                        color: Colors.black, width: 2),
+                                    right: BorderSide(
+                                        color: Colors.black, width: 2),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(screenWidth * 0.04),
+                                  child: Text(
+                                    'Por que os projetos da Feteps\nsão baseados em ODS?',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: screenWidth * 0.05),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border(
+                                    left: BorderSide(
+                                        color: Colors.black, width: 2),
+                                    right: BorderSide(
+                                        color: Colors.black, width: 2),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(screenWidth * 0.022),
+                                  child: Text(
+                                    'Os Objetivos de Desenvolvimento\nSustentável são metas globais da\n ONU para acabar com a pobreza,\nproteger o meio ambiente, promover\na paz e garantir prosperidade até\n2030. Integrados em dimensões\nsocial, ambiental e econômica, são\nresponsabilidade de governos,\nsociedade civil, setor privado e\nindivíduos comprometidos com\n o futuro.\nComo cada ODS tem como objetivo\nde acabar com algum problema\ndecorrente em nosso mundo,\nprojetos baseados nesses objetivos\najudam aos alunos criarem soluções\n sustentáveis e assim, sendo\ninspirações para a próxima geração\npara que pensem em como salvar e\npreservar o meio em que vivem.',
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: screenWidth * 0.0415),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border(
+                                      left: BorderSide(
+                                          color: Colors.black, width: 2),
+                                      right: BorderSide(
+                                          color: Colors.black, width: 2),
+                                      bottom: BorderSide(
+                                          color: Colors.black, width: 2)),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.194),
+                                  child: Image.asset(
+                                    'lib/assets/curiosidade.png',
+                                    width: screenWidth * 0.45,
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: screenHeight * 0.025),
+                                vertical: screenHeight * 0.02),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset(
-                                  'lib/assets/curiosidade.png',
-                                  width: screenWidth * 0.45,
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.86,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        PageTransition(
+                                            child: const Curiosidade2Page(),
+                                            type:
+                                                PageTransitionType.topToBottom),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(100, 39),
+                                      backgroundColor: const Color(0xFF0C414F),
+                                      shadowColor: Colors.transparent,
+                                      elevation: 2,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        side: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 5),
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: screenHeight * 0.015),
+                                      child: Text(
+                                        "Vamos conhecer cada ODS?",
+                                        style: GoogleFonts.poppins(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.045,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(screenWidth * 0.025),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'Curiosidade 1',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: screenWidth * 0.05,
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color.fromARGB(
-                                                255, 14, 56, 70)),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: screenWidth * 0.02,
-                                  ),
-                                  child: const Divider(
-                                    thickness: 1.5,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CuriosityCard(
-                                          text:
-                                              'Num ninho de mafagafos\nhá sete mafagafinhos.\nQuando a mafagafa gafa, gafam os \nsete mafagafinhos',
-                                          screenWidth: screenWidth)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(screenWidth * 0.025),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'Curiosidade 2',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: screenWidth * 0.05,
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color.fromARGB(
-                                                255, 14, 56, 70)),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: screenWidth * 0.02,
-                                  ),
-                                  child: const Divider(
-                                    thickness: 1.5,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CuriosityCard(
-                                          text:
-                                              'Num ninho de mafagafos\nhá sete mafagafinhos.\nQuando a mafagafa gafa, gafam os \nsete mafagafinhos',
-                                          screenWidth: screenWidth)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(screenWidth * 0.025),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'Curiosidade 3',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: screenWidth * 0.05,
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color.fromARGB(
-                                                255, 14, 56, 70)),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: screenWidth * 0.02,
-                                  ),
-                                  child: const Divider(
-                                    thickness: 1.5,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CuriosityCard(
-                                          text:
-                                              'Num ninho de mafagafos\nhá sete mafagafinhos.\nQuando a mafagafa gafa, gafam os \nsete mafagafinhos',
-                                          screenWidth: screenWidth)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(screenWidth * 0.025),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        'Curiosidade 4',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: screenWidth * 0.05,
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color.fromARGB(
-                                                255, 14, 56, 70)),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: screenWidth * 0.02,
-                                  ),
-                                  child: const Divider(
-                                    thickness: 1.5,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.025),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CuriosityCard(
-                                          text:
-                                              'Num ninho de mafagafos\nhá sete mafagafinhos.\nQuando a mafagafa gafa, gafam os \nsete mafagafinhos',
-                                          screenWidth: screenWidth)
-                                    ],
-                                  ),
-                                ),
                               ],
                             ),
                           ),
@@ -294,40 +231,5 @@ class CuriosidadePage extends StatelessWidget {
                     )
                   ],
                 ))));
-  }
-}
-
-class CuriosityCard extends StatelessWidget {
-  final String text;
-  final double screenWidth;
-
-  const CuriosityCard({
-    super.key,
-    required this.text,
-    required this.screenWidth,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Text(
-        text,
-        style: TextStyle(fontSize: screenWidth * 0.045),
-      ),
-    );
   }
 }

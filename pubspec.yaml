@@ -48,6 +48,7 @@ dependencies:
   dropdown_search: ^5.0.3
   dart_jsonwebtoken: ^2.14.0
   jwt_decoder: ^2.0.1
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,12 @@ flutter:
     - 'lib/assets/caetano.jpg'
     - 'lib/assets/cintia.jpg'
     - 'lib/assets/Krebs.jpg'
+    - 'lib/assets/carol.jpg'
+    - 'lib/assets/lele.jpg'
+    - 'lib/assets/luana.jpg'
+    - 'lib/assets/rapha.jpg'
+    - 'lib/assets/ribas.png'
+    - 'lib/assets/andrey.png'
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

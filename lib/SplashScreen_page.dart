@@ -1,5 +1,6 @@
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
 import 'sobre_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,12 +43,12 @@ class _SplashScreenState extends State<SplashScreenPage>
     if (isLoggedIn) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const SobrePage()),
+        PageTransition(child:  const SobrePage(), type: PageTransitionType.fade, duration: Duration(milliseconds: 2000 )),
       );
     } else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const TelaInicialPage()),
+         PageTransition(child:  const TelaInicialPage(), type: PageTransitionType.fade, duration: Duration(milliseconds: 2000 )),
       );
     }
   }

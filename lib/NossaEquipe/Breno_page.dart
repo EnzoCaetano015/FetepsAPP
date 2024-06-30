@@ -1,8 +1,16 @@
 import 'package:feteps/NossaEquipe_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 class BrenoCardozoPage extends StatelessWidget {
+  final String githubUrl = "https://github.com/Breno-Cardozo";
+  final String linkedinUrl = "https://www.linkedin.com/in/brenocardozo";
+  final String email = "breno_cardozogarcia@hotmail.com";
+
+  const BrenoCardozoPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -53,15 +61,23 @@ class BrenoCardozoPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1,),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Participante do Projeto',
+                      style: GoogleFonts.poppins(
+                        fontSize: screenWidth * 0.06,
+                        fontWeight: FontWeight.bold,
                         color: Colors.black,
-                        width: 2.5,
                       ),
-                    ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1,  vertical:  screenHeight * 0.02),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
                       'lib/assets/breno.png',
                       height: screenHeight * 0.35,
@@ -70,79 +86,62 @@ class BrenoCardozoPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08, vertical: screenHeight * 0.02),
-                  child: Text(
-                    'Breno Cardozo',
-                    style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.07,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF1A5B97),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.08,
+                      vertical: screenHeight * 0.03),
+                  child: Container(
+                    color: const Color(0xFFFFD35F),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                      child: Text(
+                        'Breno Cardozo',
+                        style: GoogleFonts.poppins(
+                          fontSize: screenWidth * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08,  vertical: screenHeight * 0.02 ),
-                  child: Text(
-                    'Função: Desenvolvimento Web',
-                    style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.048,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF830000),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.08,
+                  ),
+                  child: Container(
+                    color: const Color(0xFFD9D9D9),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+                      child: Text(
+                        'Desenvolvimento Web e Mobile',
+                        style: GoogleFonts.inter(
+                          fontSize: screenWidth * 0.048,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
-                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08, ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Github:',
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.048,
-                          color: const Color(0xFFFFD35F),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          'https://github.com/Breno-Cardozo',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenWidth * 0.04,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08, vertical: screenHeight * 0.04),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.08,
+                      vertical: screenHeight * 0.025),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'LinkedIn:',
+                        'Ex estudante da ETEC Prof Maria Cristina Medeiros',
                         style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
                           fontSize: screenWidth * 0.048,
-                          color: const Color(0xFFFFD35F),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          'www.linkedin.com/in/brenocardozo',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenWidth * 0.04,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -150,26 +149,26 @@ class BrenoCardozoPage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.08,
-                      ),
-                  child: Text(
-                    'Email para contato:',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.048,
-                      color: const Color(0xFFFFD35F),
-                    ),
-                  ),
-                  
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.08,),
+                      vertical: screenHeight * 0.01),
                   child: Row(
-                    children: [Text('breno_cardozogarcia@hotmail.com',  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.048,
-                      color: Colors.black
-                    ), )],
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.home,
+                            color: Colors.black, size: screenWidth * 0.1),
+                        onPressed: () => _launchURL(githubUrl),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.work,
+                            color: Colors.blue, size: screenWidth * 0.1),
+                        onPressed: () => _launchURL(linkedinUrl),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.email,
+                            color: Colors.orange, size: screenWidth * 0.1),
+                        onPressed: () => _copyToClipboard(email, context),
+                      ),
+                    ],
                   ),
                 )
               ],
@@ -177,6 +176,22 @@ class BrenoCardozoPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void _copyToClipboard(String text, BuildContext context) {
+    Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+          content: Text('Email copiado para a área de transferência')),
     );
   }
 }
