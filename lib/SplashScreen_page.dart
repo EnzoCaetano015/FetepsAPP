@@ -119,14 +119,22 @@ Future<bool> verificarToken() async {
   if (token != null) {
     final url = Uri.parse(
         'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+
+    final jsonData = {'token': token};
+
+    
+    final jsonString = jsonEncode(jsonData);
+
+  
     final response = await http.post(
       url,
       headers: {
-        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json', 
       },
+      body: jsonString, 
     );
 
-  //aparentemente não está funcionando ao enviar para a rota
+  
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       print('Response Data: $data');
