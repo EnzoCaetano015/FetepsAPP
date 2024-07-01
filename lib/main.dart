@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         Locale('pt', 'BR'),
         Locale('en', 'US'),
       ],
-      home: const SplashScreenPage(),
+      home:  const SplashScreenPage(),
     );
   }
 }

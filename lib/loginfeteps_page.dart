@@ -1,12 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:convert';
-
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:feteps/home_page.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -34,26 +30,28 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          child: const TelaInicialPage(),
-                          type: PageTransitionType.leftToRightWithFade),
-                    );
-                  },
-                  icon: Icon(
-                    size: MediaQuery.of(context).size.width * 0.075,
-                    Icons.arrow_back_sharp,
-                    color: const Color(0xFF0E414F),
-                  )),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                      child: const TelaInicialPage(),
+                      type: PageTransitionType.leftToRightWithFade,
+                    ),
+                  );
+                },
+                icon: Icon(
+                  size: MediaQuery.of(context).size.width * 0.075,
+                  Icons.arrow_back_sharp,
+                  color: const Color(0xFF0E414F),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
                 child: Image.asset(
                   'lib/assets/logo.png',
                   width: MediaQuery.of(context).size.width * 0.65,
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -70,18 +68,19 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: const Color(0xFFB6382B),
-                            width: 3.5,
-                          )),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: const Color(0xFFB6382B),
+                          width: 3.5,
+                        ),
+                      ),
                       child: ClipOval(
                         child: Image.asset(
                           'lib/assets/fundo.png',
                           width: MediaQuery.of(context).size.width * 0.65,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -94,11 +93,12 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                   Text(
                     "LOGIN",
                     style: GoogleFonts.roboto(
-                        fontSize: MediaQuery.of(context).size.width * 0.069,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
+                      fontSize: MediaQuery.of(context).size.width * 0.069,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                     textAlign: TextAlign.center,
-                  )
+                  ),
                 ],
               ),
               SizedBox(
@@ -143,8 +143,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                 if (email == null || email.isEmpty) {
                                   return 'Por favor digite seu e-mail';
                                 } else if (!RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(_emailController.text)) {
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                                ).hasMatch(_emailController.text)) {
                                   return 'Por favor, digite um e-mail correto';
                                 }
                                 return null;
@@ -201,14 +201,15 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                 width: MediaQuery.of(context).size.width * 0.45,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  color: Color(0xFFB6382B),
+                                  color: const Color(0xFFB6382B),
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).size.width *
-                                          0.012,
-                                      right: MediaQuery.of(context).size.width *
-                                          0.012),
+                                    left: MediaQuery.of(context).size.width *
+                                        0.012,
+                                    right: MediaQuery.of(context).size.width *
+                                        0.012,
+                                  ),
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       FocusScopeNode currentFocus =
@@ -222,9 +223,10 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                           Navigator.pushReplacement(
                                             context,
                                             PageTransition(
-                                                child: const SobrePage(),
-                                                type: PageTransitionType
-                                                    .bottomToTop),
+                                              child: const SobrePage(),
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                            ),
                                           );
                                         } else {
                                           _passwordController.clear();
@@ -242,8 +244,9 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                         borderRadius:
                                             BorderRadius.circular(50.0),
                                         side: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0),
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
                                       ),
                                     ),
                                     child: Text(
@@ -258,26 +261,27 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Esqueci minha senha",
-                                    style: GoogleFonts.oswald(
-                                      color: Color(0xFF0E414F),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize:
-                                          MediaQuery.of(context).size.width *
-                                              0.042,
-                                    ),
-                                  ))
+                                onPressed: () {},
+                                child: Text(
+                                  "Esqueci minha senha",
+                                  style: GoogleFonts.oswald(
+                                    color: const Color(0xFF0E414F),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.042,
+                                  ),
+                                ),
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -324,6 +328,4 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
       return false;
     }
   }
-
-  
 }
