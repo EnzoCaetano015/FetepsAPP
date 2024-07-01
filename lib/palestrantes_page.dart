@@ -6,6 +6,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
+import 'global.dart';
 
 class PalestrantesPage extends StatelessWidget {
   const PalestrantesPage({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
   Future<void> _fetchPalestrantes() async {
     try {
       final response = await http.get(Uri.parse(
-          'https://profandersonvanin.com.br//appfeteps/pages/Event/get.php'));
+          GlobalPageState.Url + '/appfeteps/pages/Event/get.php'));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body)['response'];

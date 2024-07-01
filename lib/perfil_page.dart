@@ -9,6 +9,7 @@ import 'altsenha_page.dart';
 import 'atualizaperfil_page.dart';
 import 'sobre_page.dart';
 import 'telainicial_page.dart';
+import 'global.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -57,7 +58,7 @@ class _PerfilPageState extends State<PerfilPage> {
     });
 
     String url =
-        'https://profandersonvanin.com.br/appfeteps/pages/Users/getUserById.php?id=$id';
+        GlobalPageState.Url + '/appfeteps/pages/Users/getUserById.php?id=$id';
 
     try {
       final response = await http.get(

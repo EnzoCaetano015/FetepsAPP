@@ -1,3 +1,4 @@
+import 'package:feteps/global.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -118,7 +119,7 @@ Future<bool> verificarToken() async {
 
   if (token != null) {
     final url = Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+        GlobalPageState.Url + '/appfeteps/pages/Auth/verifyToken.php');
 
     final jsonData = {'token': token};
 

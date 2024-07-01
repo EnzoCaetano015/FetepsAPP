@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 import 'perfil_page.dart';
+import 'global.dart';
 
 class AlterarSenhaPage extends StatefulWidget {
   const AlterarSenhaPage({super.key, required String idUsuario});
@@ -37,7 +38,7 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? email = sharedPreferences.getString('email'); 
     final url = Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Users/loginUser.php?userEmail=$email&userPassword=${_currentPasswordController.text}');
+        GlobalPageState.Url + 'appfeteps/pages/Users/loginUser.php?userEmail=$email&userPassword=${_currentPasswordController.text}');
 
     final response = await http.post(url);
     if (response.statusCode == 200) {

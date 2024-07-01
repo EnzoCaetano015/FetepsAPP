@@ -6,6 +6,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:http/http.dart' as http;
+import 'global.dart';
 
 class Cadastro2Page extends StatefulWidget {
   final String? selectedItem;
@@ -59,7 +60,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     }
 
     var url = Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Users/createUser.php');
+        GlobalPageState.Url + '/appfeteps/pages/Users/createUser.php');
     var request = http.MultipartRequest('POST', url);
 
     request.fields['userName'] = _nomeController.text;

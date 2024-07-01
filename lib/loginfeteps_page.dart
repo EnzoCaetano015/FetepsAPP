@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/telainicial_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'global.dart';
 
 class LoginFetepsPage extends StatefulWidget {
   const LoginFetepsPage({super.key});
@@ -307,7 +308,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     final url = Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
+        GlobalPageState.Url + '/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
 
     final resposta = await http.post(
       url,

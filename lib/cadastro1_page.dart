@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
 import 'telainicial_page.dart';
+import 'global.dart';
 
 class Cadastro1Page extends StatefulWidget {
   const Cadastro1Page({Key? key}) : super(key: key);
@@ -36,11 +37,11 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
   final Map<String, String> apiUrls = {
     'Etec':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=ETEC&limit=300',
+        GlobalPageState.Url + '/appfeteps/pages/Institution/get.php?type=ETEC&limit=300',
     'Fatec':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=FATEC&limit=300',
+        GlobalPageState.Url + '/appfeteps/pages/Institution/get.php?type=FATEC&limit=300',
     'Outros':
-        'https://profandersonvanin.com.br/appfeteps/pages/Institution/get.php?type=OUTROS&limit=300',
+        GlobalPageState.Url + '/appfeteps/pages/Institution/get.php?type=OUTROS&limit=300',
   };
 
   @override
@@ -51,7 +52,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
   Future<void> fetchItems() async {
     final response = await http.get(Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/TypesUser/get.php'));
+        GlobalPageState.Url + '/appfeteps/pages/TypesUser/get.php'));
 
     if (response.statusCode == 200) {
       final dynamic decodedData = json.decode(response.body);

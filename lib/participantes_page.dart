@@ -6,6 +6,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'global.dart';
 
 class ParticipantesPage extends StatefulWidget {
   const ParticipantesPage({super.key});
@@ -48,7 +49,7 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
 
   Future<void> _fetchProjectsByClassification(String classification) async {
     final response = await http.get(Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?classification=$classification&limit=50'));
+        GlobalPageState.Url + '/appfeteps/pages/Project/get.php?classification=$classification&limit=50'));
 
     if (response.statusCode == 200) {
       setState(() {

@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:feteps/Menu_Page.dart';
+import 'global.dart';
 
 class ProjetosPage extends StatelessWidget {
   const ProjetosPage({Key? key});
@@ -68,7 +69,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
   Future<void> _fetchProjects(int ods) async {
     final response = await http.get(
       Uri.parse(
-          'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'),
+          GlobalPageState.Url + '/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'),
     );
 
     if (response.statusCode == 200) {

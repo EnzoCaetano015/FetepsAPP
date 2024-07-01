@@ -2,6 +2,8 @@ import 'package:feteps/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'global.dart';
+
 
 class AtualizarDadosPage extends StatelessWidget {
   const AtualizarDadosPage({super.key});

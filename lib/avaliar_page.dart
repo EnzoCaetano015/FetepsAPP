@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'global.dart';
 
 class AvaliacaoPage extends StatelessWidget {
   const AvaliacaoPage({super.key});
