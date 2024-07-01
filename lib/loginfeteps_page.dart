@@ -11,7 +11,6 @@ import 'package:feteps/telainicial_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-//AJUSTES NA RESPONSIVIDADE
 class LoginFetepsPage extends StatefulWidget {
   const LoginFetepsPage({super.key});
 
@@ -105,7 +104,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              //Text formfield EMAIL
+              // TextFormField EMAIL
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.82,
                 child: Form(
@@ -155,7 +154,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.038,
                           ),
-                          //Text formfiel SENHA
+                          // TextFormField SENHA
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
@@ -294,7 +293,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
 
   final snackBar = const SnackBar(
     content: Text(
-      'e-mail ou senha são inválidos',
+      'E-mail ou senha são inválidos',
       textAlign: TextAlign.center,
     ),
     backgroundColor: Colors.redAccent,
@@ -306,28 +305,17 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     final url = Uri.parse(
         'https://profandersonvanin.com.br/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
 
-    final corpo = jsonEncode(<String, String>{});
     final resposta = await http.post(
       url,
-      body: corpo,
     );
-    //print('Resposta do Login: ' + resposta);
-    print('Token Login: ' + jsonDecode(resposta.body)['token']);
-    print('Nome Usuario: ' + jsonDecode(resposta.body)['userName']);
-    String nomeUsuario = jsonDecode(resposta.body)['userName'];
-    String idUsuario = (jsonDecode(resposta.body)['userId']).toString();
-    print('Id Usuario: ' + (jsonDecode(resposta.body)['userId']).toString());
 
     if (resposta.statusCode == 200) {
-      final url2 = Uri.parse(
-          'https://profandersonvanin.com.br/appfeteps/pages/Users/authUser.php');
+      var data = jsonDecode(resposta.body);
+      String token = data['token'];
+      String nomeUsuario = data['userName'];
+      String idUsuario = data['userId'].toString();
 
-      final response = await http.get(url2);
-      String meuToken = json.decode(response.body)['token'];
-
-      print('Token depois de Logado: ' + json.decode(response.body)['token']);
-
-      await sharedPreferences.setString('token', meuToken);
+      await sharedPreferences.setString('token', token);
       await sharedPreferences.setString('nomeUsuario', nomeUsuario);
       await sharedPreferences.setString('idUsuario', idUsuario);
 
@@ -337,27 +325,5 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     }
   }
 
-  Future<bool> verificarToken() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString('token');
-
-    if (token != null) {
-      final url = Uri.parse(
-          'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
-      final response = await http.post(
-        url,
-        headers: {
-          'Authorization': 'Bearer $token',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
+  
 }

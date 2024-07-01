@@ -43,12 +43,18 @@ class _SplashScreenState extends State<SplashScreenPage>
     if (isLoggedIn) {
       Navigator.pushReplacement(
         context,
-        PageTransition(child:  const SobrePage(), type: PageTransitionType.fade, duration: Duration(milliseconds: 2000 )),
+        PageTransition(
+            child: const SobrePage(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 2000)),
       );
     } else {
       Navigator.pushReplacement(
         context,
-         PageTransition(child:  const TelaInicialPage(), type: PageTransitionType.fade, duration: Duration(milliseconds: 2000 )),
+        PageTransition(
+            child: const TelaInicialPage(),
+            type: PageTransitionType.fade,
+            duration: const Duration(milliseconds: 2000)),
       );
     }
   }
@@ -97,14 +103,6 @@ class _SplashScreenState extends State<SplashScreenPage>
                     ),
                   )),
             ),
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   child: Padding(
-            //     padding: EdgeInsets.only(bottom: screenHeight * 0.04),
-            //     child: Image.asset('lib/assets/cps-logo.png',
-            //         width: screenWidth * 0.2),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -113,42 +111,21 @@ class _SplashScreenState extends State<SplashScreenPage>
 }
 
 Future<bool> verificarToken() async {
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  String? token = sharedPreferences.getString('token');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? token = sharedPreferences.getString('token');
 
-  if (token != null) {
-    final url = Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
-    final response = await http.post(
-      url,
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-    );
+    if (token != null) {
+      final url = Uri.parse(
+          'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+      final response = await http.post(
+        url,
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
 
-    if (response.statusCode == 200) {
-      return true;
+      return response.statusCode == 200;
     } else {
       return false;
     }
-  } else {
-    return false;
   }
-}
-
-Future<Map<String, dynamic>?> getTokenData() async {
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  String? token = sharedPreferences.getString('token');
-
-  if (token != null) {
-    try {
-      Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-      return decodedToken;
-    } catch (e) {
-      print('Erro decoding token: $e');
-      return null;
-    }
-  } else {
-    return null;
-  }
-}
