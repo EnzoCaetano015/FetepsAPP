@@ -11,21 +11,28 @@ class ParticipantesPage extends StatefulWidget {
   const ParticipantesPage({super.key});
 
   @override
-  State<ParticipantesPage> createState() => _InstituicoesPageState();
+  State<ParticipantesPage> createState() => _ParticipantesPageState();
 }
 
-class _InstituicoesPageState extends State<ParticipantesPage> {
-  Map<String, List<dynamic>> _projectsCache = {
+class _ParticipantesPageState extends State<ParticipantesPage> {
+  final Map<String, List<dynamic>> _projectsCache = {
     "ETEC": [],
     "FATEC": [],
     "OUTROS": []
   };
   bool _isLoading = true;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchTerm = '';
 
   @override
   void initState() {
     super.initState();
     _fetchProjects();
+    _searchController.addListener(() {
+      setState(() {
+        _searchTerm = _searchController.text;
+      });
+    });
   }
 
   Future<void> _fetchProjects() async {
@@ -51,6 +58,31 @@ class _InstituicoesPageState extends State<ParticipantesPage> {
       throw Exception('Falha ao carregar os projetos');
     }
   }
+
+  List<dynamic> _filterProjects(List<dynamic> projects) {
+    if (_searchTerm.isEmpty) {
+      return projects;
+    }
+    return projects.where((project) {
+      final projectName = (project['name_project'] ?? '').toLowerCase();
+      final List<dynamic>? exhibitors = project['exhibitors'];
+      String institutionName = '';
+
+      if (exhibitors != null && exhibitors.isNotEmpty) {
+        final dynamic firstExhibitor = exhibitors.first;
+        if (firstExhibitor is Map<String, dynamic>) {
+          final dynamic institution = firstExhibitor['institution'];
+          if (institution != null && institution is Map<String, dynamic>) {
+            institutionName = (institution['name_institution'] ?? '').toLowerCase();
+          }
+        }
+      }
+
+      return projectName.contains(_searchTerm.toLowerCase()) ||
+            institutionName.contains(_searchTerm.toLowerCase());
+    }).toList();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -146,9 +178,10 @@ class _InstituicoesPageState extends State<ParticipantesPage> {
                               bottom: screenHeight * 0.055,
                               left: screenWidth * 0.06,
                               right: screenWidth * 0.06),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Pesquise uma Instituição...',
+                          child: TextField(
+                            controller: _searchController,
+                            decoration: const InputDecoration(
+                              hintText: 'Pesquise um projeto ou instituição...',
                               hintStyle: TextStyle(color: Colors.grey),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -186,6 +219,7 @@ class _InstituicoesPageState extends State<ParticipantesPage> {
 
   Widget _buildProjectSection(String title, String classification) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final filteredProjects = _filterProjects(_projectsCache[classification]!);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,12 +235,12 @@ class _InstituicoesPageState extends State<ParticipantesPage> {
           ),
         ),
         const SizedBox(height: 5.0),
-        _projectsCache[classification]!.isNotEmpty
+        filteredProjects.isNotEmpty
             ? SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for (var project in _projectsCache[classification]!)
+                    for (var project in filteredProjects)
                       CardWidget2(
                         project: project,
                         classification: classification,
@@ -217,7 +251,7 @@ class _InstituicoesPageState extends State<ParticipantesPage> {
             : Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  'Estas instituições ainda não possuem projetos.',
+                  'Nenhum projeto encontrado.',
                   style: GoogleFonts.poppins(
                       fontSize: screenWidth * 0.05, color: Colors.black),
                   textAlign: TextAlign.center,
@@ -232,8 +266,7 @@ class CardWidget2 extends StatelessWidget {
   final Map<String, dynamic> project;
   final String classification;
 
-  const CardWidget2(
-      {super.key, required this.project, required this.classification});
+  const CardWidget2({super.key, required this.project, required this.classification});
 
   Color Cor(String classification) {
     switch (classification) {
@@ -253,6 +286,19 @@ class CardWidget2 extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     final String? bannerUrl = project['banner'];
+
+    final List<dynamic>? exhibitors = project['exhibitors'];
+    String institutionName = '';
+
+    if (exhibitors != null && exhibitors.isNotEmpty) {
+      final dynamic firstExhibitor = exhibitors.first;
+      if (firstExhibitor is Map<String, dynamic>) {
+        final dynamic institution = firstExhibitor['institution'];
+        if (institution != null && institution is Map<String, dynamic>) {
+          institutionName = institution['name_institution'] ?? '';
+        }
+      }
+    }
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -281,10 +327,11 @@ class CardWidget2 extends StatelessWidget {
                   Container(
                     height: screenHeight * 0.15,
                     decoration: BoxDecoration(
-                        border: Border.all(
-                      color: Colors.black,
-                      width: 2.5,
-                    )),
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2.5,
+                      ),
+                    ),
                     child: Image.network(
                       bannerUrl,
                       width: screenWidth * 0.42,
@@ -314,10 +361,12 @@ class CardWidget2 extends StatelessWidget {
                 ),
                 const SizedBox(height: 3.0),
                 Text(
-                  'name_institution', //Não consegui puxar
+                  institutionName,
                   style: GoogleFonts.poppins(
-                      fontSize: screenWidth * 0.035,
-                      color: const Color.fromARGB(255, 158, 156, 156)),
+                    fontSize: screenWidth * 0.035,
+                    color: const Color.fromARGB(255, 158, 156, 156),
+                  ),
+                  textAlign: TextAlign.center
                 ),
               ],
             ),

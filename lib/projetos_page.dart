@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:feteps/Menu_Page.dart';
 
 class ProjetosPage extends StatelessWidget {
-  const ProjetosPage({super.key});
+  const ProjetosPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ProjetosPage extends StatelessWidget {
 }
 
 class ProjetosHomePage extends StatefulWidget {
-  const ProjetosHomePage({super.key});
+  const ProjetosHomePage({Key? key});
 
   @override
   ProjetosHomeState createState() => ProjetosHomeState();
@@ -30,15 +30,31 @@ class ProjetosHomePage extends StatefulWidget {
 
 class ProjetosHomeState extends State<ProjetosHomePage> {
   int _selectedOds = 1;
-  Map<int, List<dynamic>> _projectsCache =
-      {}; //RESOLVENDO PROBLEMA DO DELAY COM CACHE DE DADOS
+  Map<int, List<dynamic>> _projectsCache = {};
   bool _isLoading = false;
   String _qtdeString = '';
+  late List<dynamic> _filteredProjects;
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+    _filteredProjects = [];
+    _updateSelectedOds(_selectedOds);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   void _updateSelectedOds(int ods) {
     if (_projectsCache.containsKey(ods)) {
       setState(() {
         _selectedOds = ods;
+        _filteredProjects = List.from(_projectsCache[ods]!);
       });
     } else {
       setState(() {
@@ -50,12 +66,15 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
   }
 
   Future<void> _fetchProjects(int ods) async {
-    final response = await http.get(Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'));
+    final response = await http.get(
+      Uri.parse(
+          'https://profandersonvanin.com.br/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'),
+    );
 
     if (response.statusCode == 200) {
       setState(() {
         _projectsCache[ods] = json.decode(response.body)['response'];
+        _filteredProjects = List.from(_projectsCache[ods]!);
         final jsonResponse = jsonDecode(response.body);
         int contentLength = jsonResponse['content_length'];
         _qtdeString = contentLength.toString();
@@ -68,6 +87,15 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
       });
       throw Exception('Falha ao carregar os projetos');
     }
+  }
+
+  void _filterProjects(String query) {
+    setState(() {
+      _filteredProjects = _projectsCache[_selectedOds]!.where((project) {
+        String projectName = project['name_project'].toString().toLowerCase();
+        return projectName.contains(query.toLowerCase());
+      }).toList();
+    });
   }
 
   @override
@@ -85,14 +113,14 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 Navigator.pushReplacement(
                   context,
                   PageTransition(
-                      child: const SobrePage(),
-                      type: PageTransitionType.topToBottom),
+                    child: const SobrePage(),
+                    type: PageTransitionType.topToBottom,
+                  ),
                 );
               },
-              icon: Icon(
-                size: MediaQuery.of(context).size.width * 0.075,
+              icon: const Icon(
                 Icons.arrow_back_sharp,
-                color: const Color(0xFF0E414F),
+                color: Color(0xFF0E414F),
               ),
             ),
             Padding(
@@ -129,7 +157,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
           ),
         ],
       ),
-      endDrawer: MenuPage(),
+      endDrawer: const MenuPage(),
       body: ListView(
         children: [
           Column(
@@ -137,19 +165,25 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('Projetos',
-                    style: GoogleFonts.poppins(
-                        fontSize: screenWidth * 0.09,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 14, 56, 70))),
+                child: Text(
+                  'Projetos',
+                  style: GoogleFonts.poppins(
+                    fontSize: screenWidth * 0.09,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 14, 56, 70),
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: screenHeight * 0.055,
-                    left: screenWidth * 0.06,
-                    right: screenWidth * 0.06),
-                child: const TextField(
-                  decoration: InputDecoration(
+                  bottom: screenHeight * 0.055,
+                  left: screenWidth * 0.06,
+                  right: screenWidth * 0.06,
+                ),
+                child: TextField(
+                  controller: _searchController,
+                  onChanged: _filterProjects,
+                  decoration: const InputDecoration(
                     hintText: 'Pesquise um projeto...',
                     hintStyle: TextStyle(color: Colors.grey),
                     focusedBorder: OutlineInputBorder(
@@ -159,8 +193,10 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                         style: BorderStyle.solid,
                       ),
                     ),
-                    prefixIcon: Icon(Icons.search,
-                        color: Color.fromARGB(255, 255, 209, 64)),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Color.fromARGB(255, 255, 209, 64),
+                    ),
                   ),
                 ),
               ),
@@ -169,9 +205,10 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 child: Text(
                   'Selecione uma ODS:',
                   style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.069,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                    fontSize: screenWidth * 0.069,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(height: screenHeight * 0.03),
@@ -185,7 +222,6 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                         child: CardWidget(
                           ods: i,
                           isSelected: _selectedOds == i,
-                          // qtdeString: _qtdeString,
                         ),
                       )
                   ],
@@ -203,26 +239,29 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 child: Text(
                   "ODS ${CardWidget.texto(_selectedOds)[0]} - ${CardWidget.texto(_selectedOds)[1]}",
                   style: GoogleFonts.inter(
-                      fontSize: screenWidth * 0.058,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                    fontSize: screenWidth * 0.058,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               _isLoading
                   ? const Center(
-                      child:
-                          CircularProgressIndicator(color: Color(0xFFFFD35F)))
+                      child: CircularProgressIndicator(
+                        color: Color(0xFFFFD35F),
+                      ),
+                    )
                   : _projectsCache.containsKey(_selectedOds)
-                      ? _projectsCache[_selectedOds]!.isNotEmpty
+                      ? _filteredProjects.isNotEmpty
                           ? SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 children: [
                                   for (int i = 0;
-                                      i < _projectsCache[_selectedOds]!.length;
+                                      i < _filteredProjects.length;
                                       i++)
                                     CardWidget2(
-                                      project: _projectsCache[_selectedOds]![i],
+                                      project: _filteredProjects[i],
                                       ods: _selectedOds,
                                     ),
                                 ],
@@ -231,10 +270,11 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                           : Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Text(
-                                'Essa ODS não possui projetos.',
+                                'Nenhum projeto encontrado.',
                                 style: GoogleFonts.poppins(
-                                    fontSize: screenWidth * 0.05,
-                                    color: Colors.black),
+                                  fontSize: screenWidth * 0.05,
+                                  color: Colors.black,
+                                ),
                                 textAlign: TextAlign.center,
                               ),
                             )
@@ -250,12 +290,10 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
 class CardWidget extends StatelessWidget {
   final int ods;
   final bool isSelected;
-  // final String qtdeString;
 
   CardWidget({
     required this.ods,
     required this.isSelected,
-    // required this.qtdeString,
   });
 
   static Color cor(int ods) {
@@ -350,7 +388,6 @@ class CardWidget extends StatelessWidget {
       _endAlignment,
       0.5,
     ) as AlignmentGeometry;
-
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
@@ -394,15 +431,16 @@ class CardWidget extends StatelessWidget {
                     child: Text(
                       "ODS ${texto(ods)[0]}",
                       style: GoogleFonts.inter(
-                          fontSize: screenWidth * 0.025,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontSize: screenWidth * 0.025,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(18.0),
+                padding: const EdgeInsets.all(12.0),
                 child: Align(
                   alignment: intermediateAlignment,
                   child: Text(
@@ -433,7 +471,6 @@ class CardWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         child: Text(
                           "CLIQUE PARA VER OS PROJETOS",
-                          //"Quantidade: $qtdeString",
                           style: GoogleFonts.inter(
                             fontSize: screenWidth * 0.035,
                             color: Colors.white,
@@ -463,6 +500,19 @@ class CardWidget2 extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     final String? bannerUrl = project['banner'];
+
+    final List<dynamic>? exhibitors = project['exhibitors'];
+    String institutionName = '';
+
+    if (exhibitors != null && exhibitors.isNotEmpty) {
+      final dynamic firstExhibitor = exhibitors.first;
+      if (firstExhibitor is Map<String, dynamic>) {
+        final dynamic institution = firstExhibitor['institution'];
+        if (institution != null && institution is Map<String, dynamic>) {
+          institutionName = institution['name_institution'] ?? '';
+        }
+      }
+    }
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -500,6 +550,7 @@ class CardWidget2 extends StatelessWidget {
                       width: screenWidth * 0.42,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
+                        print(error);
                         return Image.asset(
                           'lib/assets/Rectangle.png',
                           width: screenWidth * 0.42,
@@ -514,21 +565,28 @@ class CardWidget2 extends StatelessWidget {
                   ),
                 const SizedBox(height: 2.0),
                 Text(
-                  _shortenText(project['name_project'], 25),
+                  _shortenText(project['name_project'], 15),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
-                    fontSize: screenWidth * 0.042,
+                    fontSize: screenWidth * 0.04,
                     color: const Color.fromARGB(255, 255, 255, 255),
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 3.0),
                 Text(
-                  'Stand n° ' + project['stand']['stand_number'],
-                  //'name_institution',
+                  'ID: ' + project['id'].toString(),
                   style: GoogleFonts.poppins(
                       fontSize: screenWidth * 0.035,
                       color: const Color.fromARGB(255, 0, 0, 0)),
+                ),
+                Text(
+                  _shortenText(institutionName,35),
+                  style: GoogleFonts.poppins(
+                    fontSize: screenWidth * 0.035,
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                  ),
+                  textAlign: TextAlign.center
                 ),
               ],
             ),
