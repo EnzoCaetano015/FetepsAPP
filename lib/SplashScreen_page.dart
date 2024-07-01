@@ -114,7 +114,7 @@ Future<bool> verificarToken() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   String? token = sharedPreferences.getString('token');
 
-  print('token: $token');
+  print('token: $token'); //capturando o token corretamente
 
   if (token != null) {
     final url = Uri.parse(
@@ -126,6 +126,7 @@ Future<bool> verificarToken() async {
       },
     );
 
+  //aparentemente não está funcionando ao enviar para a rota
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       print('Response Data: $data');
