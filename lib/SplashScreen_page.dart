@@ -6,7 +6,6 @@ import 'sobre_page.dart';
 import 'loginfeteps_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({super.key});
@@ -53,21 +52,11 @@ class _SplashScreenState extends State<SplashScreenPage>
       Navigator.pushReplacement(
         context,
         PageTransition(
-            child: const SobrePage(),
+            child: const LoginFetepsPage(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 2000)),
       );
     }
-  }
-
-  Future<void> armazenarToken(String token) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('token', token);
-  }
-
-  Future<void> armazenarid(String idUsuario) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('userId', idUsuario);
   }
 
   @override
@@ -125,16 +114,26 @@ Future<bool> verificarToken() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   String? token = sharedPreferences.getString('token');
 
+  print('token: $token');
+
   if (token != null) {
-    if (JwtDecoder.isExpired(token)) {
-      // Token expirado
-      return false;
-    } else {
-      // Token válido
-      return true;
+    final url = Uri.parse(
+        'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+    final response = await http.post(
+      url,
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      print('Response Data: $data');
+
+      if (data['type'] == 'success' && data['message'] == 'Token válido!') {
+        return true;
+      }
     }
-  } else {
-    // Token não encontrado
-    return false;
   }
+  return false;
 }
