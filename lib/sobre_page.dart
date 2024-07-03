@@ -22,7 +22,9 @@ class _SobrePageState extends State<SobrePage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.red,
+          appBarTheme: AppBarTheme(
+            backgroundColor: const Color(0xFF0E414F)
+          )
         ),
         home: DefaultTabController(
           length: 2,
@@ -55,7 +57,7 @@ class _SobrePageState extends State<SobrePage> {
                         child: Icon(
                           Icons.menu,
                           size: MediaQuery.of(context).size.width * 0.095,
-                          color: const Color(0xFF0E414F),
+                          color:  Colors.white,
                         ),
                       ),
                       onPressed: () {
@@ -70,12 +72,16 @@ class _SobrePageState extends State<SobrePage> {
             body: Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   child: Row(
                     children: [
-                      Image.asset(
-                        'lib/assets/banner2.png',
-                        width: MediaQuery.of(context).size.width * 1.0,
+                      Container(
+                        color: const Color(0xFFFFD35F),
+                        child: Image.asset(
+                          'lib/assets/banner2.png',
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          
+                        ),
                       )
                     ],
                   ),

@@ -61,9 +61,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child: const SobrePage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const SobrePage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -74,9 +73,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                         child:  const PerfilPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const PerfilPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -87,9 +85,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const ProjetosPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const ProjetosPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -100,9 +97,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const ParticipantesPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const ParticipantesPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -113,9 +109,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const MapaPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const MapaPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -126,9 +121,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const PalestrantesPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const PalestrantesPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -139,9 +133,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const CuriosidadePage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const CuriosidadePage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -152,9 +145,8 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const PatrocinadoresPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const PatrocinadoresPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -165,22 +157,20 @@ class MenuPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const SobreNosPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const SobreNosPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
                   _buildDrawerItem(
                     icon: Icons.thumb_up,
-                    text: 'Avalições',
+                    text: 'Avaliações',
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child:  const AvaliacaoPage(),
-                          type: PageTransitionType.fade
-                        ),
+                            child: const AvaliacaoPage(),
+                            type: PageTransitionType.fade),
                       );
                     },
                   ),
@@ -190,9 +180,12 @@ class MenuPage extends StatelessWidget {
             Container(
               color: const Color(0xFFFFE7A9),
               child: Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.03,
+                  bottom: MediaQuery.of(context).size.height * 0.03,
+                ),
                 child: Container(
-                  width: 150,
+                  width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     color: const Color(0xFFB6382B),
@@ -208,9 +201,8 @@ class MenuPage extends StatelessWidget {
                           Navigator.pushReplacement(
                             context,
                             PageTransition(
-                              child:  TelaInicialPage(),
-                              type: PageTransitionType.topToBottom
-                            ),
+                                child: const TelaInicialPage(),
+                                type: PageTransitionType.topToBottom),
                           );
                         }
                       },
@@ -238,23 +230,6 @@ class MenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            // TextButton(
-            //     onPressed: () {
-            //       Navigator.pushReplacement(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => const CreditosPage(),
-            //         ),
-            //       );
-            //     },
-            //     child: Text(
-            //       'Creditos',
-            //       style: GoogleFonts.poppins(
-            //           color: Colors.black,
-            //           fontWeight: FontWeight.bold,
-            //           fontSize: 16.0,
-            //           decoration: TextDecoration.underline),
-            //     ))
           ],
         ),
       ),

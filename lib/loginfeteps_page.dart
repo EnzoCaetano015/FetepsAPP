@@ -319,11 +319,12 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
       String token = data['token'];
       String nomeUsuario = data['userName'];
       String idUsuario = data['userId'].toString();
-       
+      String email = data['userEmail'];
 
       await sharedPreferences.setString('token', token);
       await sharedPreferences.setString('nomeUsuario', nomeUsuario);
       await sharedPreferences.setString('idUsuario', idUsuario);
+      await sharedPreferences.setString('email', email);
 
       return true;
     } else {

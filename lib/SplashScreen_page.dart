@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreenPage>
       Navigator.pushReplacement(
         context,
         PageTransition(
-            child: const LoginFetepsPage(),
+            child: const TelaInicialPage(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 2000)),
       );
