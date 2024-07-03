@@ -7,7 +7,7 @@ class DetalheProjectPage extends StatelessWidget {
 
   const DetalheProjectPage({super.key, required this.project});
 
-    static Color cor(int ods) {
+  static Color cor(int ods) {
     switch (ods) {
       case 1:
         return const Color.fromARGB(255, 179, 0, 0);
@@ -62,7 +62,7 @@ class DetalheProjectPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFF0E414F),
+        appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F)),
         textTheme: GoogleFonts.interTextTheme(),
       ),
       home: Scaffold(
@@ -74,21 +74,27 @@ class DetalheProjectPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      size: MediaQuery.of(context).size.width * 0.075,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.only(bottom: 8, right: 15),
+                    child: Icon(
+                      size: screenWidth * 0.075,
                       Icons.arrow_back_sharp,
-                      // ignore: prefer_const_constructors
-                      color: Color(0xFF0E414F),
-                    )),
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 15.0, left: 10, right: 10),
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    right: 20,
+                    bottom: 15,
+                  ),
                   child: Image.asset(
-                    'lib/assets/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    'lib/assets/logo3.png',
+                    width: MediaQuery.of(context).size.width * 0.65,
                   ),
                 )
               ],
@@ -113,11 +119,11 @@ class DetalheProjectPage extends StatelessWidget {
             const SizedBox(height: 20),
             if (bannerUrl != null && bannerUrl.isNotEmpty)
               Container(
-                 height: screenHeight * 0.25,
+                height: screenHeight * 0.25,
                 decoration: BoxDecoration(
                     border: Border.all(
                   color: Colors.black,
-                  width: 2.5, 
+                  width: 2.5,
                 )),
                 child: Image.network(
                   bannerUrl,
@@ -226,4 +232,4 @@ class IconPerson extends StatelessWidget {
       ],
     );
   }
-} 
+}

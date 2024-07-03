@@ -1,4 +1,5 @@
 import 'package:feteps/Menu_Page.dart';
+import 'package:feteps/appbar/appbar1_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,63 +13,11 @@ class AvaliacaoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    PageTransition(
-                        child: const SobrePage(),
-                        type: PageTransitionType.topToBottom),
-                  );
-                },
-                icon: const Icon(
-                  Icons.arrow_back_sharp,
-                  color: Color(0xFF0E414F),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.02,
-                  left: MediaQuery.of(context).size.width * 0.02,
-                ),
-                child: Image.asset(
-                  'lib/assets/logo.png',
-                  width: MediaQuery.of(context).size.width * 0.6,
-                ),
-              )
-            ],
-          ),
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.015,
-                    ),
-                    child: Icon(
-                      Icons.menu,
-                      size: MediaQuery.of(context).size.width * 0.095,
-                      color: Color(0xFF0E414F),
-                    ),
-                  ),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                );
-              },
-            ),
-          ],
-        ),
+        appBar: AppBar1_page(screenWidth:  MediaQuery.of(context).size.width * 1.0, destinationPage: SobrePage()),
         endDrawer: const MenuPage(),
         body: Center(
           child: Column(

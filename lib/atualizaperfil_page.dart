@@ -1,3 +1,4 @@
+import 'package:feteps/appbar/appbar2_page.dart';
 import 'package:feteps/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,44 +16,11 @@ class AtualizarDadosPage extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
-        appBar: AppBar(
-          title: SizedBox(
-            width: 400,
-            height: 300,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                          child: const PerfilPage(),
-                          type: PageTransitionType.leftToRight
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_sharp,
-                      color: Color(0xFF0E414F),
-                    )),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 15.0, left: 10, right: 10),
-                  child: Image.asset(
-                    'lib/assets/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.7,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+        appBar: AppBar2_page(screenWidth: screenWidth, destinationPage: const PerfilPage()),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [

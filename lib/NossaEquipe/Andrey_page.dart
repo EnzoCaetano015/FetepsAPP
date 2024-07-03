@@ -1,4 +1,5 @@
 import 'package:feteps/NossaEquipe_page.dart';
+import 'package:feteps/appbar/appbar2_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,42 +18,7 @@ class AndreyPage extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-          width: screenWidth * 0.9,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NossaEquipePage(),
-                    ),
-                  );
-                },
-                icon: Icon(
-                  size: screenWidth * 0.075,
-                  Icons.arrow_back_sharp,
-                  color: const Color(0xFF0E414F),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: screenHeight * 0.015,
-                  left: screenWidth * 0.05,
-                  right: screenWidth * 0.05,
-                ),
-                child: Image.asset(
-                  'lib/assets/logo.png',
-                  width: screenWidth * 0.65,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: AppBar2_page(screenWidth: screenWidth, destinationPage: const NossaEquipePage()),
       body: ListView(
         children: [
           Padding(

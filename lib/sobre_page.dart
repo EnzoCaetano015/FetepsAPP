@@ -65,10 +65,11 @@ class _SobrePageState extends State<SobrePage> {
             body: Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  height: MediaQuery.of(context).size.height * 0.28,
                   child: Row(
                     children: [
                       Container(
+                        height: MediaQuery.of(context).size.height * 0.299,
                         color: const Color(0xFFFFD35F),
                         child: Image.asset(
                           'lib/assets/banner2.png',

@@ -1,4 +1,5 @@
 import 'package:feteps/Menu_Page.dart';
+import 'package:feteps/appbar/appbar1_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:feteps/tela_palestrante.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,11 @@ class PalestrantesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+      home: const Scaffold(
         body: PalestrantesHomePage(),
       ),
     );
@@ -42,8 +45,8 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
 
   Future<void> _fetchPalestrantes() async {
     try {
-      final response = await http.get(Uri.parse(
-          GlobalPageState.Url + '/appfeteps/pages/Event/get.php'));
+      final response = await http.get(
+          Uri.parse(GlobalPageState.Url + '/appfeteps/pages/Event/get.php'));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body)['response'];
@@ -88,58 +91,7 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                      child: const SobrePage(),
-                      type: PageTransitionType.topToBottom),
-                );
-              },
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                color: Color(0xFF0E414F),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.02,
-                left: MediaQuery.of(context).size.width * 0.02,
-              ),
-              child: Image.asset(
-                'lib/assets/logo.png',
-                width: MediaQuery.of(context).size.width * 0.6,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.015,
-                  ),
-                  child: Icon(
-                    Icons.menu,
-                    size: MediaQuery.of(context).size.width * 0.095,
-                    color: const Color(0xFF0E414F),
-                  ),
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: AppBar1_page(screenWidth: MediaQuery.of(context).size.width * 1.0, destinationPage: SobrePage()),
       endDrawer: const MenuPage(),
       body: _isLoading
           ? const Center(

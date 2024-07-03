@@ -1,4 +1,5 @@
 import 'package:feteps/DetalheProject_page.dart';
+import 'package:feteps/appbar/appbar1_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -13,9 +14,11 @@ class ProjetosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+      home: const Scaffold(
         body: ProjetosHomePage(),
       ),
     );
@@ -68,8 +71,8 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
 
   Future<void> _fetchProjects(int ods) async {
     final response = await http.get(
-      Uri.parse(
-          GlobalPageState.Url + '/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'),
+      Uri.parse(GlobalPageState.Url +
+          '/appfeteps/pages/Project/get.php?id_ods=$ods&limit=50'),
     );
 
     if (response.statusCode == 200) {
@@ -105,59 +108,8 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                    child: const SobrePage(),
-                    type: PageTransitionType.topToBottom,
-                  ),
-                );
-              },
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                color: Color(0xFF0E414F),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.02,
-                left: MediaQuery.of(context).size.width * 0.02,
-              ),
-              child: Image.asset(
-                'lib/assets/logo.png',
-                width: MediaQuery.of(context).size.width * 0.6,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.015,
-                  ),
-                  child: Icon(
-                    Icons.menu,
-                    size: MediaQuery.of(context).size.width * 0.095,
-                    color: const Color(0xFF0E414F),
-                  ),
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: AppBar1_page(
+          screenWidth: screenWidth, destinationPage: const SobrePage()),
       endDrawer: const MenuPage(),
       body: ListView(
         children: [
@@ -581,14 +533,12 @@ class CardWidget2 extends StatelessWidget {
                       fontSize: screenWidth * 0.035,
                       color: const Color.fromARGB(255, 0, 0, 0)),
                 ),
-                Text(
-                  _shortenText(institutionName,35),
-                  style: GoogleFonts.poppins(
-                    fontSize: screenWidth * 0.035,
-                    color: const Color.fromARGB(255, 0, 0, 0),
-                  ),
-                  textAlign: TextAlign.center
-                ),
+                Text(_shortenText(institutionName, 35),
+                    style: GoogleFonts.poppins(
+                      fontSize: screenWidth * 0.035,
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    textAlign: TextAlign.center),
               ],
             ),
           ),

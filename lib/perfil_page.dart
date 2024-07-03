@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:feteps/appbar/appbar1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -109,52 +110,7 @@ class _PerfilPageState extends State<PerfilPage> {
       theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    PageTransition(
-                        child: const SobrePage(),
-                        type: PageTransitionType.topToBottom),
-                  );
-                },
-                icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Icon(
-                    size: screenWidth * 0.075,
-                    Icons.arrow_back_sharp,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10, bottom: 15, ),
-                child: Image.asset(
-                  'lib/assets/logo3.png',
-                  width: MediaQuery.of(context).size.width * 0.6,
-                ),
-              )
-            ],
-          ),
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  size: screenWidth * 0.095,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              ),
-            ),
-          ],
-        ),
+        appBar: AppBar1_page(screenWidth: screenWidth, destinationPage: const SobrePage()),
         endDrawer: const MenuPage(),
         body: ListView(
           children: [

@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:feteps/NossaEquipe_page.dart';
+import 'package:feteps/appbar/appbar1_page.dart';
 import 'package:feteps/participantes_page.dart';
 import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SobreNosPage extends StatefulWidget {
   const SobreNosPage({super.key});
@@ -20,74 +22,23 @@ class _SobreNosPageState extends State<SobreNosPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-        ),
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
         home: Scaffold(
-          appBar: AppBar(
-            title: SizedBox(
-              width: 400,
-              height: 300,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          PageTransition(
-                              child: const SobrePage(),
-                              type: PageTransitionType.topToBottom),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_sharp,
-                        color: Color(0xFF0E414F),
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 15.0,
-                      left: 10,
-                    ),
-                    child: Image.asset(
-                      'lib/assets/logo.png',
-                      width: MediaQuery.of(context).size.width * 0.6,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            actions: [
-              Builder(
-                builder: (BuildContext context) {
-                  return IconButton(
-                    icon: Padding(
-                      padding: EdgeInsets.only(
-                        top: 9.5,
-                      ),
-                      child: Icon(
-                        Icons.menu,
-                        size: MediaQuery.of(context).size.width * 0.095,
-                        color: Color(0xFF0E414F),
-                      ),
-                    ),
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
+          appBar: AppBar1_page(screenWidth:  MediaQuery.of(context).size.width * 1.0, destinationPage: SobrePage()),
           endDrawer: MenuPage(),
           body: Column(children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.28,
               child: Row(
                 children: [
-                  Image.asset(
-                    'lib/assets/banner2.png',
-                    width: MediaQuery.of(context).size.width * 1.0,
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.299,
+                    color: const Color(0xFFFFD35F),
+                    child: Image.asset(
+                      'lib/assets/banner2.png',
+                      width: MediaQuery.of(context).size.width * 1.0,
+                    ),
                   )
                 ],
               ),
@@ -163,8 +114,8 @@ class _SobreNosPageState extends State<SobreNosPage> {
                           onPressed: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => const NossaEquipePage(),
+                              PageTransition(
+                                child:  const NossaEquipePage(), type:  PageTransitionType.topToBottom,
                               ),
                             );
                           },

@@ -10,6 +10,7 @@ import 'package:feteps/NossaEquipe/Ribas_page.dart';
 import 'package:feteps/NossaEquipe/carol_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NossaEquipePage extends StatefulWidget {
@@ -39,9 +40,21 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       "image": "lib/assets/equipe/carol.jpg",
       "page": "CarolinaPage"
     },
-    {"name": "Leticia", "image": "lib/assets/equipe/lele.jpg", "page": "LeticiaPage"},
-    {"name": "Luana", "image": "lib/assets/equipe/luana.jpg", "page": "LuanaPage"},
-    {"name": "Raphaela", "image": "lib/assets/equipe/rapha.jpg", "page": "RaphaPage"},
+    {
+      "name": "Leticia",
+      "image": "lib/assets/equipe/lele.jpg",
+      "page": "LeticiaPage"
+    },
+    {
+      "name": "Luana",
+      "image": "lib/assets/equipe/luana.jpg",
+      "page": "LuanaPage"
+    },
+    {
+      "name": "Raphaela",
+      "image": "lib/assets/equipe/rapha.jpg",
+      "page": "RaphaPage"
+    },
   ];
 
   final List<Map<String, String>> desenvolvimentoMobile = [
@@ -68,7 +81,11 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       "image": "lib/assets/equipe/breno.png",
       "page": "BrenoCardozoPage"
     },
-    {"name": "Ribas", "image": "lib/assets/equipe/ribas.png", "page": "RibasPage"}
+    {
+      "name": "Ribas",
+      "image": "lib/assets/equipe/ribas.png",
+      "page": "RibasPage"
+    }
   ];
 
   final List<Map<String, String>> desenvolvimentoBackend = [
@@ -89,7 +106,8 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     final screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
         appBar: AppBar(
           title: SizedBox(
@@ -101,28 +119,32 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const SobreNosPage(),
+                      PageTransition(
+                        child: const SobreNosPage(),
+                        type: PageTransitionType.bottomToTop,
                       ),
                     );
                   },
-                  icon: Icon(
-                    size: screenWidth * 0.075,
-                    Icons.arrow_back_sharp,
-                    color: const Color(0xFF0E414F),
-                  ),
+                  icon: Padding(
+                padding: const EdgeInsets.only(bottom: 8, right: 15),
+                child: Icon(
+                  size: screenWidth * 0.075,
+                  Icons.arrow_back_sharp,
+                  color: Colors.white,
+                ),
+              ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: screenHeight * 0.015,
-                    left: screenWidth * 0.05,
-                    right: screenWidth * 0.05,
-                  ),
-                  child: Image.asset(
-                    'lib/assets/logo.png',
-                    width: screenWidth * 0.65,
-                  ),
-                ),
+              padding: const EdgeInsets.only(
+                top: 20,
+                right: 20,
+                bottom: 15,
+              ),
+              child: Image.asset(
+                'lib/assets/logo3.png',
+                width: MediaQuery.of(context).size.width * 0.65,
+              ),
+            )
               ],
             ),
           ),
@@ -243,11 +265,11 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const RaphaPage()));
         break;
-         case 'RibasPage':
+      case 'RibasPage':
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const RibasPage()));
         break;
-         case 'AndreyPage':
+      case 'AndreyPage':
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const AndreyPage()));
         break;
