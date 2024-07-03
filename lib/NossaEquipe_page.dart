@@ -23,7 +23,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   final List<Map<String, String>> orientadores = [
     {
       "name": "Cíntia",
-      "image": "lib/assets/cintia.jpg",
+      "image": "lib/assets/equipe/cintia.jpg",
       "page": "CintiaPinhoPage"
     },
     {
@@ -36,28 +36,28 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   final List<Map<String, String>> modelagemFigma = [
     {
       "name": "Carolina",
-      "image": "lib/assets/carol.jpg",
+      "image": "lib/assets/equipe/carol.jpg",
       "page": "CarolinaPage"
     },
-    {"name": "Leticia", "image": "lib/assets/lele.jpg", "page": "LeticiaPage"},
-    {"name": "Luana", "image": "lib/assets/luana.jpg", "page": "LuanaPage"},
-    {"name": "Raphaela", "image": "lib/assets/rapha.jpg", "page": "RaphaPage"},
+    {"name": "Leticia", "image": "lib/assets/equipe/lele.jpg", "page": "LeticiaPage"},
+    {"name": "Luana", "image": "lib/assets/equipe/luana.jpg", "page": "LuanaPage"},
+    {"name": "Raphaela", "image": "lib/assets/equipe/rapha.jpg", "page": "RaphaPage"},
   ];
 
   final List<Map<String, String>> desenvolvimentoMobile = [
     {
       "name": "Breno Cardozo",
-      "image": "lib/assets/breno.png",
+      "image": "lib/assets/equipe/breno.png",
       "page": "BrenoCardozoPage"
     },
     {
       "name": "Enzo Caetano",
-      "image": "lib/assets/caetano.jpg",
+      "image": "lib/assets/equipe/caetano.jpg",
       "page": "EnzoCaetanoPage"
     },
     {
       "name": "Enzo Krebs",
-      "image": "lib/assets/Krebs.jpg",
+      "image": "lib/assets/equipe/Krebs.jpg",
       "page": "EnzoKrebsPage"
     }
   ];
@@ -65,16 +65,16 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   final List<Map<String, String>> desenvolvimentoWeb = [
     {
       "name": "Breno",
-      "image": "lib/assets/breno.png",
+      "image": "lib/assets/equipe/breno.png",
       "page": "BrenoCardozoPage"
     },
-    {"name": "Ribas", "image": "lib/assets/ribas.png", "page": "RibasPage"}
+    {"name": "Ribas", "image": "lib/assets/equipe/ribas.png", "page": "RibasPage"}
   ];
 
   final List<Map<String, String>> desenvolvimentoBackend = [
     {
       "name": "Andrey",
-      "image": "lib/assets/andrey.png",
+      "image": "lib/assets/equipe/andrey.png",
       "page": "AndreyPage"
     }
   ];

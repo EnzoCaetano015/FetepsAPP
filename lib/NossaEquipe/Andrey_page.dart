@@ -81,7 +81,7 @@ class AndreyPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/andrey.png',
+                      'lib/assets/equipe/andrey.png',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),

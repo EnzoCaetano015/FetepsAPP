@@ -81,7 +81,7 @@ class CarolinaPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/carol.jpg',
+                      'lib/assets/equipe/carol.jpg',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),

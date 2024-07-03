@@ -107,8 +107,7 @@ class _PerfilPageState extends State<PerfilPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
         appBar: AppBar(
           title: Row(
@@ -123,17 +122,20 @@ class _PerfilPageState extends State<PerfilPage> {
                         type: PageTransitionType.topToBottom),
                   );
                 },
-                icon: Icon(
-                  size: screenWidth * 0.075,
-                  Icons.arrow_back_sharp,
-                  color: const Color(0xFF0E414F),
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Icon(
+                    size: screenWidth * 0.075,
+                    Icons.arrow_back_sharp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0, left: 10),
+                padding: const EdgeInsets.only(top: 15, left: 10, bottom: 15, ),
                 child: Image.asset(
-                  'lib/assets/logo.png',
-                  width: screenWidth * 0.6,
+                  'lib/assets/logo3.png',
+                  width: MediaQuery.of(context).size.width * 0.6,
                 ),
               )
             ],
@@ -144,7 +146,7 @@ class _PerfilPageState extends State<PerfilPage> {
                 icon: Icon(
                   Icons.menu,
                   size: screenWidth * 0.095,
-                  color: const Color(0xFF0E414F),
+                  color: Colors.white,
                 ),
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();

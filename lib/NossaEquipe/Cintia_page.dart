@@ -82,7 +82,7 @@ class CintiaPinhoPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/cintia.jpg',
+                      'lib/assets/equipe/cintia.jpg',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),

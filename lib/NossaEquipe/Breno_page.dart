@@ -79,7 +79,7 @@ class BrenoCardozoPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/breno.png',
+                      'lib/assets/equipe/breno.png',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),

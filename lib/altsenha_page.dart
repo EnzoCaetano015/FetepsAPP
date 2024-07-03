@@ -43,22 +43,23 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
       _errorMessage = '';
     });
 
-    final response = await http.post(
+    final request = http.MultipartRequest(
+      'POST',
       Uri.parse(
           'https://profandersonvanin.com.br/appfeteps/pages/Users/updatePassword.php'),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $tokenLogado',
-      },
-      body: jsonEncode({
-        'userId': int.parse(idUsuario),
-        'oldPassword': _currentPasswordController.text,
-        'newPassword': _newPasswordController.text,
-      }),
     );
 
+    request.headers['Authorization'] = 'Bearer $tokenLogado';
+    request.headers['Content-Type'] = 'multipart/form-data';
+
+    request.fields['userId'] = idUsuario;
+    request.fields['oldPassword'] = _currentPasswordController.text;
+    request.fields['newPassword'] = _newPasswordController.text;
+
+    final response = await request.send();
+
     if (response.statusCode == 200) {
-      final responseData = jsonDecode(response.body);
+      final responseData = jsonDecode(await response.stream.bytesToString());
       if (responseData['status'] == 'success') {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -80,8 +81,6 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
         _errorMessage = 'Falha ao alterar a senha';
       });
     }
-
-    print('A resposta da API é: ${response.body}');
 
     setState(() {
       _isLoading = false;
@@ -107,8 +106,7 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+        appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
         appBar: AppBar(
           title: SizedBox(
@@ -125,19 +123,22 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
                           builder: (context) => const PerfilPage()),
                     );
                   },
-                  icon: const Icon(
+                  icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 8, right: 15),
+                  child: Icon(
+                    size: screenWidth * 0.075,
                     Icons.arrow_back_sharp,
-                    color: Color(0xFF0E414F),
+                    color: Colors.white,
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 15.0, left: 10, right: 10),
-                  child: Image.asset(
-                    'lib/assets/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.7,
-                  ),
                 ),
+                 Padding(
+                padding: const EdgeInsets.only(top: 20, right: 20, bottom: 15, ),
+                child: Image.asset(
+                  'lib/assets/logo3.png',
+                  width: MediaQuery.of(context).size.width * 0.65,
+                ),
+              )
               ],
             ),
           ),

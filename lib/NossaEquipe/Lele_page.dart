@@ -81,7 +81,7 @@ class LeticiaPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/lele.jpg',
+                      'lib/assets/equipe/lele.jpg',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),

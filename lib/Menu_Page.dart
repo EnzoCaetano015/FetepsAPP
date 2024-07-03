@@ -23,7 +23,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: const Color(0xFFFFE7A9),
+        color: const Color(0xFF0E414F),
         child: Column(
           children: [
             Expanded(
@@ -33,7 +33,7 @@ class MenuPage extends StatelessWidget {
                     height: 112,
                     child: DrawerHeader(
                       decoration: const BoxDecoration(
-                        color: Color(0xFFFFE7A9),
+                        color: Color(0xFF0E414F),
                       ),
                       child: Builder(builder: (BuildContext context) {
                         return IconButton(
@@ -45,7 +45,7 @@ class MenuPage extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.arrow_back_sharp,
-                                color: Colors.black,
+                                color: Colors.white,
                                 size: 45,
                               ),
                             ],
@@ -178,7 +178,7 @@ class MenuPage extends StatelessWidget {
               ),
             ),
             Container(
-              color: const Color(0xFFFFE7A9),
+              color: const Color(0xFF0E414F),
               child: Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.03,
@@ -188,7 +188,7 @@ class MenuPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
-                    color: const Color(0xFFB6382B),
+                    color:  Colors.white,
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -208,7 +208,7 @@ class MenuPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(100, 39),
-                        backgroundColor: const Color(0xFFFFE7A9),
+                        backgroundColor: const Color(0xFF0E414F),
                         shadowColor: Colors.transparent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -220,7 +220,7 @@ class MenuPage extends StatelessWidget {
                       child: Text(
                         "Sair",
                         style: GoogleFonts.poppins(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
                         ),
@@ -245,15 +245,15 @@ class MenuPage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: Colors.black38, width: 1),
+          bottom: BorderSide(color: Colors.white, width: 1),
         ),
       ),
       child: ListTile(
-        leading: Icon(icon, color: Colors.black, size: 35),
+        leading: Icon(icon, color: Colors.white, size: 35),
         title: Text(
           text,
           style: GoogleFonts.openSans(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 16.0,
             fontWeight: FontWeight.bold,
           ),
@@ -261,7 +261,7 @@ class MenuPage extends StatelessWidget {
         onTap: onTap,
         trailing: IconButton(
           icon:
-              const Icon(Icons.arrow_forward_ios_outlined, color: Colors.black),
+              const Icon(Icons.arrow_forward_ios_outlined, color: Colors.white),
           onPressed: () {},
         ),
       ),

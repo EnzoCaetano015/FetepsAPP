@@ -22,10 +22,7 @@ class _SobrePageState extends State<SobrePage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: const Color(0xFF0E414F)
-          )
-        ),
+            appBarTheme: AppBarTheme(backgroundColor: const Color(0xFF0E414F))),
         home: DefaultTabController(
           length: 2,
           child: Scaffold(
@@ -37,9 +34,10 @@ class _SobrePageState extends State<SobrePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 15.0, left: 30),
+                      padding: const EdgeInsets.only(
+                          top: 15.0, left: 30, bottom: 15),
                       child: Image.asset(
-                        'lib/assets/logo.png',
+                        'lib/assets/logo3.png',
                         width: MediaQuery.of(context).size.width * 0.65,
                       ),
                     )
@@ -50,15 +48,10 @@ class _SobrePageState extends State<SobrePage> {
                 Builder(
                   builder: (BuildContext context) {
                     return IconButton(
-                      icon: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 9.5,
-                        ),
-                        child: Icon(
-                          Icons.menu,
-                          size: MediaQuery.of(context).size.width * 0.095,
-                          color:  Colors.white,
-                        ),
+                      icon: Icon(
+                        Icons.menu,
+                        size: MediaQuery.of(context).size.width * 0.095,
+                        color: Colors.white,
                       ),
                       onPressed: () {
                         Scaffold.of(context).openEndDrawer();
@@ -80,7 +73,6 @@ class _SobrePageState extends State<SobrePage> {
                         child: Image.asset(
                           'lib/assets/banner2.png',
                           width: MediaQuery.of(context).size.width * 1.0,
-                          
                         ),
                       )
                     ],
@@ -251,13 +243,20 @@ class EventTable extends StatelessWidget {
           padding: const EdgeInsets.all(20.66), // Aumenta a altura da linha
           child: Text(
             date,
-            style: TextStyle(fontSize: 13, color: Color(0xFF0E414F), fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 13,
+                color: Color(0xFF0E414F),
+                fontWeight: FontWeight.bold),
           ),
         ),
         Container(
           color: backgroundColor,
           padding: const EdgeInsets.all(20.0), // Aumenta a altura da linha
-          child: Text(description, style: TextStyle(color: Color(0xFF0E414F), fontWeight: FontWeight.bold),),
+          child: Text(
+            description,
+            style: TextStyle(
+                color: Color(0xFF0E414F), fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     );
