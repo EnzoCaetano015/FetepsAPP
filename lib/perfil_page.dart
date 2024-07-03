@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'Menu_Page.dart';
@@ -23,6 +24,7 @@ class _PerfilPageState extends State<PerfilPage> {
   bool isLoading = false;
   String idUsuario = '';
   String nomeUsuario = '';
+  String email = '';
   String tokenLogado = '';
   String institutionName = 'No Institution';
   String institutionType = 'No Type';
@@ -40,12 +42,14 @@ class _PerfilPageState extends State<PerfilPage> {
       idUsuario = prefs.getString('idUsuario') ?? '';
       nomeUsuario = prefs.getString('nomeUsuario') ?? 'No Username';
       tokenLogado = prefs.getString('token') ?? '';
+      email = prefs.getString('email') ?? '';
     });
 
     // Print the values of SharedPreferences to the console for debugging
     print('ID Usuario from SharedPreferences: $idUsuario');
     print('Nome Usuario from SharedPreferences: $nomeUsuario');
     print('Token from SharedPreferences: $tokenLogado');
+    print('email from SharedPreferences: $email');
 
     if (idUsuario.isNotEmpty) {
       await fetchUserData(int.tryParse(idUsuario) ?? 0);
@@ -68,7 +72,6 @@ class _PerfilPageState extends State<PerfilPage> {
         },
       );
 
-      // Debugging information
       print('Request URL: $url');
       print('Response Status Code: ${response.statusCode}');
       print('Response Body: ${response.body}');
@@ -80,11 +83,9 @@ class _PerfilPageState extends State<PerfilPage> {
           institutionName =
               data['institution']?['name_institution'] ?? 'No Institution';
           institutionType = data['institution']?['classification'] ?? 'No Type';
-          _institutionController.text =
-              institutionName; // Set the institution name in the controller
+          _institutionController.text = institutionName;
         });
 
-        // Print the fetched user data to the console for debugging
         print('User Data: $data');
       } else {
         throw Exception('Failed to load user data');
@@ -118,9 +119,8 @@ class _PerfilPageState extends State<PerfilPage> {
                   Navigator.pushReplacement(
                     context,
                     PageTransition(
-                      child:  const SobrePage(),
-                      type: PageTransitionType.topToBottom
-                    ),
+                        child: const SobrePage(),
+                        type: PageTransitionType.topToBottom),
                   );
                 },
                 icon: Icon(
@@ -306,8 +306,9 @@ class _PerfilPageState extends State<PerfilPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => AlterarSenhaPage(idUsuario: idUsuario),
+              PageTransition(
+                child: AlterarSenhaPage(idUsuario: idUsuario),
+                type: PageTransitionType.rightToLeft,
               ),
             );
           },
@@ -325,9 +326,9 @@ class _PerfilPageState extends State<PerfilPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => const AtualizarDadosPage(),
-              ),
+              PageTransition(
+                  child: const AtualizarDadosPage(),
+                  type: PageTransitionType.rightToLeft),
             );
           },
         ),

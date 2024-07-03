@@ -1,6 +1,7 @@
 import 'package:feteps/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'global.dart';
 
@@ -30,8 +31,9 @@ class AtualizarDadosPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const PerfilPage(),
+                        PageTransition(
+                          child: const PerfilPage(),
+                          type: PageTransitionType.leftToRight
                         ),
                       );
                     },
