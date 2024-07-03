@@ -109,424 +109,449 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-        appBar: AppBar(
-          title: SizedBox(
-            width: 400,
-            height: 300,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                            child: const Cadastro1Page(),
-                            type: PageTransitionType.leftToRightWithFade),
-                      );
-                    },
-                    icon: Icon(
-                      size: MediaQuery.of(context).size.width * 0.075,
-                      Icons.arrow_back_sharp,
-                      color: const Color(0xFF0E414F),
-                    )),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 15.0, left: 20, right: 20),
-                  child: Image.asset(
-                    'lib/assets/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.65,
-                  ),
-                )
-              ],
-            ),
-          ),
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.red,
         ),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            Column(children: [
-              SizedBox(
-                height: screenHeight * 0.35,
+        home: Scaffold(
+            appBar: AppBar(
+              title: SizedBox(
+                width: 400,
+                height: 300,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: const Color(0xFFB6382B),
-                          width: screenWidth * 0.009,
-                        ),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            PageTransition(
+                                child: const Cadastro1Page(),
+                                type: PageTransitionType.leftToRightWithFade),
+                          );
+                        },
+                        icon: Icon(
+                          size: MediaQuery.of(context).size.width * 0.075,
+                          Icons.arrow_back_sharp,
+                          color: const Color(0xFF0E414F),
+                        )),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 15.0, left: 20, right: 20),
+                      child: Image.asset(
+                        'lib/assets/logo.png',
+                        width: MediaQuery.of(context).size.width * 0.65,
                       ),
-                      child: ClipOval(
-                        child: Image.asset(
-                          'lib/assets/fundo.png',
-                          width: screenWidth * 0.5,
-                        ),
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "CADASTRO",
-                    style: GoogleFonts.roboto(
-                      fontSize: screenWidth * 0.069,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+            ),
+            body: ListView(
+              scrollDirection: Axis.vertical,
+              children: [
+                Column(children: [
+                  SizedBox(
+                    height: screenHeight * 0.35,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: const Color(0xFFB6382B),
+                              width: screenWidth * 0.009,
+                            ),
+                          ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              'lib/assets/fundo.png',
+                              width: screenWidth * 0.5,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Dados pessoais',
-                    style: GoogleFonts.roboto(
-                      fontSize: screenWidth * 0.052,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Nome',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              controller: _nomeController,
-                              keyboardType: TextInputType.text,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, digite seu nome';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "CADASTRO",
+                        style: GoogleFonts.roboto(
+                          fontSize: screenWidth * 0.069,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'E-mail',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              controller: _emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, digite seu e-mail';
-                                } else if (!RegExp(
-                                        r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-                                    .hasMatch(value)) {
-                                  return 'Por favor, digite um e-mail válido';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Senha',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              controller: _passwordController,
-                              obscureText: true,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, digite sua senha';
-                                } else if (value.length < 6) {
-                                  return 'A senha deve ter pelo menos 6 caracteres';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Estado (UF)',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              controller: _ufController,
-                              keyboardType: TextInputType.text,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, digite seu estado';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Cidade',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              controller: _cidadeController,
-                              keyboardType: TextInputType.text,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, digite sua cidade';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: screenHeight * 0.015),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: screenWidth * 0.8,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Área de Atuação/Curso',
-                                labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenWidth * 0.04,
-                                ),
-                                enabledBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                              controller: _areaatividadeController,
-                              keyboardType: TextInputType.text,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Por favor, digite sua área de atuação ou curso';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: screenHeight * 0.015, left: screenWidth * 0.1),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Você é expositor?',
-                            style: GoogleFonts.roboto(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: screenWidth * 0.045,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Dados pessoais',
+                        style: GoogleFonts.roboto(
+                          fontSize: screenWidth * 0.052,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.015),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Radio(
-                                value: 'Sim',
-                                groupValue: valorExpositor,
-                                onChanged: (value) {
-                                  setState(() {
-                                    valorExpositor = value.toString();
-                                  });
-                                },
-                                activeColor: const Color(0xFFB6382B),
-                              ),
-                              Text(
-                                'Sim',
-                                style: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: screenWidth * 0.045,
-                                ),
-                              ),
-                              Radio(
-                                value: 'Não',
-                                groupValue: valorExpositor,
-                                onChanged: (value) {
-                                  setState(() {
-                                    valorExpositor = value.toString();
-                                  });
-                                },
-                                activeColor: const Color(0xFFB6382B),
-                              ),
-                              Text(
-                                'Não',
-                                style: GoogleFonts.roboto(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: screenWidth * 0.045,
+                              SizedBox(
+                                width: screenWidth * 0.8,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Nome',
+                                    labelStyle: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.04,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                  ),
+                                  controller: _nomeController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Por favor, digite seu nome';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: screenHeight * 0.03),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25.0),
-                              color: const Color(0xFFB6382B),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left:
-                                      MediaQuery.of(context).size.width * 0.012,
-                                  right: MediaQuery.of(context).size.width *
-                                      0.012),
-                              child: ElevatedButton(
-                                onPressed: enviarDados,
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(100, 39),
-                                  backgroundColor: Colors.white,
-                                  shadowColor: Colors.transparent,
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                    side: const BorderSide(
-                                        color: Colors.transparent),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.015),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: screenWidth * 0.8,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: 'E-mail',
+                                    labelStyle: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.04,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
                                   ),
+                                  controller: _emailController,
+                                  keyboardType: TextInputType.emailAddress,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Por favor, digite seu e-mail';
+                                    } else if (!RegExp(
+                                            r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
+                                        .hasMatch(value)) {
+                                      return 'Por favor, digite um e-mail válido';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                child: Text(
-                                  "Cadastrar",
-                                  style: GoogleFonts.oswald(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.045,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.015),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: screenWidth * 0.8,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Senha',
+                                    labelStyle: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.04,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                  ),
+                                  controller: _passwordController,
+                                  obscureText: true,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Por favor, digite sua senha';
+                                    } else if (value.length < 6) {
+                                      return 'A senha deve ter pelo menos 6 caracteres';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.015),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: screenWidth * 0.8,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Estado (UF)',
+                                    labelStyle: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.04,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                  ),
+                                  controller: _ufController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Por favor, digite seu estado';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.015),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: screenWidth * 0.8,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Cidade',
+                                    labelStyle: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.04,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                  ),
+                                  controller: _cidadeController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Por favor, digite sua cidade';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(bottom: screenHeight * 0.015),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: screenWidth * 0.8,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: 'Área de Atuação/Curso',
+                                    labelStyle: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenWidth * 0.04,
+                                    ),
+                                    enabledBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: const UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                  ),
+                                  controller: _areaatividadeController,
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Por favor, digite sua área de atuação ou curso';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: screenHeight * 0.015,
+                              left: screenWidth * 0.1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Você é expositor?',
+                                style: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: screenWidth * 0.045,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Radio(
+                                    value: 'Sim',
+                                    groupValue: valorExpositor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        valorExpositor = value.toString();
+                                      });
+                                    },
+                                    activeColor: const Color(0xFFB6382B),
+                                  ),
+                                  Text(
+                                    'Sim',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: screenWidth * 0.045,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 'Não',
+                                    groupValue: valorExpositor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        valorExpositor = value.toString();
+                                      });
+                                    },
+                                    activeColor: const Color(0xFFB6382B),
+                                  ),
+                                  Text(
+                                    'Não',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: screenWidth * 0.045,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: screenHeight * 0.03),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  color: const Color(0xFFB6382B),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).size.width *
+                                          0.012,
+                                      right: MediaQuery.of(context).size.width *
+                                          0.012),
+                                  child: ElevatedButton(
+                                    onPressed: enviarDados,
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(100, 39),
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.transparent,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        side: const BorderSide(
+                                            color: Colors.transparent),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Cadastrar",
+                                      style: GoogleFonts.oswald(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ]),
-          ],
-        ));
+                  ),
+                ]),
+              ],
+            )));
   }
 }

@@ -6,7 +6,6 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'global.dart';
 
-
 class AtualizarDadosPage extends StatelessWidget {
   const AtualizarDadosPage({super.key});
 
@@ -16,11 +15,12 @@ class AtualizarDadosPage extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-    debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
-        appBar: AppBar2_page(screenWidth: screenWidth, destinationPage: const PerfilPage()),
+        appBar: AppBar2_page(
+            screenWidth: screenWidth, destinationPage: const PerfilPage()),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
@@ -61,7 +61,7 @@ class AtualizarDadosPage extends StatelessWidget {
                 ),
                 buildTextField(
                   context,
-                  labelText: 'Email:',
+                  labelText: 'Nome de usuário:',
                 ),
                 buildTextField(
                   context,
@@ -73,10 +73,11 @@ class AtualizarDadosPage extends StatelessWidget {
                 ),
                 buildTextField(
                   context,
-                  labelText: 'Instituição:',
+                  labelText: ' Cod Instituição:',
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: screenHeight * 0.04, bottom: screenHeight * 0.02),
+                  padding: EdgeInsets.only(
+                      top: screenHeight * 0.04, bottom: screenHeight * 0.02),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -89,8 +90,7 @@ class AtualizarDadosPage extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(
                               left: MediaQuery.of(context).size.width * 0.012,
-                              right:
-                                  MediaQuery.of(context).size.width * 0.012),
+                              right: MediaQuery.of(context).size.width * 0.012),
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -100,8 +100,8 @@ class AtualizarDadosPage extends StatelessWidget {
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50.0),
-                                side: const BorderSide(
-                                    color: Colors.transparent),
+                                side:
+                                    const BorderSide(color: Colors.transparent),
                               ),
                             ),
                             child: Text(

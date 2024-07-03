@@ -62,12 +62,11 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
 
     if (response.statusCode == 200) {
       final responseData = jsonDecode(await response.stream.bytesToString());
-      if (responseData['status'] == 'success') {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
-          (route) => false,
-        );
+      if (responseData['type'] == 'success' &&
+          responseData['message'] == 'Password updated') {
+        Future.delayed(const Duration(seconds: 3), () {
+          _logout();
+        });
       } else {
         setState(() {
           _errorMessage = responseData['message'];
@@ -84,16 +83,16 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     });
   }
 
-  // Future<void> _logout() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   await prefs.clear();
+  Future<void> _logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
 
-  //   Navigator.pushAndRemoveUntil(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
-  //     (route) => false,
-  //   );
-  // }
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
+      (route) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +104,8 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
       theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
-        appBar: AppBar2_page(screenWidth: screenWidth, destinationPage: const PerfilPage()),
+        appBar: AppBar2_page(
+            screenWidth: screenWidth, destinationPage: const PerfilPage()),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
