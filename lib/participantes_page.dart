@@ -318,8 +318,8 @@ class CardWidget2 extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: SizedBox(
-            width: screenWidth * 0.45,
-            height: screenWidth * 0.6,
+            width: screenWidth * 0.5,
+            height: screenWidth * 0.65,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -362,7 +362,7 @@ class CardWidget2 extends StatelessWidget {
                 ),
                 const SizedBox(height: 3.0),
                 Text(
-                  institutionName,
+                  _shortenText(institutionName, 45),
                   style: GoogleFonts.poppins(
                     fontSize: screenWidth * 0.035,
                     color: const Color.fromARGB(255, 158, 156, 156),
