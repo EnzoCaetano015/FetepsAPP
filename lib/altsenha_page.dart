@@ -1,3 +1,5 @@
+import 'package:feteps/appbar/appbar2_page.dart';
+import 'package:feteps/global.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,7 +48,7 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     final request = http.MultipartRequest(
       'POST',
       Uri.parse(
-          'https://profandersonvanin.com.br/appfeteps/pages/Users/updatePassword.php'),
+          GlobalPageState.Url + '/appfeteps/pages/Users/updatePassword.php'),
     );
 
     request.headers['Authorization'] = 'Bearer $tokenLogado';
@@ -61,16 +63,11 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     if (response.statusCode == 200) {
       final responseData = jsonDecode(await response.stream.bytesToString());
       if (responseData['status'] == 'success') {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Senha alterada com sucesso'),
-            duration: Duration(seconds: 3),
-          ),
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
+          (route) => false,
         );
-
-        Future.delayed(const Duration(seconds: 3), () {
-          _logout();
-        });
       } else {
         setState(() {
           _errorMessage = responseData['message'];
@@ -87,16 +84,16 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     });
   }
 
-  Future<void> _logout() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+  // Future<void> _logout() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   await prefs.clear();
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
-      (route) => false,
-    );
-  }
+  //   Navigator.pushAndRemoveUntil(
+  //     context,
+  //     MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
+  //     (route) => false,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,43 +103,9 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
       home: Scaffold(
-        appBar: AppBar(
-          title: SizedBox(
-            width: 400,
-            height: 300,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PerfilPage()),
-                    );
-                  },
-                  icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 8, right: 15),
-                  child: Icon(
-                    size: screenWidth * 0.075,
-                    Icons.arrow_back_sharp,
-                    color: Colors.white,
-                  ),
-                ),
-                ),
-                 Padding(
-                padding: const EdgeInsets.only(top: 20, right: 20, bottom: 15, ),
-                child: Image.asset(
-                  'lib/assets/logo3.png',
-                  width: MediaQuery.of(context).size.width * 0.65,
-                ),
-              )
-              ],
-            ),
-          ),
-        ),
+        appBar: AppBar2_page(screenWidth: screenWidth, destinationPage: const PerfilPage()),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
