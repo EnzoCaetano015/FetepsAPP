@@ -108,7 +108,7 @@ class _PerfilPageState extends State<PerfilPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+          ),
       home: Scaffold(
         appBar: AppBar1_page(screenWidth: screenWidth, destinationPage: const SobrePage()),
         endDrawer: const MenuPage(),

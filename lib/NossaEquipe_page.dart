@@ -107,7 +107,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+          ),
       home: Scaffold(
         appBar: AppBar(
           title: SizedBox(
@@ -130,7 +130,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                 child: Icon(
                   size: screenWidth * 0.075,
                   Icons.arrow_back_sharp,
-                  color: Colors.white,
+                  color:Color(0xFF0E414F),
                 ),
               ),
                 ),
@@ -141,7 +141,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                 bottom: 15,
               ),
               child: Image.asset(
-                'lib/assets/logo3.png',
+                'lib/assets/logo.png',
                 width: MediaQuery.of(context).size.width * 0.65,
               ),
             )

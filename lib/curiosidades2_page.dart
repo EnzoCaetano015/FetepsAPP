@@ -24,22 +24,29 @@ class Curiosidade2Page extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageTransition(
-                                child: const CuriosidadePage(),
-                                type: PageTransitionType.bottomToTop),
-                          );
-                        },
-                        icon: Icon(
-                          size: MediaQuery.of(context).size.width * 0.075,
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: const CuriosidadePage(),
+                              type: PageTransitionType.bottomToTop),
+                        );
+                      },
+                      icon: Padding(
+                        padding: const EdgeInsets.only(bottom: 8, right: 15),
+                        child: Icon(
+                          size: screenWidth * 0.075,
                           Icons.arrow_back_sharp,
                           color: const Color(0xFF0E414F),
-                        )),
+                        ),
+                      ),
+                    ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(top: 15.0, left: 20, right: 20),
+                      padding: const EdgeInsets.only(
+                        top: 20,
+                        right: 20,
+                        bottom: 15,
+                      ),
                       child: Image.asset(
                         'lib/assets/logo.png',
                         width: MediaQuery.of(context).size.width * 0.65,
@@ -72,6 +79,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFD32F2F),
                             collapsedBackgroundColor: const Color(0xFFD32F2F),
                             collapsedShape: RoundedRectangleBorder(
@@ -131,6 +140,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFDDA73A),
                             collapsedBackgroundColor: const Color(0xFFDDA73A),
                             collapsedShape: RoundedRectangleBorder(
@@ -190,6 +201,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF4CA146),
                             collapsedBackgroundColor: const Color(0xFF4CA146),
                             collapsedShape: RoundedRectangleBorder(
@@ -249,6 +262,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFC7212F),
                             collapsedBackgroundColor: const Color(0xFFC7212F),
                             collapsedShape: RoundedRectangleBorder(
@@ -308,6 +323,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFEF402D),
                             collapsedBackgroundColor: const Color(0xFFEF402D),
                             collapsedShape: RoundedRectangleBorder(
@@ -367,6 +384,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF27BFE6),
                             collapsedBackgroundColor: const Color(0xFF27BFE6),
                             collapsedShape: RoundedRectangleBorder(
@@ -426,6 +445,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFFBC412),
                             collapsedBackgroundColor: const Color(0xFFFBC412),
                             collapsedShape: RoundedRectangleBorder(
@@ -485,6 +506,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFA31C44),
                             collapsedBackgroundColor: const Color(0xFFA31C44),
                             collapsedShape: RoundedRectangleBorder(
@@ -544,6 +567,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFF26A2E),
                             collapsedBackgroundColor: const Color(0xFFF26A2E),
                             collapsedShape: RoundedRectangleBorder(
@@ -603,6 +628,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFDE1768),
                             collapsedBackgroundColor: const Color(0xFFDE1768),
                             collapsedShape: RoundedRectangleBorder(
@@ -662,6 +689,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFF89D2A),
                             collapsedBackgroundColor: const Color(0xFFF89D2A),
                             collapsedShape: RoundedRectangleBorder(
@@ -721,6 +750,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFFBF8D2C),
                             collapsedBackgroundColor: const Color(0xFFBF8D2C),
                             collapsedShape: RoundedRectangleBorder(
@@ -780,6 +811,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF407F46),
                             collapsedBackgroundColor: const Color(0xFF407F46),
                             collapsedShape: RoundedRectangleBorder(
@@ -839,6 +872,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF1F87D4),
                             collapsedBackgroundColor: const Color(0xFF1F87D4),
                             collapsedShape: RoundedRectangleBorder(
@@ -898,6 +933,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF4DB638),
                             collapsedBackgroundColor: const Color(0xFF4DB638),
                             collapsedShape: RoundedRectangleBorder(
@@ -957,6 +994,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF136A9F),
                             collapsedBackgroundColor: const Color(0xFF136A9F),
                             collapsedShape: RoundedRectangleBorder(
@@ -1016,6 +1055,8 @@ class Curiosidade2Page extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.03),
                           child: ExpansionTile(
+                            iconColor: Colors.white,
+                            collapsedIconColor: Colors.white,
                             backgroundColor: const Color(0xFF14496B),
                             collapsedBackgroundColor: const Color(0xFF14496B),
                             collapsedShape: RoundedRectangleBorder(
@@ -1066,7 +1107,7 @@ class Curiosidade2Page extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                     Row(
+                                    Row(
                                       children: [
                                         Text(
                                           '\nTECNOLOGIA:\nPromover o desenvolvimento,\na transferência, a\ndisseminação e a difusão\nde tecnologias\nambientalmente corretas\npara os países em\ndesenvolvimento, em\ncondições favoráveis,\ninclusive em condições\nconcessionais e\npreferenciais, conforme\nmutuamente acordado',
@@ -1099,7 +1140,7 @@ class Curiosidade2Page extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                     Row(
+                                    Row(
                                       children: [
                                         Text(
                                           '\nQUESTÕES SISTÊMICAS:\nCoerência de políticas e\ninstitucional.\nAumentar a estabilidade\nmacroeconômica global,\ninclusive por meio da\ncoordenação e da coerência\nde políticas\nAumentar a coerência das\npolíticas para o\ndesenvolvimento sustentável\nRespeitar o espaço político\ne a liderança de cada país\npara estabelecer e\nimplementar políticas para\na erradicação da pobreza e\no desenvolvimento sustentável.',
@@ -1110,7 +1151,7 @@ class Curiosidade2Page extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                     Row(
+                                    Row(
                                       children: [
                                         Text(
                                           '\nAS PARCERIAS MULTISSETORIAIS:\nReforçar a parceria global\npara o desenvolvimento\nsustentável,\ncomplementada por\nparcerias multissetoriais\nque mobilizem e\ncompartilhem\nconhecimento, expertise,\ntecnologia e recursos\nfinanceiros, para apoiar a\nrealização dos objetivos do\ndesenvolvimento\nsustentável em todos os\npaíses, particularmente nos\npaíses em desenvolvimento\nIncentivar e promover\nparcerias públicas,\npúblico-privadas\ne com a sociedade\ncivil eficazes, a partir da\nexperiência das estratégias de\nmobilização de recursos\ndessas parcerias.',
@@ -1121,7 +1162,7 @@ class Curiosidade2Page extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                     Row(
+                                    Row(
                                       children: [
                                         Text(
                                           '\nDADOS, MONITORAMNETO\nE PRESTAÇÃO DE CONTAS:\nAté 2030, valer-se de\niniciativas existentes para\ndesenvolver medidas\ndo progresso do\ndesenvolvimento\nsustentável que\ncomplementem o produto\ninterno bruto [PIB] e apoiem\na capacitação estatística\nnos países em desenvolvimento.',

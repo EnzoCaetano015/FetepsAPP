@@ -29,14 +29,14 @@ class AppBar1_page extends StatelessWidget implements PreferredSizeWidget {
               child: Icon(
                 size: screenWidth * 0.075,
                 Icons.arrow_back_sharp,
-                color: Colors.white,
+                color:const Color(0xFF0E414F),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10, bottom: 15),
             child: Image.asset(
-              'lib/assets/logo3.png',
+              'lib/assets/logo.png',
               width: MediaQuery.of(context).size.width * 0.6,
             ),
           )
@@ -48,7 +48,7 @@ class AppBar1_page extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(
               Icons.menu,
               size: screenWidth * 0.095,
-              color: Colors.white,
+              color: const Color(0xFF0E414F),
             ),
             onPressed: () {
               Scaffold.of(context).openEndDrawer();

@@ -21,8 +21,7 @@ class _SobrePageState extends State<SobrePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            appBarTheme: AppBarTheme(backgroundColor: const Color(0xFF0E414F))),
+        theme: ThemeData(),
         home: DefaultTabController(
           length: 2,
           child: Scaffold(
@@ -37,7 +36,7 @@ class _SobrePageState extends State<SobrePage> {
                       padding: const EdgeInsets.only(
                           top: 15.0, left: 30, bottom: 15),
                       child: Image.asset(
-                        'lib/assets/logo3.png',
+                        'lib/assets/logo.png',
                         width: MediaQuery.of(context).size.width * 0.65,
                       ),
                     )
@@ -51,7 +50,7 @@ class _SobrePageState extends State<SobrePage> {
                       icon: Icon(
                         Icons.menu,
                         size: MediaQuery.of(context).size.width * 0.095,
-                        color: Colors.white,
+                        color: const Color(0xFF0E414F),
                       ),
                       onPressed: () {
                         Scaffold.of(context).openEndDrawer();
@@ -83,8 +82,8 @@ class _SobrePageState extends State<SobrePage> {
                   indicatorColor: const Color(0xFFFFD35F),
                   labelColor: Colors.black,
                   labelStyle: GoogleFonts.poppins(
-                      fontSize: MediaQuery.of(context).size.width * 0.043,
-                      fontWeight: FontWeight.bold),
+                    fontSize: MediaQuery.of(context).size.width * 0.043,
+                  ),
                   tabs: const [
                     Tab(text: 'Feteps'),
                     Tab(text: 'Programação'),

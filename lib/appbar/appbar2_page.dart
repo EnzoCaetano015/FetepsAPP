@@ -31,7 +31,7 @@ class AppBar2_page extends StatelessWidget implements PreferredSizeWidget {
                 child: Icon(
                   size: screenWidth * 0.075,
                   Icons.arrow_back_sharp,
-                  color: Colors.white,
+                  color: const Color(0xFF0E414F),
                 ),
               ),
             ),
@@ -42,7 +42,7 @@ class AppBar2_page extends StatelessWidget implements PreferredSizeWidget {
                 bottom: 15,
               ),
               child: Image.asset(
-                'lib/assets/logo3.png',
+                'lib/assets/logo.png',
                 width: MediaQuery.of(context).size.width * 0.65,
               ),
             )

@@ -15,7 +15,7 @@ class AvaliacaoPage extends StatelessWidget {
     return MaterialApp(
        debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+          ),
       home: Scaffold(
         appBar: AppBar1_page(screenWidth:  MediaQuery.of(context).size.width * 1.0, destinationPage: SobrePage()),
         endDrawer: const MenuPage(),

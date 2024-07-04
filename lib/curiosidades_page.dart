@@ -15,13 +15,14 @@ class CuriosidadePage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-         debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(),
         home: DefaultTabController(
             length: 2,
             child: Scaffold(
-                appBar: AppBar1_page(screenWidth: screenWidth, destinationPage: const SobrePage()),
+                appBar: AppBar1_page(
+                    screenWidth: screenWidth,
+                    destinationPage: const SobrePage()),
                 endDrawer: const MenuPage(),
                 body: ListView(
                   children: [
@@ -84,42 +85,42 @@ class CuriosidadePage extends StatelessWidget {
                                         color: Colors.black, width: 2),
                                     right: BorderSide(
                                         color: Colors.black, width: 2),
+                                    bottom: BorderSide(
+                                        color: Colors.black, width: 2),
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(screenWidth * 0.022),
-                                  child: Text(
-                                    'Os Objetivos de Desenvolvimento\nSustentável são metas globais da\n ONU para acabar com a pobreza,\nproteger o meio ambiente, promover\na paz e garantir prosperidade até\n2030. Integrados em dimensões\nsocial, ambiental e econômica, são\nresponsabilidade de governos,\nsociedade civil, setor privado e\nindivíduos comprometidos com\n o futuro.\nComo cada ODS tem como objetivo\nde acabar com algum problema\ndecorrente em nosso mundo,\nprojetos baseados nesses objetivos\najudam aos alunos criarem soluções\n sustentáveis e assim, sendo\ninspirações para a próxima geração\npara que pensem em como salvar e\npreservar o meio em que vivem.',
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.black,
-                                        fontSize: screenWidth * 0.0415),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: Colors.black, width: 2),
-                                      right: BorderSide(
-                                          color: Colors.black, width: 2),
-                                      bottom: BorderSide(
-                                          color: Colors.black, width: 2)),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: screenWidth * 0.194),
-                                  child: Image.asset(
-                                    'lib/assets/curiosidade.png',
-                                    width: screenWidth * 0.45,
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                              screenWidth * 0.022),
+                                          child: Text(
+                                            'Os Objetivos de Desenvolvimento\nSustentável são metas globais da\n ONU para acabar com a pobreza,\nproteger o meio ambiente, promover\na paz e garantir prosperidade até\n2030. Integrados em dimensões\nsocial, ambiental e econômica, são\nresponsabilidade de governos,\nsociedade civil, setor privado e\nindivíduos comprometidos com\n o futuro.\nComo cada ODS tem como objetivo\nde acabar com algum problema\ndecorrente em nosso mundo,\nprojetos baseados nesses objetivos\najudam aos alunos criarem soluções\n sustentáveis e assim, sendo\ninspirações para a próxima geração\npara que pensem em como salvar e\npreservar o meio em que vivem.',
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.black,
+                                                fontSize: screenWidth * 0.0415),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                              screenWidth * 0.022),
+                                          child: Image.asset(
+                                            'lib/assets/curiosidade.png',
+                                            width: screenWidth * 0.45,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               )
                             ],

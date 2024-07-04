@@ -62,7 +62,7 @@ class DetalheProjectPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F)),
+      
         textTheme: GoogleFonts.interTextTheme(),
       ),
       home: Scaffold(
@@ -82,7 +82,7 @@ class DetalheProjectPage extends StatelessWidget {
                     child: Icon(
                       size: screenWidth * 0.075,
                       Icons.arrow_back_sharp,
-                      color: Colors.white,
+                      color: const Color(0xFF0E414F),
                     ),
                   ),
                 ),
@@ -93,7 +93,7 @@ class DetalheProjectPage extends StatelessWidget {
                     bottom: 15,
                   ),
                   child: Image.asset(
-                    'lib/assets/logo3.png',
+                    'lib/assets/logo.png',
                     width: MediaQuery.of(context).size.width * 0.65,
                   ),
                 )

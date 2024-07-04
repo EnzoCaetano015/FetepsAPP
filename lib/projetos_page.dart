@@ -17,7 +17,7 @@ class ProjetosPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF0E414F))),
+         ),
       home: const Scaffold(
         body: ProjetosHomePage(),
       ),

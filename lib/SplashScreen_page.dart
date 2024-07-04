@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreenPage>
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 4));
     bool isLoggedIn = await verificarToken();
 
     if (isLoggedIn) {
