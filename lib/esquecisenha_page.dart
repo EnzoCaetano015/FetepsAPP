@@ -97,9 +97,7 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -165,7 +163,7 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.038,
+                            height: MediaQuery.of(context).size.height * 0.02,
                           ),
                           // TextFormField SENHA
                           Theme(
@@ -205,7 +203,7 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.038,
+                            height: MediaQuery.of(context).size.height * 0.02,
                           ),
 
                           Theme(
@@ -294,6 +292,9 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                                 ),
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
                           ),
                         ],
                       ),

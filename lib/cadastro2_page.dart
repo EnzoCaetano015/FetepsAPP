@@ -266,9 +266,7 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Por favor, digite seu cpf';
-                                } else if (!RegExp(
-                                       '')
-                                    .hasMatch(value)) {
+                                } else if (!RegExp('').hasMatch(value)) {
                                   return 'Por favor, digite um cpf válido';
                                 }
                                 return null;
@@ -564,6 +562,9 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
                     ),
                   ],
                 ),
