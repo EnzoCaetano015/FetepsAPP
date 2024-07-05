@@ -1,0 +1,211 @@
+import 'package:feteps/appbar/appbar2_page.dart';
+import 'package:feteps/global.dart';
+import 'package:feteps/perfil_page.dart';
+import 'package:feteps/loginfeteps_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
+
+class MeusDadosPage extends StatefulWidget {
+  const MeusDadosPage({super.key});
+
+  @override
+  _MeusDadosPagePageState createState() => _MeusDadosPagePageState();
+}
+
+class _MeusDadosPagePageState extends State<MeusDadosPage> {
+  Map<String, dynamic>? userData;
+  final _userNameController = TextEditingController();
+  final _stateController = TextEditingController();
+  final _cityController = TextEditingController();
+  final _institutionCodeController = TextEditingController();
+  final _idController = TextEditingController();
+  final _emailController = TextEditingController();
+  String idUsuario = '';
+  String nomeUsuario = '';
+  String email = '';
+  String estado = '';
+  String cidade = '';
+  String institutionid = '';
+  String tokenLogado = '';
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idUsuario = prefs.getString('idUsuario') ?? '';
+      nomeUsuario = prefs.getString('nomeUsuario') ?? 'No Username';
+      tokenLogado = prefs.getString('token') ?? '';
+      email = prefs.getString('email') ?? '';
+      estado = prefs.getString('state') ?? '';
+      cidade = prefs.getString('city') ?? '';
+
+      // Set the values to the controllers
+      _idController.text = idUsuario;
+      _userNameController.text = nomeUsuario;
+      _emailController.text = email;
+      _stateController.text = estado;
+      _cityController.text = cidade;
+    });
+
+    if (idUsuario.isNotEmpty) {
+      await fetchUserData(int.tryParse(idUsuario) ?? 0);
+    }
+  }
+
+  Future<void> fetchUserData(int id) async {
+    setState(() {
+      isLoading = true;
+    });
+
+    String url =
+        GlobalPageState.Url + '/appfeteps/pages/Users/getUserById.php?id=$id';
+
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer $tokenLogado',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          userData = data;
+          institutionid = data['institution']?['id'].toString() ?? 'No id';
+
+          _institutionCodeController.text = institutionid;
+        });
+      } else {
+        throw Exception('Failed to load user data');
+      }
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(),
+      home: Scaffold(
+        appBar: AppBar2_page(
+            screenWidth: screenWidth, destinationPage: const PerfilPage()),
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: screenHeight * 0.03,
+                    left: screenWidth * 0.07,
+                    bottom: screenHeight * 0.04,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Meus Dados",
+                        style: GoogleFonts.poppins(
+                          fontSize: screenWidth * 0.069,
+                          color: const Color(0xFF0E414F),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Email do Usuário:',
+                  controller: _emailController,
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Nome de usuário:',
+                  controller: _userNameController,
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Estado:',
+                  controller: _stateController,
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Cidade:',
+                  controller: _cityController,
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'ID de usuário:',
+                  controller: _idController,
+                ),
+                buildTextField(
+                  context,
+                  labelText: 'Cod Instituição:',
+                  controller: _institutionCodeController,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding buildTextField(BuildContext context,
+      {required String labelText, required TextEditingController controller}) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.025),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: screenWidth * 0.8,
+            child: TextFormField(
+              readOnly: true,
+              controller: controller,
+              decoration: InputDecoration(
+                labelText: labelText,
+                labelStyle: GoogleFonts.poppins(
+                  color: Colors.black,
+                  fontSize: screenWidth * 0.045,
+                  fontWeight: FontWeight.bold,
+                ),
+                border: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: const Color(0xFFD4A03D),
+                      width: screenWidth * 0.005),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
