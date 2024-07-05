@@ -1,6 +1,7 @@
 import 'package:feteps/appbar/appbar2_page.dart';
 import 'package:feteps/global.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
@@ -23,13 +24,13 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
   String _errorMessage = '';
   Map<String, dynamic>? userData;
   bool isLoading = false;
-  String idUsuario = '';
+  String email = '';
   String tokenLogado = '';
 
   Future<void> _alterarSenha() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      idUsuario = prefs.getString('idUsuario') ?? '';
+      email = prefs.getString('email') ?? '';
       tokenLogado = prefs.getString('token') ?? '';
     });
 
@@ -54,14 +55,15 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
     request.headers['Authorization'] = 'Bearer $tokenLogado';
     request.headers['Content-Type'] = 'multipart/form-data';
 
-    request.fields['userId'] = idUsuario;
-    request.fields['oldPassword'] = _currentPasswordController.text;
+    request.fields['userEmail'] = email;
+    request.fields['cpf'] = _currentPasswordController.text;
     request.fields['newPassword'] = _newPasswordController.text;
 
     final response = await request.send();
 
     if (response.statusCode == 200) {
       final responseData = jsonDecode(await response.stream.bytesToString());
+       print('Response data: $responseData'); 
       if (responseData['type'] == 'success' &&
           responseData['message'] == 'Password updated') {
         Future.delayed(const Duration(seconds: 3), () {
@@ -89,7 +91,8 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
 
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const LoginFetepsPage()),
+      PageTransition(
+          child: const LoginFetepsPage(), type: PageTransitionType.topToBottom),
       (route) => false,
     );
   }
@@ -101,8 +104,7 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-         ),
+      theme: ThemeData(),
       home: Scaffold(
         appBar: AppBar2_page(
             screenWidth: screenWidth, destinationPage: const PerfilPage()),
@@ -141,7 +143,7 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
                         child: TextFormField(
                           controller: _currentPasswordController,
                           decoration: InputDecoration(
-                            labelText: 'Digite a senha atual:',
+                            labelText: 'Digite seu cpf:',
                             labelStyle: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: screenWidth * 0.045,

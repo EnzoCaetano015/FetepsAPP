@@ -1,23 +1,113 @@
 import 'package:feteps/appbar/appbar2_page.dart';
+import 'package:feteps/global.dart';
 import 'package:feteps/perfil_page.dart';
+import 'package:feteps/loginfeteps_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
-import 'global.dart';
 
-class AtualizarDadosPage extends StatelessWidget {
+class AtualizarDadosPage extends StatefulWidget {
   const AtualizarDadosPage({super.key});
 
   @override
+  _AtualizarDadosPageState createState() => _AtualizarDadosPageState();
+}
+
+class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
+  final _userNameController = TextEditingController();
+  final _stateController = TextEditingController();
+  final _cityController = TextEditingController();
+  final _institutionCodeController = TextEditingController();
+  bool _isLoading = false;
+  String _errorMessage = '';
+  String idUsuario = '';
+  String tokenLogado = '';
+
+  Future<bool> _atualizarDados() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      idUsuario = prefs.getString('idUsuario') ?? '';
+      tokenLogado = prefs.getString('token') ?? '';
+    });
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse(GlobalPageState.Url + '/appfeteps/pages/Users/updateUser.php'),
+    );
+
+    request.headers['Authorization'] = 'Bearer $tokenLogado';
+    request.headers['Content-Type'] = 'multipart/form-data';
+
+    request.fields['userId'] = idUsuario;
+    request.fields['userName'] = _userNameController.text;
+    request.fields['state'] = _stateController.text;
+    request.fields['city'] = _cityController.text;
+    request.fields['idInstitution'] = _institutionCodeController.text;
+
+    final response = await request.send();
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(await response.stream.bytesToString());
+      if (responseData['type'] == 'success' &&
+          responseData['message'] == 'Operation completed successfully!') {
+        Future.delayed(const Duration(seconds: 3), () {
+          _deucerto();
+        });
+        return true;
+      } else {
+        setState(() {
+          _errorMessage = responseData['message'];
+        });
+        return false;
+      }
+    } else {
+      setState(() {
+        _errorMessage = 'Falha ao atualizar os dados';
+      });
+      return false;
+    }
+  }
+
+  Future<void> _deucerto() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      PageTransition(
+          child: const LoginFetepsPage(), type: PageTransitionType.topToBottom),
+      (route) => false,
+    );
+  }
+
+  final snackBar = const SnackBar(
+    content: Text(
+      'Dados atualizados com sucesso',
+      textAlign: TextAlign.center,
+    ),
+    backgroundColor: Colors.redAccent,
+  );
+
+  @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        ),
+      theme: ThemeData(),
       home: Scaffold(
         appBar: AppBar2_page(
             screenWidth: screenWidth, destinationPage: const PerfilPage()),
@@ -62,19 +152,32 @@ class AtualizarDadosPage extends StatelessWidget {
                 buildTextField(
                   context,
                   labelText: 'Nome de usuário:',
+                  controller: _userNameController,
                 ),
                 buildTextField(
                   context,
                   labelText: 'Estado:',
+                  controller: _stateController,
                 ),
                 buildTextField(
                   context,
                   labelText: 'Cidade:',
+                  controller: _cityController,
                 ),
                 buildTextField(
                   context,
-                  labelText: ' Cod Instituição:',
+                  labelText: 'Cod Instituição:',
+                  controller: _institutionCodeController,
                 ),
+                _errorMessage.isNotEmpty
+                    ? Padding(
+                        padding: EdgeInsets.only(bottom: screenHeight * 0.03),
+                        child: Text(
+                          _errorMessage,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      )
+                    : Container(),
                 Padding(
                   padding: EdgeInsets.only(
                       top: screenHeight * 0.04, bottom: screenHeight * 0.02),
@@ -89,10 +192,19 @@ class AtualizarDadosPage extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).size.width * 0.012,
-                              right: MediaQuery.of(context).size.width * 0.012),
+                            left: MediaQuery.of(context).size.width * 0.012,
+                            right: MediaQuery.of(context).size.width * 0.012,
+                          ),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: _isLoading
+                                ? null
+                                : () async {
+                                    bool dadosAtualizados =
+                                        await _atualizarDados();
+                                    if (dadosAtualizados) {
+                                      _deucerto;
+                                    }
+                                  },
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(100, 39),
                               backgroundColor: Colors.white,
@@ -105,7 +217,7 @@ class AtualizarDadosPage extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              "Atualizar",
+                              _isLoading ? 'Atualizando...' : 'Atualizar',
                               style: GoogleFonts.oswald(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -127,7 +239,8 @@ class AtualizarDadosPage extends StatelessWidget {
     );
   }
 
-  Padding buildTextField(BuildContext context, {required String labelText}) {
+  Padding buildTextField(BuildContext context,
+      {required String labelText, required TextEditingController controller}) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
@@ -139,6 +252,7 @@ class AtualizarDadosPage extends StatelessWidget {
           Container(
             width: screenWidth * 0.8,
             child: TextFormField(
+              controller: controller,
               decoration: InputDecoration(
                 labelText: labelText,
                 labelStyle: GoogleFonts.poppins(

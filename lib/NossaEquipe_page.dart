@@ -2,6 +2,7 @@ import 'package:feteps/NossaEquipe/Andrey_page.dart';
 import 'package:feteps/NossaEquipe/Breno_page.dart';
 import 'package:feteps/NossaEquipe/Caetano_page.dart';
 import 'package:feteps/NossaEquipe/Cintia_page.dart';
+import 'package:feteps/NossaEquipe/Anderson_page.dart';
 import 'package:feteps/NossaEquipe/Krebs_page.dart';
 import 'package:feteps/NossaEquipe/Lele_page.dart';
 import 'package:feteps/NossaEquipe/Luana_page.dart';
@@ -29,7 +30,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     },
     {
       "name": "Anderson",
-      "image": "lib/assets/Rectangle.png",
+      "image": "lib/assets/equipe/anderson.png",
       "page": "AndersonVaninPage"
     },
   ];
@@ -106,8 +107,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     final screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          ),
+      theme: ThemeData(),
       home: Scaffold(
         appBar: AppBar(
           title: SizedBox(
@@ -126,25 +126,25 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                     );
                   },
                   icon: Padding(
-                padding: const EdgeInsets.only(bottom: 8, right: 15),
-                child: Icon(
-                  size: screenWidth * 0.075,
-                  Icons.arrow_back_sharp,
-                  color:Color(0xFF0E414F),
-                ),
-              ),
+                    padding: const EdgeInsets.only(bottom: 8, right: 15),
+                    child: Icon(
+                      size: screenWidth * 0.075,
+                      Icons.arrow_back_sharp,
+                      color: Color(0xFF0E414F),
+                    ),
+                  ),
                 ),
                 Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                right: 20,
-                bottom: 15,
-              ),
-              child: Image.asset(
-                'lib/assets/logo.png',
-                width: MediaQuery.of(context).size.width * 0.65,
-              ),
-            )
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    right: 20,
+                    bottom: 15,
+                  ),
+                  child: Image.asset(
+                    'lib/assets/logo.png',
+                    width: MediaQuery.of(context).size.width * 0.65,
+                  ),
+                )
               ],
             ),
           ),
@@ -236,6 +236,10 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       case 'CintiaPinhoPage':
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const CintiaPinhoPage()));
+        break;
+      case 'AndersonVaninPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const AndersonVaninPage()));
         break;
       case 'BrenoCardozoPage':
         Navigator.pushReplacement(context,

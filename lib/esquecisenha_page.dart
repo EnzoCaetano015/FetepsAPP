@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:feteps/esquecisenha_page.dart';
+import 'package:feteps/loginfeteps_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -9,21 +9,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart';
 
-class LoginFetepsPage extends StatefulWidget {
-  const LoginFetepsPage({super.key});
+class EsqueciSenhaPage extends StatefulWidget {
+  const EsqueciSenhaPage({super.key});
 
   @override
-  State<LoginFetepsPage> createState() => _LoginFetepsPageState();
+  State<EsqueciSenhaPage> createState() => _EsqueciSenhaPageState();
 }
 
-class _LoginFetepsPageState extends State<LoginFetepsPage> {
+class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _cpfController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isLoading = false;
+  String _errorMessage = '';
 
   final snackBar = const SnackBar(
     content: Text(
-      'E-mail ou senha são inválidos',
+      'E-mail ou Cpf são inválidos',
       textAlign: TextAlign.center,
     ),
     backgroundColor: Colors.redAccent,
@@ -44,8 +47,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                   Navigator.pushReplacement(
                     context,
                     PageTransition(
-                      child: const TelaInicialPage(),
-                      type: PageTransitionType.leftToRightWithFade,
+                      child: const LoginFetepsPage(),
+                      type: PageTransitionType.topToBottom,
                     ),
                   );
                 },
@@ -101,7 +104,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "LOGIN",
+                    "Esqueceu sua senha?",
                     style: GoogleFonts.roboto(
                       fontSize: MediaQuery.of(context).size.width * 0.069,
                       color: Colors.black,
@@ -181,7 +184,47 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                             child: TextFormField(
                               obscureText: true,
                               decoration: InputDecoration(
-                                labelText: 'Senha',
+                                labelText: 'CPF',
+                                labelStyle: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.05,
+                                ),
+                              ),
+                              controller: _cpfController,
+                              keyboardType: TextInputType.text,
+                              validator: (senha) {
+                                if (senha == null || senha.isEmpty) {
+                                  return 'Por favor, digite a seu cpf';
+                                } else if (senha.length < 3) {
+                                  return 'Por favor, digite uma cpf válido';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.038,
+                          ),
+
+                          Theme(
+                            data: Theme.of(context).copyWith(
+                              inputDecorationTheme: InputDecorationTheme(
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                labelStyle: GoogleFonts.roboto(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ),
+                            child: TextFormField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: 'Nova senha',
                                 labelStyle: GoogleFonts.roboto(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -193,7 +236,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                               keyboardType: TextInputType.text,
                               validator: (senha) {
                                 if (senha == null || senha.isEmpty) {
-                                  return 'Por favor, digite a sua senha';
+                                  return 'Por favor, digite a sua nova senha';
                                 } else if (senha.length < 3) {
                                   return 'Por favor, digite uma senha maior de 3 caracteres';
                                 }
@@ -208,7 +251,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.45,
+                                width: MediaQuery.of(context).size.width * 0.5,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25.0),
                                   color: const Color(0xFFB6382B),
@@ -221,30 +264,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                         0.012,
                                   ),
                                   child: ElevatedButton(
-                                    onPressed: () async {
-                                      FocusScopeNode currentFocus =
-                                          FocusScope.of(context);
-                                      if (_formKey.currentState!.validate()) {
-                                        bool deuCerto = await login();
-                                        if (!currentFocus.hasPrimaryFocus) {
-                                          currentFocus.unfocus();
-                                        }
-                                        if (deuCerto) {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            PageTransition(
-                                              child: const SobrePage(),
-                                              type: PageTransitionType
-                                                  .bottomToTop,
-                                            ),
-                                          );
-                                        } else {
-                                          _passwordController.clear();
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(snackBar);
-                                        }
-                                      }
-                                    },
+                                    onPressed:
+                                        _isLoading ? null : _alterarSenha,
                                     style: ElevatedButton.styleFrom(
                                       minimumSize: const Size(100, 39),
                                       backgroundColor: Colors.white,
@@ -254,47 +275,21 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                         borderRadius:
                                             BorderRadius.circular(50.0),
                                         side: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 0,
-                                        ),
+                                            color: Colors.transparent),
                                       ),
                                     ),
                                     child: Text(
-                                      "Confirmar",
+                                      _isLoading
+                                          ? 'Atualizando...'
+                                          : 'Atualizar Senha',
                                       style: GoogleFonts.oswald(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize:
                                             MediaQuery.of(context).size.width *
-                                                0.048,
+                                                0.045,
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageTransition(
-                                      child: const EsqueciSenhaPage(),
-                                      type: PageTransitionType.bottomToTop,
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Esqueci minha senha",
-                                  style: GoogleFonts.oswald(
-                                    color: const Color(0xFF0E414F),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.042,
                                   ),
                                 ),
                               ),
@@ -313,29 +308,49 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     );
   }
 
-  Future<bool> login() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  Future<void> _alterarSenha() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
 
-    final url = Uri.parse(GlobalPageState.Url +
-        '/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse(
+          GlobalPageState.Url + '/appfeteps/pages/Users/updatePassword.php'),
+    );
 
-    final resposta = await http.post(url);
+    request.fields['userEmail'] = _emailController.text;
+    request.fields['cpf'] = _cpfController.text;
+    request.fields['newPassword'] = _passwordController.text;
 
-    if (resposta.statusCode == 200) {
-      var data = jsonDecode(resposta.body);
-      String token = data['token'];
-      String nomeUsuario = data['userName'];
-      String idUsuario = data['userId'].toString();
-      String email = data['userEmail'];
+    final response = await request.send();
 
-      await sharedPreferences.setString('token', token);
-      await sharedPreferences.setString('nomeUsuario', nomeUsuario);
-      await sharedPreferences.setString('idUsuario', idUsuario);
-      await sharedPreferences.setString('email', email);
-
-      return true;
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(await response.stream.bytesToString());
+      print('Response data: $responseData');
+      if (responseData['type'] == 'success' &&
+          responseData['message'] == 'Password updated') {
+        Navigator.pushAndRemoveUntil(
+          context,
+          PageTransition(
+              child: const LoginFetepsPage(),
+              type: PageTransitionType.topToBottom),
+          (route) => false,
+        );
+      } else {
+        setState(() {
+          _errorMessage = responseData['message'];
+        });
+      }
     } else {
-      return false;
+      setState(() {
+        _errorMessage = 'Falha ao alterar a senha';
+      });
     }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 }

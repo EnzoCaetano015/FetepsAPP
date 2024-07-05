@@ -29,20 +29,16 @@ class _SobreNosPageState extends State<SobreNosPage> {
           endDrawer: MenuPage(),
           body: Column(children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.28,
-              child: Row(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.299,
-                    color: const Color(0xFFFFD35F),
-                    child: Image.asset(
-                      'lib/assets/banner2.png',
-                      width: MediaQuery.of(context).size.width * 1.0,
-                    ),
-                  )
-                ],
-              ),
-            ),
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'lib/assets/banner2.png',
+                        width: MediaQuery.of(context).size.width * 1.0,
+                      )
+                    ],
+                  ),
+                ),
             Expanded(
               child: ListView(
                 scrollDirection: Axis.vertical,
