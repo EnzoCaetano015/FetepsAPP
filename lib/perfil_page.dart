@@ -271,6 +271,25 @@ class _PerfilPageState extends State<PerfilPage> {
         _buildActionItem(
           screenHeight,
           screenWidth,
+          label: 'Meus Dados',
+          onTap: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                  child: const MeusDadosPage(),
+                  type: PageTransitionType.rightToLeft),
+            );
+          },
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.048),
+          child: const Divider(
+            color: Colors.black54,
+          ),
+        ),
+        _buildActionItem(
+          screenHeight,
+          screenWidth,
           label: 'Alterar senha',
           onTap: () {
             Navigator.push(
@@ -279,44 +298,6 @@ class _PerfilPageState extends State<PerfilPage> {
                 child: AlterarSenhaPage(idUsuario: idUsuario),
                 type: PageTransitionType.rightToLeft,
               ),
-            );
-          },
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.048),
-          child: const Divider(
-            color: Colors.black54,
-          ),
-        ),
-        _buildActionItem(
-          screenHeight,
-          screenWidth,
-          label: 'Atualizar perfil',
-          onTap: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                  child: const AtualizarDadosPage(),
-                  type: PageTransitionType.rightToLeft),
-            );
-          },
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.048),
-          child: const Divider(
-            color: Colors.black54,
-          ),
-        ),
-        _buildActionItem(
-          screenHeight,
-          screenWidth,
-          label: 'Meus Dados',
-          onTap: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                  child: const MeusDadosPage(),
-                  type: PageTransitionType.rightToLeft),
             );
           },
         ),
@@ -425,6 +406,8 @@ class _PerfilPageState extends State<PerfilPage> {
         child: Text(
           'Política de Privacidade',
           style: GoogleFonts.poppins(
+            decoration: TextDecoration.underline,
+            decorationColor: const Color(0xFF0E414F),
             fontSize: screenWidth * 0.041,
             color: const Color(0xFF0E414F),
             fontWeight: FontWeight.bold,

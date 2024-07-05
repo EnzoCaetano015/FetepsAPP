@@ -479,24 +479,6 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Radio(
-                                      value: 'Sim',
-                                      groupValue: valorExpositor,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          valorExpositor = value.toString();
-                                        });
-                                      },
-                                      activeColor: const Color(0xFFB6382B),
-                                    ),
-                                    Text(
-                                      'Sim',
-                                      style: GoogleFonts.roboto(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: screenWidth * 0.045,
-                                      ),
-                                    ),
-                                    Radio(
                                       value: 'Não',
                                       groupValue: valorExpositor,
                                       onChanged: (value) {
@@ -508,6 +490,24 @@ class _Cadastro2PageState extends State<Cadastro2Page> {
                                     ),
                                     Text(
                                       'Não',
+                                      style: GoogleFonts.roboto(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: screenWidth * 0.045,
+                                      ),
+                                    ),
+                                    Radio(
+                                      value: 'Sim',
+                                      groupValue: valorExpositor,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          valorExpositor = value.toString();
+                                        });
+                                      },
+                                      activeColor: const Color(0xFFB6382B),
+                                    ),
+                                    Text(
+                                      'Sim',
                                       style: GoogleFonts.roboto(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,

@@ -131,8 +131,9 @@ class _SobrePageState extends State<SobrePage> {
                                                 0.045,
                                         color: const Color(0xFFB6382B),
                                         fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration
-                                            .underline, // Adiciona sublinhado ao texto
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: const Color(
+                                            0xFFB6382B), // Adiciona sublinhado ao texto
                                       ),
                                     ),
                                   ),

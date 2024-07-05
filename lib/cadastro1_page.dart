@@ -36,12 +36,12 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
   bool isLoading = false;
 
   final Map<String, String> apiUrls = {
-    'Etec':
-        GlobalPageState.Url + '/appfeteps/pages/Institution/get.php?type=ETEC&limit=300',
-    'Fatec':
-        GlobalPageState.Url + '/appfeteps/pages/Institution/get.php?type=FATEC&limit=300',
-    'Outros':
-        GlobalPageState.Url + '/appfeteps/pages/Institution/get.php?type=OUTROS&limit=300',
+    'Etec': GlobalPageState.Url +
+        '/appfeteps/pages/Institution/get.php?type=ETEC&limit=300',
+    'Fatec': GlobalPageState.Url +
+        '/appfeteps/pages/Institution/get.php?type=FATEC&limit=300',
+    'Outros': GlobalPageState.Url +
+        '/appfeteps/pages/Institution/get.php?type=OUTROS&limit=300',
   };
 
   @override
@@ -51,8 +51,8 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
   }
 
   Future<void> fetchItems() async {
-    final response = await http.get(Uri.parse(
-        GlobalPageState.Url + '/appfeteps/pages/TypesUser/get.php'));
+    final response = await http.get(
+        Uri.parse(GlobalPageState.Url + '/appfeteps/pages/TypesUser/get.php'));
 
     if (response.statusCode == 200) {
       final dynamic decodedData = json.decode(response.body);
@@ -454,6 +454,8 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                       color: const Color(0xFFB6382B),
                                       fontWeight: FontWeight.bold,
                                       fontSize: screenWidth * 0.044,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: const Color(0xFFB6382B),
                                     ),
                                   ),
                                 ),

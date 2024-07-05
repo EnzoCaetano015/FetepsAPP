@@ -291,6 +291,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                   "Esqueci minha senha",
                                   style: GoogleFonts.oswald(
                                     color: const Color(0xFF0E414F),
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: const Color(0xFF0E414F),
                                     fontWeight: FontWeight.bold,
                                     fontSize:
                                         MediaQuery.of(context).size.width *

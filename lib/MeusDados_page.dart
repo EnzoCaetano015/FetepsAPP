@@ -1,4 +1,5 @@
 import 'package:feteps/appbar/appbar2_page.dart';
+import 'package:feteps/atualizaperfil_page.dart';
 import 'package:feteps/global.dart';
 import 'package:feteps/perfil_page.dart';
 import 'package:feteps/loginfeteps_page.dart';
@@ -162,6 +163,32 @@ class _MeusDadosPagePageState extends State<MeusDadosPage> {
                   context,
                   labelText: 'Cod Instituição:',
                   controller: _institutionCodeController,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                            child: const AtualizarDadosPage(),
+                            type: PageTransitionType.bottomToTop,
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Atualizar Meus Dados",
+                        style: GoogleFonts.oswald(
+                          color: const Color(0xFF0E414F),
+                          decoration: TextDecoration.underline,
+                          decorationColor: const Color(0xFF0E414F),
+                          fontWeight: FontWeight.bold,
+                          fontSize: MediaQuery.of(context).size.width * 0.05,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
