@@ -63,7 +63,7 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
 
     if (response.statusCode == 200) {
       final responseData = jsonDecode(await response.stream.bytesToString());
-       print('Response data: $responseData'); 
+      print('Response data: $responseData');
       if (responseData['type'] == 'success' &&
           responseData['message'] == 'Password updated') {
         Future.delayed(const Duration(seconds: 3), () {
@@ -152,6 +152,11 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black),
                             ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: const Color(0xFFD4A03D),
+                                  width: screenWidth * 0.005),
+                            ),
                           ),
                           obscureText: true,
                         ),
@@ -178,6 +183,11 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black),
                             ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: const Color(0xFFD4A03D),
+                                  width: screenWidth * 0.005),
+                            ),
                           ),
                           obscureText: true,
                         ),
@@ -203,6 +213,11 @@ class _AlterarSenhaPageState extends State<AlterarSenhaPage> {
                             ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: const Color(0xFFD4A03D),
+                                  width: screenWidth * 0.005),
                             ),
                           ),
                           obscureText: true,

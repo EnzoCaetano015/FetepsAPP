@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:feteps/MeusDados_page.dart';
 import 'package:feteps/appbar/appbar1_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -26,6 +27,8 @@ class _PerfilPageState extends State<PerfilPage> {
   String idUsuario = '';
   String nomeUsuario = '';
   String email = '';
+  String estado = '';
+  String cidade = '';
   String tokenLogado = '';
   String institutionName = 'No Institution';
   String institutionType = 'No Type';
@@ -44,6 +47,8 @@ class _PerfilPageState extends State<PerfilPage> {
       nomeUsuario = prefs.getString('nomeUsuario') ?? 'No Username';
       tokenLogado = prefs.getString('token') ?? '';
       email = prefs.getString('email') ?? '';
+      estado = prefs.getString('state') ?? '';
+      cidade = prefs.getString('city') ?? '';
     });
 
     // Print the values of SharedPreferences to the console for debugging
@@ -51,6 +56,8 @@ class _PerfilPageState extends State<PerfilPage> {
     print('Nome Usuario from SharedPreferences: $nomeUsuario');
     print('Token from SharedPreferences: $tokenLogado');
     print('email from SharedPreferences: $email');
+    print('estado from SharedPreferences: $estado');
+    print('cidade from SharedPreferences: $cidade');
 
     if (idUsuario.isNotEmpty) {
       await fetchUserData(int.tryParse(idUsuario) ?? 0);
@@ -107,10 +114,10 @@ class _PerfilPageState extends State<PerfilPage> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          ),
+      theme: ThemeData(),
       home: Scaffold(
-        appBar: AppBar1_page(screenWidth: screenWidth, destinationPage: const SobrePage()),
+        appBar: AppBar1_page(
+            screenWidth: screenWidth, destinationPage: const SobrePage()),
         endDrawer: const MenuPage(),
         body: ListView(
           children: [
@@ -218,7 +225,7 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget _buildInstitutionField(double screenWidth, double screenHeight) {
     return Padding(
       padding: EdgeInsets.only(
-          left: screenWidth * 0.06, bottom: screenHeight * 0.05),
+          left: screenWidth * 0.06, bottom: screenHeight * 0.06),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -246,6 +253,10 @@ class _PerfilPageState extends State<PerfilPage> {
                     color: Colors.black,
                   ),
                 ),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: const Color(0xFFD4A03D),
+                        width: screenWidth * 0.005)),
               ),
             ),
           ),
@@ -286,6 +297,25 @@ class _PerfilPageState extends State<PerfilPage> {
               context,
               PageTransition(
                   child: const AtualizarDadosPage(),
+                  type: PageTransitionType.rightToLeft),
+            );
+          },
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.048),
+          child: const Divider(
+            color: Colors.black54,
+          ),
+        ),
+        _buildActionItem(
+          screenHeight,
+          screenWidth,
+          label: 'Meus Dados',
+          onTap: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                  child: const MeusDadosPage(),
                   type: PageTransitionType.rightToLeft),
             );
           },

@@ -263,6 +263,11 @@ class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
                 border: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                 ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: const Color(0xFFD4A03D),
+                      width: screenWidth * 0.005),
+                ),
               ),
             ),
           ),
