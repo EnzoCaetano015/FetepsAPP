@@ -164,6 +164,7 @@ class _MeusDadosPagePageState extends State<MeusDadosPage> {
                   labelText: 'Cod Instituição:',
                   controller: _institutionCodeController,
                 ),
+                SizedBox(height: screenHeight * 0.01),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -204,7 +205,7 @@ class _MeusDadosPagePageState extends State<MeusDadosPage> {
 
     return Padding(
       padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.025),
+          EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.03),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
