@@ -15,8 +15,18 @@ class SobrePage extends StatefulWidget {
   State<SobrePage> createState() => _SobrePageState();
 }
 
-//AJUSTES NA RESPONSIVIDADE
 class _SobrePageState extends State<SobrePage> {
+  bool _isExpanded = false;
+
+  final String _fullText =
+      'A Feteps é um evento que reúne\nprojetos desenvolvidos por alunos do\nCentro Paula Souza\ne outras instituições participantes.\nCom projetos inovadores,de\ntransformação social, tecnológicos\n e criativos.\nA diversidade e a qualidade dos\ntrabalhos demonstram a excelência\ndos projetos pedagógicos do ensino médio,\ncursos técnicos de nível médio\ne superior tecnológico.\nA Feteps tem como objetivo desenvolver\n a visão empreendedora, criativa, inovadora\ne científico-tecnológica dos alunos.\n\n'
+      'CENTRO PAULA SOUZA\n\n'
+      'O Centro Paula Souza (CPS) é uma autarquia do Governo do Estado de São Paulo, vinculada à Secretaria de Ciência, Tecnologia e Inovação. Presente em 363 municípios, a instituição administra 227 Escolas Técnicas (Etecs) e 77 Faculdades de Tecnologia (Fatecs) estaduais, com mais de 316 mil alunos em cursos técnicos de nível médio e superior tecnológicos.\n\n'
+      'A instituição também é reconhecida como Instituto de Ciência e Tecnologia (ICT), uma organização sem fins lucrativos de administrações públicas ou privadas, que tem como principal objetivo a criação e o incentivo a pesquisas científicas e tecnológicas.\n\n'
+      'ETEC E FATEC\n\n'
+      'Nas Etecs, mais de 226 mil estudantes estão matriculados nos Ensinos Médio, Técnico integrado ao Médio e no Ensino Técnico, incluindo habilitações nas modalidades presencial, semipresencial, online, Educação de Jovens e Adultos (EJA) e especialização técnica. As Etecs oferecem 224 cursos, voltados a todos os setores produtivos públicos e privados.\n\n'
+      'Já as Fatecs atendem mais de 96 mil alunos matriculados em 86 cursos de graduação tecnológica, em diversas áreas, como Construção Civil, Mecânica, Informática, Tecnologia da Informação, Turismo, entre outras.';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -93,38 +103,54 @@ class _SobrePageState extends State<SobrePage> {
                         children: [
                           Column(
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'lib/assets/alunos.png',
-                                    width: MediaQuery.of(context).size.width *
-                                        0.65,
-                                  )
-                                ],
+                              Padding(
+                                padding: EdgeInsets.only( top: 
+                                  MediaQuery.of(context).size.height * 0.04,
+                                ),
+                                child: Image.asset(
+                                  'lib/assets/alunos.png',
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65,
+                                ),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    'A Feteps é um evento que reúne\nprojetos desenvolvidos por alunos do\nCentro Paula Souza\ne outras instituições participantes.\nCom projetos inovadores,de\ntransformação social, tecnológicos\n e criativos.\nA diversidade e a qualidade dos\ntrabalhos demonstram a excelência\ndos projetos pedagógicos do ensino médio,\ncursos técnicos de nível médio\ne superior tecnológico.\nA Feteps tem como objetivo desenvolver\n a visão empreendedora, criativa, inovadora\ne científico-tecnológica dos alunos.',
-                                    style: GoogleFonts.poppins(
-                                      fontSize:
-                                          MediaQuery.of(context).size.width *
+                                  Flexible(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                        MediaQuery.of(context).size.width *
+                                            0.04,
+                                      ),
+                                      child: Text(
+                                        _isExpanded
+                                            ? _fullText
+                                            : _fullText.substring(0, 480) +
+                                                '...',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
                                               0.04,
-                                      color: Colors.black,
+                                          color: Colors.black,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                    textAlign: TextAlign.center,
-                                  )
+                                  ),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      setState(() {
+                                        _isExpanded = !_isExpanded;
+                                      });
+                                    },
                                     child: Text(
-                                      "Leia Mais",
+                                      _isExpanded ? "Leia Menos" : "Leia Mais",
                                       style: GoogleFonts.poppins(
                                         fontSize:
                                             MediaQuery.of(context).size.width *
@@ -132,8 +158,8 @@ class _SobrePageState extends State<SobrePage> {
                                         color: const Color(0xFFB6382B),
                                         fontWeight: FontWeight.bold,
                                         decoration: TextDecoration.underline,
-                                        decorationColor: const Color(
-                                            0xFFB6382B), // Adiciona sublinhado ao texto
+                                        decorationColor:
+                                            const Color(0xFFB6382B),
                                       ),
                                     ),
                                   ),
