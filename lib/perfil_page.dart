@@ -13,6 +13,7 @@ import 'atualizaperfil_page.dart';
 import 'sobre_page.dart';
 import 'telainicial_page.dart';
 import 'global.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -51,14 +52,6 @@ class _PerfilPageState extends State<PerfilPage> {
       cidade = prefs.getString('city') ?? '';
     });
 
-    // Print the values of SharedPreferences to the console for debugging
-    print('ID Usuario from SharedPreferences: $idUsuario');
-    print('Nome Usuario from SharedPreferences: $nomeUsuario');
-    print('Token from SharedPreferences: $tokenLogado');
-    print('email from SharedPreferences: $email');
-    print('estado from SharedPreferences: $estado');
-    print('cidade from SharedPreferences: $cidade');
-
     if (idUsuario.isNotEmpty) {
       await fetchUserData(int.tryParse(idUsuario) ?? 0);
     }
@@ -80,10 +73,6 @@ class _PerfilPageState extends State<PerfilPage> {
         },
       );
 
-      print('Request URL: $url');
-      print('Response Status Code: ${response.statusCode}');
-      print('Response Body: ${response.body}');
-
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
@@ -93,13 +82,10 @@ class _PerfilPageState extends State<PerfilPage> {
           institutionType = data['institution']?['classification'] ?? 'No Type';
           _institutionController.text = institutionName;
         });
-
-        print('User Data: $data');
       } else {
         throw Exception('Failed to load user data');
       }
     } catch (e) {
-      print('Error: $e');
     } finally {
       setState(() {
         isLoading = false;
@@ -137,7 +123,7 @@ class _PerfilPageState extends State<PerfilPage> {
                   ),
                 ),
                 _buildDocumentsImage(screenWidth, screenHeight),
-                _buildPrivacyPolicyLink(screenWidth),
+                _buildPrivacyPolicyLink(screenWidth,screenHeight),
               ],
             ),
           ],
@@ -182,9 +168,11 @@ class _PerfilPageState extends State<PerfilPage> {
         children: [
           Padding(
             padding: EdgeInsets.only(left: screenWidth * 0.06),
-            child: Image.asset(
-              'lib/assets/user2.png',
+            child: SvgPicture.network(
+              'https://api.dicebear.com/9.x/bottts/svg?seed=$nomeUsuario',
+              height: screenWidth * 0.3,
               width: screenWidth * 0.3,
+              placeholderBuilder: (context) => CircularProgressIndicator(),
             ),
           ),
           Column(
@@ -192,7 +180,7 @@ class _PerfilPageState extends State<PerfilPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: screenWidth * 0.025),
+                padding: EdgeInsets.only(left: screenWidth * 0.035),
                 child: RichText(
                   text: TextSpan(
                     children: [
@@ -396,13 +384,13 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Widget _buildPrivacyPolicyLink(double screenWidth) {
+  Widget _buildPrivacyPolicyLink(double screenWidth, double screenHeight) {
     return GestureDetector(
       onTap: () {
         showPrivacyPolicy();
       },
       child: Padding(
-        padding: EdgeInsets.only(top: screenWidth * 0.08),
+        padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
         child: Text(
           'Política de Privacidade',
           style: GoogleFonts.poppins(
