@@ -1,11 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class VotarPage extends StatelessWidget {
+class VotarPage extends StatefulWidget {
   final Map<String, dynamic> project;
 
   const VotarPage({super.key, required this.project});
+
+  @override
+  _VotarPageState createState() => _VotarPageState();
+}
+
+class _VotarPageState extends State<VotarPage> {
+  int _currentRating = 0;
+  String tokenLogado = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _recuperarToken();
+  }
+
+  Future<void> _recuperarToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      tokenLogado = prefs.getString('token') ?? '';
+    });
+  }
 
   static Color cor(int ods) {
     switch (ods) {
@@ -48,16 +70,63 @@ class VotarPage extends StatelessWidget {
     }
   }
 
+  Future<void> enviarVoto(int rating) async {
+    final String apiUrl = 'https://profandersonvanin.com.br/appfeteps/pages/Project/update.php';
+    final String idProjeto = widget.project['id']?.toString() ?? 'Não tem id';
+
+    Map<String, String> headers = {
+      'Authorization': 'Bearer $tokenLogado',
+      'Content-Type': 'multipart/form-data',
+    };
+
+    String starKey;
+    switch (rating) {
+      case 5:
+        starKey = 'five_stars';
+        break;
+      case 4:
+        starKey = 'four_stars';
+        break;
+      case 3:
+        starKey = 'three_stars';
+        break;
+      case 2:
+        starKey = 'two_stars';
+        break;
+      case 1:
+      default:
+        starKey = 'one_star';
+        break;
+    }
+
+    var request = http.MultipartRequest('POST', Uri.parse(apiUrl))
+      ..headers.addAll(headers)
+      ..fields['id'] = idProjeto
+      ..fields[starKey] = '1';
+
+    try {
+      final response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('Voto enviado com sucesso');
+        // Adicione qualquer lógica adicional em caso de sucesso
+      } else {
+        print('Falha ao enviar voto: ${response.reasonPhrase}');
+        // Adicione qualquer lógica adicional em caso de falha
+      }
+    } catch (e) {
+      print('Erro ao enviar voto: $e');
+      // Adicione qualquer lógica adicional em caso de erro
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final String? bannerUrl = project['banner'];
-    // Converte o 'id_ods' para string e fornece um valor padrão se for null
-    String odsId =
-        project['ods']['id_ods']?.toString() ?? 'ID ODS Não Disponível';
-    String nameOds =
-        project['ods']['name_ods']?.toString() ?? 'Nome ODS Não Disponível';
+    final String? bannerUrl = widget.project['banner'];
+    String odsId = widget.project['ods']['id_ods']?.toString() ?? 'ID ODS Não Disponível';
+    String nameOds = widget.project['ods']['name_ods']?.toString() ?? 'Nome ODS Não Disponível';
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -105,12 +174,11 @@ class VotarPage extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                // Exibe o ID ODS convertido para string
                 'ODS $odsId: $nameOds',
                 style: GoogleFonts.inter(
                   fontSize: MediaQuery.of(context).size.width * 0.055,
                   fontWeight: FontWeight.bold,
-                  color: cor(project["ods"]["id_ods"]),
+                  color: cor(widget.project["ods"]["id_ods"]),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -144,7 +212,7 @@ class VotarPage extends StatelessWidget {
               ),
             const SizedBox(height: 20),
             Text(
-              project['name_project'] ?? 'Nome do Projeto',
+              widget.project['name_project'] ?? 'Nome do Projeto',
               style: GoogleFonts.inter(
                 fontSize: screenWidth * 0.06,
                 fontWeight: FontWeight.bold,
@@ -163,7 +231,7 @@ class VotarPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              project['project_abstract'] ?? 'Lorem ipsum dolor sit amet...',
+              widget.project['project_abstract'] ?? 'Lorem ipsum dolor sit amet...',
               style: GoogleFonts.inter(
                 fontSize: screenWidth * 0.042,
                 color: Colors.black,
@@ -195,6 +263,9 @@ class VotarPage extends StatelessWidget {
                   child: StarRating(
                     maximumRating: 5,
                     onChanged: (rating) {
+                      setState(() {
+                        _currentRating = rating;
+                      });
                       print('Avaliação atual: $rating');
                     },
                     size: 35,
@@ -207,9 +278,15 @@ class VotarPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_currentRating > 0) {
+                      enviarVoto(_currentRating);
+                    } else {
+                      print('Selecione uma avaliação');
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffD9D9D9),
+                    backgroundColor: Colors.white,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5),
