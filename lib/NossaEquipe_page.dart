@@ -156,11 +156,10 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(
-                    height: screenHeight * 0.12,
                     child: Row(
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(screenWidth * 0.025),
+                          padding: EdgeInsets.all(screenWidth * 0.05),
                           child: Text(
                             'Nossa Equipe',
                             style: GoogleFonts.poppins(
@@ -184,7 +183,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                       desenvolvimentoMobile, const Color(0xFF0E414F)),
                   _buildProjectSection('Desenvolvimento Web',
                       desenvolvimentoWeb, const Color(0xFF136A9F)),
-                  _buildProjectSection('Desenvolvimento do back-end',
+                  _buildProjectSection('Desenvolvimento back-end',
                       desenvolvimentoBackend, const Color(0xFFF26A2E)),
                   _buildProjectSection(
                       'Ilustrações', ilustracoes, const Color(0xFF830000)),
@@ -205,11 +204,11 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.all(screenWidth * 0.025),
+          padding: EdgeInsets.all(screenWidth * 0.05),
           child: Text(
             title,
             style: GoogleFonts.inter(
-              fontSize: screenWidth * 0.065,
+              fontSize: screenWidth * 0.06,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
