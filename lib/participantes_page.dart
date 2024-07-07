@@ -49,8 +49,8 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
   }
 
   Future<void> _fetchProjectsByClassification(String classification) async {
-    final response = await http.get(Uri.parse(
-        GlobalPageState.Url + '/appfeteps/pages/Project/get.php?classification=$classification&limit=50'));
+    final response = await http.get(Uri.parse(GlobalPageState.Url +
+        '/appfeteps/pages/Project/get.php?classification=$classification&limit=50'));
 
     if (response.statusCode == 200) {
       setState(() {
@@ -75,16 +75,16 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
         if (firstExhibitor is Map<String, dynamic>) {
           final dynamic institution = firstExhibitor['institution'];
           if (institution != null && institution is Map<String, dynamic>) {
-            institutionName = (institution['name_institution'] ?? '').toLowerCase();
+            institutionName =
+                (institution['name_institution'] ?? '').toLowerCase();
           }
         }
       }
 
       return projectName.contains(_searchTerm.toLowerCase()) ||
-            institutionName.contains(_searchTerm.toLowerCase());
+          institutionName.contains(_searchTerm.toLowerCase());
     }).toList();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -93,12 +93,12 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          ),
+      theme: ThemeData(),
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: AppBar1_page(screenWidth: screenWidth, destinationPage: const SobrePage()),
+          appBar: AppBar1_page(
+              screenWidth: screenWidth, destinationPage: const SobrePage()),
           endDrawer: const MenuPage(),
           body: _isLoading
               ? const Center(
@@ -109,14 +109,13 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SizedBox(
-                          height: screenHeight * 0.12,
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: EdgeInsets.all(screenWidth * 0.05),
                                 child: Text('Participantes',
                                     style: GoogleFonts.poppins(
-                                        fontSize: screenWidth * 0.09,
+                                        fontSize: screenWidth * 0.08,
                                         fontWeight: FontWeight.bold,
                                         color: const Color.fromARGB(
                                             255, 14, 56, 70))),
@@ -126,7 +125,7 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                              bottom: screenHeight * 0.055,
+                              bottom: screenHeight * 0.03,
                               left: screenWidth * 0.06,
                               right: screenWidth * 0.06),
                           child: TextField(
@@ -176,11 +175,11 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(screenWidth * 0.05),
           child: Text(
             title,
             style: GoogleFonts.inter(
-                fontSize: screenWidth * 0.07,
+                fontSize: screenWidth * 0.065,
                 color: Colors.black,
                 fontWeight: FontWeight.bold),
           ),
@@ -200,7 +199,7 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
                 ),
               )
             : Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(screenWidth * 0.1),
                 child: Text(
                   'Nenhum projeto encontrado.',
                   style: GoogleFonts.poppins(
@@ -217,7 +216,8 @@ class CardWidget2 extends StatelessWidget {
   final Map<String, dynamic> project;
   final String classification;
 
-  const CardWidget2({super.key, required this.project, required this.classification});
+  const CardWidget2(
+      {super.key, required this.project, required this.classification});
 
   Color Cor(String classification) {
     switch (classification) {
@@ -252,7 +252,7 @@ class CardWidget2 extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(screenWidth * 0.015),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -311,14 +311,12 @@ class CardWidget2 extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 3.0),
-                Text(
-                  _shortenText(institutionName, 45),
-                  style: GoogleFonts.poppins(
-                    fontSize: screenWidth * 0.035,
-                    color: const Color.fromARGB(255, 158, 156, 156),
-                  ),
-                  textAlign: TextAlign.center
-                ),
+                Text(_shortenText(institutionName, 45),
+                    style: GoogleFonts.poppins(
+                      fontSize: screenWidth * 0.035,
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    textAlign: TextAlign.center),
               ],
             ),
           ),

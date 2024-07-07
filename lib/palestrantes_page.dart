@@ -100,21 +100,21 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
               children: [
                 Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          Text(
+                    Row(
+                      children: [
+                        Padding(
+                           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                          child: Text(
                             'Palestrantes',
                             style: GoogleFonts.poppins(
                               fontSize:
-                                  MediaQuery.of(context).size.width * 0.09,
+                                  MediaQuery.of(context).size.width * 0.08,
                               fontWeight: FontWeight.bold,
                               color: const Color.fromARGB(255, 14, 56, 70),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                     _buildPalestranteSections(),
                   ],

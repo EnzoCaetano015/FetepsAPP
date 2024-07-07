@@ -117,11 +117,11 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(screenWidth * 0.05),
                 child: Text(
                   'Projetos',
                   style: GoogleFonts.poppins(
-                    fontSize: screenWidth * 0.09,
+                    fontSize: screenWidth * 0.08,
                     fontWeight: FontWeight.bold,
                     color: const Color.fromARGB(255, 14, 56, 70),
                   ),
@@ -129,7 +129,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  bottom: screenHeight * 0.055,
+                  bottom: screenHeight * 0.03,
                   left: screenWidth * 0.06,
                   right: screenWidth * 0.06,
                 ),
@@ -154,11 +154,11 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(screenWidth * 0.05),
                 child: Text(
                   'Selecione uma ODS:',
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.069,
+                    fontSize: screenWidth * 0.06,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
@@ -188,11 +188,11 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(screenWidth * 0.05),
                 child: Text(
                   "ODS ${CardWidget.texto(_selectedOds)[0]} - ${CardWidget.texto(_selectedOds)[1]}",
                   style: GoogleFonts.inter(
-                    fontSize: screenWidth * 0.058,
+                    fontSize: screenWidth * 0.05,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
@@ -221,7 +221,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                               ),
                             )
                           : Padding(
-                              padding: const EdgeInsets.all(20.0),
+                              padding: EdgeInsets.all(screenWidth * 0.05),
                               child: Text(
                                 'Nenhum projeto encontrado.',
                                 style: GoogleFonts.poppins(

@@ -102,31 +102,30 @@ class _PerfilPageState extends State<PerfilPage> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar1_page(
             screenWidth: screenWidth, destinationPage: const SobrePage()),
         endDrawer: const MenuPage(),
-        body: ListView(
-          children: [
-            Column(
-              children: [
-                _buildHeader(screenHeight, screenWidth),
-                _buildUserInfo(screenHeight, screenWidth),
-                _buildInstitutionField(screenWidth, screenHeight),
-                _buildActionItems(screenHeight, screenWidth),
-                _buildLogoutButton(screenWidth, screenHeight),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.048,
-                      vertical: screenHeight * 0.01),
-                  child: const Divider(
-                    color: Colors.black54,
-                  ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildHeader(screenHeight, screenWidth),
+              _buildUserInfo(screenHeight, screenWidth),
+              _buildInstitutionField(screenWidth, screenHeight),
+              _buildActionItems(screenHeight, screenWidth),
+              _buildLogoutButton(screenWidth, screenHeight),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.048,
+                    vertical: screenHeight * 0.01),
+                child: const Divider(
+                  color: Colors.black54,
                 ),
-                _buildDocumentsImage(screenWidth, screenHeight),
-                _buildPrivacyPolicyLink(screenWidth,screenHeight),
-              ],
-            ),
-          ],
+              ),
+              _buildDocumentsImage(screenWidth, screenHeight),
+              _buildPrivacyPolicyLink(screenWidth, screenHeight),
+            ],
+          ),
         ),
       ),
     );
@@ -134,22 +133,21 @@ class _PerfilPageState extends State<PerfilPage> {
 
   Widget _buildHeader(double screenHeight, double screenWidth) {
     return SizedBox(
-      height: screenHeight * 0.115,
-      child: Padding(
-        padding: EdgeInsets.only(left: screenWidth * 0.07),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'PERFIL',
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(screenWidth * 0.05),
+            child: Text(
+              'Perfil',
               style: GoogleFonts.poppins(
-                fontSize: screenWidth * 0.069,
+                fontSize: screenWidth * 0.08,
                 color: const Color(0xFF0E414F),
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -213,7 +211,7 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget _buildInstitutionField(double screenWidth, double screenHeight) {
     return Padding(
       padding: EdgeInsets.only(
-          left: screenWidth * 0.06, bottom: screenHeight * 0.06),
+          left: screenWidth * 0.06, bottom: screenHeight * 0.05),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -343,7 +341,7 @@ class _PerfilPageState extends State<PerfilPage> {
     return Padding(
       padding: EdgeInsets.only(
         left: screenWidth * 0.07,
-        top: screenHeight * 0.02,
+        top: screenHeight * 0.015,
       ),
       child: GestureDetector(
         onTap: _logout,

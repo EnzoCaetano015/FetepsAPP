@@ -8,11 +8,14 @@ class AppBar2_page extends StatelessWidget implements PreferredSizeWidget {
   final double screenWidth;
   final Widget destinationPage;
 
-  const AppBar2_page({super.key, required this.screenWidth, required this.destinationPage});
+  const AppBar2_page(
+      {super.key, required this.screenWidth, required this.destinationPage});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
       title: SizedBox(
         width: 400,
         height: 300,
@@ -23,7 +26,9 @@ class AppBar2_page extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  PageTransition(child: destinationPage, type: PageTransitionType.leftToRight),
+                  PageTransition(
+                      child: destinationPage,
+                      type: PageTransitionType.leftToRight),
                 );
               },
               icon: Padding(

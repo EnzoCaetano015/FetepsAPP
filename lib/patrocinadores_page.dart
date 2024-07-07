@@ -15,57 +15,59 @@ class PatrocinadoresPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-         debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-         ),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(),
         home: DefaultTabController(
           length: 2,
           child: Scaffold(
-            appBar: AppBar1_page(screenWidth: screenWidth, destinationPage: SobrePage()),
+            appBar: AppBar1_page(
+                screenWidth: screenWidth, destinationPage: SobrePage()),
             endDrawer: const MenuPage(),
             body: ListView(
               children: [
                 Padding(
-                    padding: EdgeInsets.all(screenWidth * 0.025),
+                  padding: EdgeInsets.all(screenWidth * 0.025),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.all(screenWidth * 0.025),
-                        child: Row(
-                          children: [
-                            Text(
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(screenWidth * 0.05),
+                            child: Text(
                               'Patrocinadores',
                               style: GoogleFonts.poppins(
-                                  fontSize: screenWidth * 0.085,
+                                  fontSize: screenWidth * 0.08,
                                   fontWeight: FontWeight.bold,
                                   color: const Color.fromARGB(255, 14, 56, 70)),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(screenWidth * 0.025),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(screenWidth * 0.05),
+                            child: Text(
                                 'Patrocionadores da Feira Tecnológica\ndo Centro Paula Souza!',
                                 style:
-                                    TextStyle(fontSize: screenWidth * 0.048)),
-                          ],
-                        ),
+                                    TextStyle(fontSize: screenWidth * 0.045)),
+                          ),
+                        ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
                             'lib/assets/dinheiro.png',
-                            width: screenWidth * 0.45,
+                            width: screenWidth * 0.55,
                           )
                         ],
                       ),
-                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02, vertical: screenHeight * 0.02),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * 0.02,
+                            vertical: screenHeight * 0.02),
                         child: const Divider(
                           thickness: 1.5,
                           color: Colors.grey,
@@ -83,7 +85,6 @@ class PatrocinadoresPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                      
                     ],
                   ),
                 ),
