@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/loginfeteps_page.dart';
+import 'package:provider/provider.dart';
 
 //AJUSTES NA RESPONSIVIDADE
 class TelaInicialPage extends StatefulWidget {
@@ -17,9 +18,6 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-        ),
         home: Scaffold(
           appBar: AppBar(
             title: SizedBox(
@@ -29,7 +27,9 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
+                    padding: const EdgeInsets.only(
+                      top: 15.0,
+                    ),
                     child: Image.asset(
                       'lib/assets/logo.png',
                       width: MediaQuery.of(context).size.width * 0.65,
@@ -118,9 +118,8 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                           Navigator.pushReplacement(
                             context,
                             PageTransition(
-                              child:  const LoginFetepsPage(),
-                              type: PageTransitionType.rightToLeftWithFade
-                            ),
+                                child: const LoginFetepsPage(),
+                                type: PageTransitionType.rightToLeftWithFade),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -153,10 +152,9 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                           PageTransition(
-                              child:  const Cadastro1Page(),
-                              type: PageTransitionType.rightToLeftWithFade
-                            ),
+                          PageTransition(
+                              child: const Cadastro1Page(),
+                              type: PageTransitionType.rightToLeftWithFade),
                         );
                       },
                       child: Text(
