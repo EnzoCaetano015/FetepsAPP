@@ -119,30 +119,33 @@ Future<bool> verificarToken() async {
 
   if (token != null) {
     final url = Uri.parse(
-        GlobalPageState.Url + '/appfeteps/pages/Auth/verifyToken.php');
+        'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
 
     final jsonData = {'token': token};
 
-    
     final jsonString = jsonEncode(jsonData);
 
-  
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-      body: jsonString, 
-    );
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonString,
+      );
 
-  
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      print('Response Data: $data');
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        print('Response Data: $data');
 
-      if (data['type'] == 'success' && data['message'] == 'Token válido!') {
-        return true;
+        if (data['type'] == 'success' && data['message'] == 'Token válido!') {
+          return true;
+        }
+      } else {
+        print('Falha ao verificar token: ${response.statusCode}');
       }
+    } catch (e) {
+      print('Erro ao verificar token: $e');
     }
   }
   return false;
