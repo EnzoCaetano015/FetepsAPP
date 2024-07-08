@@ -33,7 +33,10 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
     'Fatec': [],
     'Outros': [],
   };
+
   bool isLoading = false;
+  String searchQuery = '';
+  List<Map<String, dynamic>> filteredOptions = [];
 
   final Map<String, String> apiUrls = {
     'Etec': GlobalPageState.Url +
@@ -104,6 +107,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
 
           setState(() {
             options[type] = institutions;
+            filteredOptions = institutions;
           });
         } else {
           throw Exception('Unexpected data format');
@@ -118,6 +122,21 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
         isLoading = false;
       });
     }
+  }
+
+  void filterOptions(String query) {
+    setState(() {
+      searchQuery = query;
+      if (query.isEmpty) {
+        filteredOptions = options[selectedMainOption!] ?? [];
+      } else {
+        filteredOptions = options[selectedMainOption!]
+                ?.where((option) =>
+                    option['name'].toLowerCase().contains(query.toLowerCase()))
+                .toList() ??
+            [];
+      }
+    });
   }
 
   @override
@@ -284,6 +303,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                 setState(() {
                                   selectedMainOption = value;
                                   selectedSubOption = null;
+                                  filterOptions('');
                                 });
                                 if (value != null) {
                                   fetchOptions(value);
@@ -320,53 +340,88 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         ),
                                       ),
                                     )
-                                  : SizedBox(
-                                      height: screenHeight * 0.13,
-                                      child: DropdownButtonFormField<String>(
-                                        icon: Icon(
-                                          Icons.house,
-                                          size: screenWidth * 0.072,
-                                          color: Colors.black,
-                                        ),
-                                        value: selectedSubOption,
-                                        items:
-                                            (options[selectedMainOption!] ?? [])
+                                  : Column(
+                                      children: [
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              bottom: screenHeight * 0.035,
+                                            ),
+                                            child: TextField(
+                                              decoration: InputDecoration(
+                                                labelText:
+                                                    'Pesquisar instituição',
+                                                labelStyle: TextStyle(
+                                                  color: Color(0xFF0E414F),
+                                                  fontSize:
+                                                      screenWidth * 0.0425,
+                                                ),
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                focusedBorder:
+                                                    const OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Color.fromARGB(
+                                                          255, 255, 209, 64)),
+                                                ),
+                                                prefixIcon: Icon(Icons.search,
+                                                    color: Color.fromARGB(
+                                                        255, 255, 209, 64)),
+                                              ),
+                                              onChanged: filterOptions,
+                                            )),
+                                        SizedBox(
+                                          height: screenHeight * 0.13,
+                                          child:
+                                              DropdownButtonFormField<String>(
+                                            icon: Icon(
+                                              Icons.house,
+                                              size: screenWidth * 0.072,
+                                              color: Colors.black,
+                                            ),
+                                            value: selectedSubOption,
+                                            items: filteredOptions
                                                 .map<DropdownMenuItem<String>>(
-                                          (subOption) {
-                                            return DropdownMenuItem<String>(
-                                              value: subOption['id'].toString(),
-                                              child: Text(subOption['name']),
-                                            );
-                                          },
-                                        ).toList(),
-                                        onChanged: (value) {
-                                          setState(() {
-                                            selectedSubOption = value;
-                                          });
-                                        },
-                                        decoration: InputDecoration(
-                                          labelText:
-                                              'Selecione sua instituição',
-                                          labelStyle: TextStyle(
-                                            color: const Color(0xFF0E414F),
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: screenWidth * 0.045,
-                                          ),
-                                          border: const OutlineInputBorder(),
-                                          focusedBorder:
-                                              const OutlineInputBorder(
-                                            borderSide:
-                                                BorderSide(color: Colors.black),
+                                              (subOption) {
+                                                return DropdownMenuItem<String>(
+                                                  value: subOption['id']
+                                                      .toString(),
+                                                  child:
+                                                      Text(subOption['name']),
+                                                );
+                                              },
+                                            ).toList(),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                selectedSubOption = value;
+                                              });
+                                            },
+                                            decoration: InputDecoration(
+                                              labelText:
+                                                  'Selecione sua instituição',
+                                              labelStyle: TextStyle(
+                                                color: const Color(0xFF0E414F),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: screenWidth * 0.045,
+                                              ),
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Por favor, selecione uma instituição';
+                                              }
+                                              return null;
+                                            },
+                                            isExpanded: true,
                                           ),
                                         ),
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Por favor, selecione uma instituição';
-                                          }
-                                          return null;
-                                        },
-                                        isExpanded: true,
-                                      ),
+                                      ],
                                     ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -454,8 +509,6 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                       color: const Color(0xFFB6382B),
                                       fontWeight: FontWeight.bold,
                                       fontSize: screenWidth * 0.044,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: const Color(0xFFB6382B),
                                     ),
                                   ),
                                 ),

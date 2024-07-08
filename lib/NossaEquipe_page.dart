@@ -9,6 +9,8 @@ import 'package:feteps/NossaEquipe/Luana_page.dart';
 import 'package:feteps/NossaEquipe/Rapha_page.dart';
 import 'package:feteps/NossaEquipe/Ribas_page.dart';
 import 'package:feteps/NossaEquipe/carol_page.dart';
+import 'package:feteps/NossaEquipe/Gabriel_page.dart';
+import 'package:feteps/NossaEquipe/Richard_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -73,6 +75,11 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       "name": "Enzo Krebs",
       "image": "lib/assets/equipe/Krebs.jpg",
       "page": "EnzoKrebsPage"
+    },
+    {
+      "name": "Gabriel",
+      "image": "lib/assets/equipe/gabriel.jpg",
+      "page": "GabrielPage"
     }
   ];
 
@@ -98,7 +105,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   ];
 
   final List<Map<String, String>> ilustracoes = [
-    {"name": "Richard", "image": "lib/assets/Rectangle.png", "page": "NomePage"}
+    {"name": "Richard", "image": "lib/assets/equipe/richard.jpg", "page": "RichardPage"}
   ];
 
   @override
@@ -156,6 +163,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(
+                    height: screenHeight * 0.12,
                     child: Row(
                       children: [
                         Padding(
@@ -204,7 +212,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.all(screenWidth * 0.05),
+         padding: EdgeInsets.all(screenWidth * 0.05),
           child: Text(
             title,
             style: GoogleFonts.inter(
@@ -275,6 +283,14 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       case 'AndreyPage':
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const AndreyPage()));
+        break;
+      case 'RichardPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const RichardPage()));
+        break;
+      case 'GabrielPage':
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const GabrielPage()));
         break;
     }
   }

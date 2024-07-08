@@ -119,15 +119,23 @@ class BrenoCardozoPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      IconButton(
-                        icon: Icon(Icons.home,
-                            color: Colors.black, size: screenWidth * 0.1),
-                        onPressed: () => _launchURL(githubUrl),
+                      InkWell(
+                        onTap: () async {
+                          _launchURL(githubUrl);
+                        },
+                        child: Image.asset(
+                          'lib/assets/github.png',
+                          width: screenWidth * 0.1,
+                        )
                       ),
-                      IconButton(
-                        icon: Icon(Icons.work,
-                            color: Colors.blue, size: screenWidth * 0.1),
-                        onPressed: () => _launchURL(linkedinUrl),
+                      InkWell(
+                        onTap: () async {
+                          _launchURL(linkedinUrl);
+                        },
+                        child: Image.asset(
+                          'lib/assets/linkedin.png',
+                          width: screenWidth * 0.1,
+                        )
                       ),
                       IconButton(
                         icon: Icon(Icons.email,
@@ -145,11 +153,15 @@ class BrenoCardozoPage extends StatelessWidget {
     );
   }
 
-  void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+  Future<void> _launchURL(String url) async {
+    if (url.isEmpty) {
+      print('URL is empty');
+      return;
+    }
+
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      print('Could not launch $url');
     }
   }
 

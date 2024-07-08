@@ -6,8 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 
 class RibasPage extends StatelessWidget {
-  final String githubUrl = " https://github.com/edwardribas";
-  final String linkedinUrl ="www.linkedin.com/in/edwardribas";
+  final String githubUrl = "https://github.com/edwardribas";
+  final String linkedinUrl = "https://www.linkedin.com/in/edwardribas/";
   final String email = "";
 
   const RibasPage({super.key});
@@ -18,7 +18,8 @@ class RibasPage extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar2_page(screenWidth: screenWidth, destinationPage: const NossaEquipePage()),
+      appBar: AppBar2_page(
+          screenWidth: screenWidth, destinationPage: const NossaEquipePage()),
       body: ListView(
         children: [
           Padding(
@@ -121,16 +122,22 @@ class RibasPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      IconButton(
-                        icon: Icon(Icons.home,
-                            color: Colors.black, size: screenWidth * 0.1),
-                        onPressed: () => _launchURL(githubUrl),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.work,
-                            color: Colors.blue, size: screenWidth * 0.1),
-                        onPressed: () => _launchURL(linkedinUrl),
-                      ),
+                      InkWell(
+                          onTap: () async {
+                            _launchURL(githubUrl);
+                          },
+                          child: Image.asset(
+                            'lib/assets/github.png',
+                            width: screenWidth * 0.1,
+                          )),
+                      InkWell(
+                          onTap: () async {
+                            _launchURL(linkedinUrl);
+                          },
+                          child: Image.asset(
+                            'lib/assets/linkedin.png',
+                            width: screenWidth * 0.1,
+                          )),
                       IconButton(
                         icon: Icon(Icons.email,
                             color: Colors.orange, size: screenWidth * 0.1),
@@ -147,11 +154,15 @@ class RibasPage extends StatelessWidget {
     );
   }
 
-  void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+  Future<void> _launchURL(String url) async {
+    if (url.isEmpty) {
+      print('URL is empty');
+      return;
+    }
+
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      print('Could not launch $url');
     }
   }
 

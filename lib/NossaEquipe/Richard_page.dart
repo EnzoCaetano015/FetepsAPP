@@ -5,12 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 
-class LuanaPage extends StatelessWidget {
-  final String githubUrl = "https://github.com/Luana1c";
-  final String linkedinUrl ="https://www.linkedin.com/in/luana-mathias-8890132b8/";
-  final String email = "luana.gaarcia07@gmail.com";
+class RichardPage extends StatelessWidget {
+  final String githubUrl = "";
+  final String linkedinUrl ="https://www.linkedin.com/in/richard-dutra-086b9b2b6";
+  final String email = "richard.dutra2006@gmail.com";
 
-  const LuanaPage({super.key});
+  const RichardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class LuanaPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.asset(
-                      'lib/assets/equipe/luana.jpg',
+                      'lib/assets/equipe/richard.jpg',
                       height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),
@@ -63,7 +63,7 @@ class LuanaPage extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: screenHeight * 0.02),
                       child: Text(
-                        'Luana Garcia Mathias',
+                        'Richard Dutra Mendes',
                         style: GoogleFonts.poppins(
                           fontSize: screenWidth * 0.055,
                           fontWeight: FontWeight.bold,
@@ -84,7 +84,7 @@ class LuanaPage extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: screenHeight * 0.02),
                       child: Text(
-                        'Modelagem Figma',
+                        'Chargista',
                         style: GoogleFonts.inter(
                           fontSize: screenWidth * 0.048,
                           fontWeight: FontWeight.bold,
@@ -103,7 +103,7 @@ class LuanaPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Aluna da ETEC Prof Maria Cristina Medeiros',
+                        'Aluno da ETEC Prof Maria Cristina Medeiros',
                         style: GoogleFonts.inter(
                           fontSize: screenWidth * 0.048,
                           fontWeight: FontWeight.bold,

@@ -51,7 +51,7 @@ dependencies:
   dropdown_search: ^5.0.3
   dart_jsonwebtoken: ^2.14.0
   jwt_decoder: ^2.0.1
-  url_launcher: ^6.3.0
+  url_launcher: ^6.0.20
   flutter_svg: ^2.0.9
 
 dev_dependencies:
@@ -103,6 +103,8 @@ flutter:
     -  'lib/assets/curiosidade.png'
     - 'lib/assets/MapaFeira.png'
     - 'lib/assets/Mapa.png'
+    - 'lib/assets/linkedin.png'
+    - 'lib/assets/github.png'
     - 'lib/assets/equipe/breno.png'
     - 'lib/assets/equipe/caetano.jpg'
     - 'lib/assets/equipe/cintia.jpg'
@@ -113,7 +115,10 @@ flutter:
     - 'lib/assets/equipe/rapha.jpg'
     - 'lib/assets/equipe/ribas.png'
     - 'lib/assets/equipe/andrey.png'
-    - lib/assets/equipe/anderson.png
+    - 'lib/assets/equipe/anderson.png'
+    - 'lib/assets/equipe/richard.jpg'
+    - 'lib/assets/equipe/gabriel.jpg'
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
