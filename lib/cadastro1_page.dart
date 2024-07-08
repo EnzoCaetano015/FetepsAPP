@@ -366,8 +366,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                     color: Colors.black),
                                               ),
                                               onChanged: filterOptions,
-                                            )
-                                            ),
+                                            )),
                                         SizedBox(
                                           height: screenHeight * 0.13,
                                           child:
@@ -497,7 +496,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                     Navigator.pushReplacement(
                                       context,
                                       PageTransition(
-                                        child: const CadastroInstituicaoPage(),
+                                        child: CadastroInstituicaoPage(),
                                         type: PageTransitionType.bottomToTop,
                                       ),
                                     );
