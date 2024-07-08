@@ -15,12 +15,38 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
 
   @override
+  _MenuPageState createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  Map<String, dynamic>? userData;
+  bool isLoading = false;
+
+  String nomeUsuario = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      nomeUsuario = prefs.getString('nomeUsuario') ?? 'No Username';
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Drawer(
       child: Container(
         color: const Color(0xFF0E414F),
@@ -36,20 +62,47 @@ class MenuPage extends StatelessWidget {
                         color: Color(0xFF0E414F),
                       ),
                       child: Builder(builder: (BuildContext context) {
-                        return IconButton(
-                          onPressed: () {
-                            Scaffold.of(context).closeEndDrawer();
-                          },
-                          icon: const Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.arrow_back_sharp,
-                                color: Colors.white,
-                                size: 45,
+                        return Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Scaffold.of(context).closeEndDrawer();
+                              },
+                              icon: const Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.arrow_back_sharp,
+                                    color: Colors.white,
+                                    size: 45,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(left: screenWidth * 0.06),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: ClipOval(
+                                  child: SvgPicture.network(
+                                    'https://api.dicebear.com/9.x/bottts/svg?seed=$nomeUsuario',
+                                    height: screenWidth * 0.3,
+                                    width: screenWidth * 0.3,
+                                    placeholderBuilder: (context) =>
+                                        CircularProgressIndicator(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         );
                       }),
                     ),
@@ -188,7 +241,7 @@ class MenuPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
-                    color:  Colors.white,
+                    color: Colors.white,
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(
