@@ -360,15 +360,14 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                 focusedBorder:
                                                     const OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                      color: Color.fromARGB(
-                                                          255, 255, 209, 64)),
+                                                      color: Color(0xFF0E414F)),
                                                 ),
-                                                prefixIcon: Icon(Icons.search,
-                                                    color: Color.fromARGB(
-                                                        255, 255, 209, 64)),
+                                                suffixIcon: Icon(Icons.search,
+                                                    color: Colors.black),
                                               ),
                                               onChanged: filterOptions,
-                                            )),
+                                            )
+                                            ),
                                         SizedBox(
                                           height: screenHeight * 0.13,
                                           child:
