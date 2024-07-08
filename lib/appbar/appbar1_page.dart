@@ -11,8 +11,6 @@ class AppBar1_page extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -31,7 +29,7 @@ class AppBar1_page extends StatelessWidget implements PreferredSizeWidget {
               child: Icon(
                 size: screenWidth * 0.075,
                 Icons.arrow_back_sharp,
-                color:const Color(0xFF0E414F),
+                color: const Color(0xFF0E414F),
               ),
             ),
           ),
