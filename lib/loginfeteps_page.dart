@@ -318,8 +318,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
   Future<bool> login() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    final url = Uri.parse(GlobalPageState.Url +
-        '/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
+    final url = Uri.parse(
+        'https://profandersonvanin.com.br/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
 
     final resposta = await http.post(url);
 
