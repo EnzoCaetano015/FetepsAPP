@@ -193,7 +193,7 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                   _buildDrawerItem(
                     icon: Icons.group,
-                    text: 'Patrocinadores',
+                    text: 'Apoiadores',
                     onTap: () {
                       Navigator.pushReplacement(
                         context,
