@@ -1,3 +1,4 @@
+import 'package:feteps/global.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -71,7 +72,7 @@ class _VotarPageState extends State<VotarPage> {
   }
 
   Future<void> enviarVoto(int rating) async {
-    final String apiUrl = 'https://profandersonvanin.com.br/appfeteps/pages/Project/update.php';
+    final String apiUrl = GlobalPageState.Url + '/appfeteps/pages/Project/update.php';
     final String idProjeto = widget.project['id']?.toString() ?? 'Não tem id';
 
     Map<String, String> headers = {

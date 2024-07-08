@@ -119,7 +119,7 @@ Future<bool> verificarToken() async {
 
   if (token != null) {
     final url = Uri.parse(
-        'https://profandersonvanin.com.br/appfeteps/pages/Auth/verifyToken.php');
+        GlobalPageState.Url + '/appfeteps/pages/Auth/verifyToken.php');
 
     final jsonData = {'token': token};
 
