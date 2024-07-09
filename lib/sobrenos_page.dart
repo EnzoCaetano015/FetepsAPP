@@ -63,8 +63,7 @@ class _SobreNosPageState extends State<SobreNosPage> {
                         Text(
                           'Sobre Nós',
                           style: GoogleFonts.poppins(
-                            fontSize:
-                                MediaQuery.of(context).size.width * 0.064,
+                            fontSize: MediaQuery.of(context).size.width * 0.064,
                             color: const Color(0xFF0E414F),
                             fontWeight: FontWeight.bold,
                           ),
@@ -89,7 +88,7 @@ class _SobreNosPageState extends State<SobreNosPage> {
                                   MediaQuery.of(context).size.width * 0.04,
                               color: Colors.black,
                             ),
-                            textAlign: TextAlign.justify,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),

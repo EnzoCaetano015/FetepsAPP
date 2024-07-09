@@ -20,10 +20,10 @@ class _SobrePageState extends State<SobrePage> {
 
   final String _fullText =
       'A Feteps é um evento que reúne projetos desenvolvidos por alunos do Centro Paula Souza e outras instituições participantes. Com projetos inovadores, de transformação social, tecnológicos e criativos. A diversidade e a qualidade dos trabalhos demonstram a excelência dos projetos pedagógicos do ensino médio, cursos técnicos de nível médio e superior tecnológico. A Feteps tem como objetivo desenvolver a visão empreendedora, criativa, inovadora e científico-tecnológica dos alunos. Nível médio e superior tecnológico. A Feteps tem como objetivo desenvolver a visão empreendedora, criativa, inovadora e científico-tecnológica dos alunos.\n\n'
-      '                    CENTRO PAULA SOUZA\n\n'
+      'CENTRO PAULA SOUZA\n\n'
       'O Centro Paula Souza (CPS) é uma autarquia do Governo do Estado de São Paulo, vinculada à Secretaria de Ciência, Tecnologia e Inovação. Presente em 363 municípios, a instituição administra 227 Escolas Técnicas (Etecs) e 77 Faculdades de Tecnologia (Fatecs) estaduais, com mais de 316 mil alunos em cursos técnicos de nível médio e superior tecnológicos.\n\n'
       'A instituição também é reconhecida como Instituto de Ciência e Tecnologia (ICT), uma organização sem fins lucrativos de administrações públicas ou privadas, que tem como principal objetivo a criação e o incentivo a pesquisas científicas e tecnológicas.\n\n'
-      '                           ETEC E FATEC\n\n'
+      'ETEC E FATEC\n\n'
       'Nas Etecs, mais de 226 mil estudantes estão matriculados nos Ensinos Médio, Técnico integrado ao Médio e no Ensino Técnico, incluindo habilitações nas modalidades presencial, semipresencial, online, Educação de Jovens e Adultos (EJA) e especialização técnica. As Etecs oferecem 224 cursos, voltados a todos os setores produtivos públicos e privados.\n\n'
       'Já as Fatecs atendem mais de 96 mil alunos matriculados em 86 cursos de graduação tecnológica, em diversas áreas, como Construção Civil, Mecânica, Informática, Tecnologia da Informação, Turismo, entre outras.';
 
@@ -137,7 +137,7 @@ class _SobrePageState extends State<SobrePage> {
                                               0.04,
                                           color: Colors.black,
                                         ),
-                                        textAlign: TextAlign.justify,
+                                        textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
