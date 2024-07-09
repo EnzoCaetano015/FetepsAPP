@@ -19,16 +19,18 @@ class _SobrePageState extends State<SobrePage> {
   bool _isExpanded = false;
 
   final String _fullText =
-      'A Feteps é um evento que reúne\nprojetos desenvolvidos por alunos do\nCentro Paula Souza\ne outras instituições participantes.\nCom projetos inovadores,de\ntransformação social, tecnológicos\n e criativos.\nA diversidade e a qualidade dos\ntrabalhos demonstram a excelência\ndos projetos pedagógicos do ensino médio,\ncursos técnicos de nível médio\ne superior tecnológico.\nA Feteps tem como objetivo desenvolver\n a visão empreendedora, criativa, inovadora\ne científico-tecnológica dos alunos.\n\n'
-      'CENTRO PAULA SOUZA\n\n'
+      'A Feteps é um evento que reúne projetos desenvolvidos por alunos do Centro Paula Souza e outras instituições participantes. Com projetos inovadores, de transformação social, tecnológicos e criativos. A diversidade e a qualidade dos trabalhos demonstram a excelência dos projetos pedagógicos do ensino médio, cursos técnicos de nível médio e superior tecnológico. A Feteps tem como objetivo desenvolver a visão empreendedora, criativa, inovadora e científico-tecnológica dos alunos. Nível médio e superior tecnológico. A Feteps tem como objetivo desenvolver a visão empreendedora, criativa, inovadora e científico-tecnológica dos alunos.\n\n'
+      '                    CENTRO PAULA SOUZA\n\n'
       'O Centro Paula Souza (CPS) é uma autarquia do Governo do Estado de São Paulo, vinculada à Secretaria de Ciência, Tecnologia e Inovação. Presente em 363 municípios, a instituição administra 227 Escolas Técnicas (Etecs) e 77 Faculdades de Tecnologia (Fatecs) estaduais, com mais de 316 mil alunos em cursos técnicos de nível médio e superior tecnológicos.\n\n'
       'A instituição também é reconhecida como Instituto de Ciência e Tecnologia (ICT), uma organização sem fins lucrativos de administrações públicas ou privadas, que tem como principal objetivo a criação e o incentivo a pesquisas científicas e tecnológicas.\n\n'
-      'ETEC E FATEC\n\n'
+      '                           ETEC E FATEC\n\n'
       'Nas Etecs, mais de 226 mil estudantes estão matriculados nos Ensinos Médio, Técnico integrado ao Médio e no Ensino Técnico, incluindo habilitações nas modalidades presencial, semipresencial, online, Educação de Jovens e Adultos (EJA) e especialização técnica. As Etecs oferecem 224 cursos, voltados a todos os setores produtivos públicos e privados.\n\n'
       'Já as Fatecs atendem mais de 96 mil alunos matriculados em 86 cursos de graduação tecnológica, em diversas áreas, como Construção Civil, Mecânica, Informática, Tecnologia da Informação, Turismo, entre outras.';
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(),
@@ -104,8 +106,9 @@ class _SobrePageState extends State<SobrePage> {
                           Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only( top: 
-                                  MediaQuery.of(context).size.height * 0.04,
+                                padding: EdgeInsets.only(
+                                  top:
+                                      MediaQuery.of(context).size.height * 0.04,
                                 ),
                                 child: Image.asset(
                                   'lib/assets/alunos.png',
@@ -120,12 +123,12 @@ class _SobrePageState extends State<SobrePage> {
                                     child: Padding(
                                       padding: EdgeInsets.all(
                                         MediaQuery.of(context).size.width *
-                                            0.04,
+                                            0.07,
                                       ),
                                       child: Text(
                                         _isExpanded
                                             ? _fullText
-                                            : _fullText.substring(0, 480) +
+                                            : _fullText.substring(0, 636) +
                                                 '...',
                                         style: GoogleFonts.poppins(
                                           fontSize: MediaQuery.of(context)
@@ -134,7 +137,7 @@ class _SobrePageState extends State<SobrePage> {
                                               0.04,
                                           color: Colors.black,
                                         ),
-                                        textAlign: TextAlign.center,
+                                        textAlign: TextAlign.justify,
                                       ),
                                     ),
                                   ),
@@ -174,27 +177,9 @@ class _SobrePageState extends State<SobrePage> {
                         children: [
                           Column(children: [
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical:
-                                    MediaQuery.of(context).size.height * 0.025,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Programação:',
-                                    style: GoogleFonts.poppins(
-                                      fontSize:
-                                          MediaQuery.of(context).size.width *
-                                              0.064,
-                                      color: const Color(0xFF0E414F),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                ],
-                              ),
+                              padding: EdgeInsets.all(screenWidth * 0.025),
+                              child: const EventTable(),
                             ),
-                            const EventTable(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -232,8 +217,8 @@ class EventTable extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: const Color(0xFF0E414F)),
+        borderRadius: BorderRadius.circular(2.5),
+        border: Border.all(color: Colors.black),
       ),
       child: Table(
         columnWidths: {
@@ -250,7 +235,7 @@ class EventTable extends StatelessWidget {
               '22/04/2024', 'Início da Etapa de Avaliação', Colors.white),
           _buildTableRow(
               '15/05/2024', 'Divulgação dos Finalistas', Color(0xFFFFD35F)),
-          _buildTableRow('19, 20, 21 e 22/07/2024',
+          _buildTableRow('19, 20, 21 e 22/08/2024',
               'Feira Presencial: São Paulo Expo - Pavilhão 7', Colors.white),
         ],
       ),
@@ -267,9 +252,7 @@ class EventTable extends StatelessWidget {
           child: Text(
             date,
             style: TextStyle(
-                fontSize: 13,
-                color: Color(0xFF0E414F),
-                fontWeight: FontWeight.bold),
+                fontSize: 13, color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
@@ -277,8 +260,7 @@ class EventTable extends StatelessWidget {
           padding: const EdgeInsets.all(20.0), // Aumenta a altura da linha
           child: Text(
             description,
-            style: TextStyle(
-                color: Color(0xFF0E414F), fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
       ],

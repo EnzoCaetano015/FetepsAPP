@@ -50,7 +50,7 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
 
   Future<void> _fetchProjectsByClassification(String classification) async {
     final response = await http.get(Uri.parse(GlobalPageState.Url +
-        '/appfeteps/pages/Project/get.php?classification=$classification&limit=50'));
+        '/appfeteps/pages/Project/get.php?classification=$classification&limit=500'));
 
     if (response.statusCode == 200) {
       setState(() {
