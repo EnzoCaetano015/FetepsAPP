@@ -46,48 +46,52 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Drawer(
       child: Container(
-        color: const Color(0xFF0E414F),
+        color: Colors.white,
         child: Column(
           children: [
             Expanded(
               child: ListView(
                 children: <Widget>[
                   SizedBox(
-                    height: 112,
+                    height: screenHeight * 0.25,
                     child: DrawerHeader(
                       decoration: const BoxDecoration(
-                        color: Color(0xFF0E414F),
+                        color: Colors.white,
+                        border: Border(
+                          bottom: BorderSide(color: Colors.white, )
+                        )
                       ),
                       child: Builder(builder: (BuildContext context) {
                         return Row(
                           children: [
-                            IconButton(
-                              onPressed: () {
-                                Scaffold.of(context).closeEndDrawer();
-                              },
-                              icon: const Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.arrow_back_sharp,
-                                    color: Colors.white,
-                                    size: 45,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // IconButton(
+                            //   onPressed: () {
+                            //     Scaffold.of(context).closeEndDrawer();
+                            //   },
+                            //   icon: const Row(
+                            //     mainAxisAlignment: MainAxisAlignment.start,
+                            //     children: [
+                            //       Icon(
+                            //         Icons.arrow_back_sharp,
+                            //         color: Colors.black,
+                            //         size: 45,
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                             Padding(
                               padding:
-                                  EdgeInsets.only(left: screenWidth * 0.06),
+                                  EdgeInsets.only(left: screenWidth * 0.2),
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.grey,
+                                  color: const Color(0xFF0E414F),
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 3,
                                   ),
                                 ),
@@ -103,6 +107,7 @@ class _MenuPageState extends State<MenuPage> {
                               ),
                             ),
                           ],
+                          
                         );
                       }),
                     ),
@@ -230,8 +235,12 @@ class _MenuPageState extends State<MenuPage> {
                 ],
               ),
             ),
+            Divider(
+              color: Colors.black,
+              thickness: 1.5,
+            ),
             Container(
-              color: const Color(0xFF0E414F),
+              color: Colors.white,
               child: Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.03,
@@ -241,7 +250,7 @@ class _MenuPageState extends State<MenuPage> {
                   width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -302,21 +311,16 @@ class _MenuPageState extends State<MenuPage> {
         ),
       ),
       child: ListTile(
-        leading: Icon(icon, color: Colors.white, size: 35),
+        leading: Icon(icon, color: Colors.black, size: 35),
         title: Text(
           text,
           style: GoogleFonts.openSans(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 16.0,
-            fontWeight: FontWeight.bold,
+            
           ),
         ),
         onTap: onTap,
-        trailing: IconButton(
-          icon:
-              const Icon(Icons.arrow_forward_ios_outlined, color: Colors.white),
-          onPressed: () {},
-        ),
       ),
     );
   }
