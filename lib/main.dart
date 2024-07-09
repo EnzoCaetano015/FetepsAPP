@@ -23,8 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Feteps 2024',
-      theme: ThemeData(),
-       
+
       //parametros para o calendario funcionar
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
         Locale('pt', 'BR'),
         Locale('en', 'US'),
       ],
-      home:  const SplashScreenPage(),
+      home: const SplashScreenPage(),
     );
   }
 }

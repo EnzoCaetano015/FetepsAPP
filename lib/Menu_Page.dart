@@ -63,7 +63,7 @@ class _MenuPageState extends State<MenuPage> {
                           color: Colors.white,
                           border: Border(
                               bottom: BorderSide(
-                            color: Colors.black,
+                            color: Colors.white,
                           ))),
                       child: Builder(builder: (BuildContext context) {
                         return Row(
@@ -219,7 +219,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
             ),
             Divider(
-              color: Colors.white,
+              color: Colors.black,
               thickness: 1.5,
             ),
             Container(
