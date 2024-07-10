@@ -8,6 +8,8 @@ import 'package:feteps/telainicial_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart';
+import 'package:provider/provider.dart';
+import 'package:feteps/Modos/theme_provider.dart';
 
 class LoginFetepsPage extends StatefulWidget {
   const LoginFetepsPage({super.key});
@@ -31,6 +33,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    String logoAsset = themeProvider.getLogoAsset();
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -52,13 +56,13 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                 icon: Icon(
                   size: MediaQuery.of(context).size.width * 0.075,
                   Icons.arrow_back_sharp,
-                  color: const Color(0xFF0E414F),
+                  color: themeProvider.getSpecialColor2(),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
                 child: Image.asset(
-                  'lib/assets/logo.png',
+                  logoAsset,
                   width: MediaQuery.of(context).size.width * 0.65,
                 ),
               ),
@@ -104,7 +108,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                     "LOGIN",
                     style: GoogleFonts.roboto(
                       fontSize: MediaQuery.of(context).size.width * 0.069,
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.bodyLarge!.color,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -127,21 +131,30 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: themeProvider.getBorderColor()),
                                 ),
                                 labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16.0,
                                 ),
                               ),
                             ),
                             child: TextFormField(
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color),
                               decoration: InputDecoration(
                                 labelText: 'E-mail',
                                 labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color,
                                   fontWeight: FontWeight.bold,
                                   fontSize:
                                       MediaQuery.of(context).size.width * 0.05,
@@ -168,8 +181,9 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: themeProvider.getBorderColor()),
                                 ),
                                 labelStyle: GoogleFonts.roboto(
                                   color: Colors.black,
@@ -179,11 +193,19 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                               ),
                             ),
                             child: TextFormField(
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color),
                               obscureText: true,
                               decoration: InputDecoration(
                                 labelText: 'Senha',
                                 labelStyle: GoogleFonts.roboto(
-                                  color: Colors.black,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color,
                                   fontWeight: FontWeight.bold,
                                   fontSize:
                                       MediaQuery.of(context).size.width * 0.05,
@@ -247,7 +269,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       minimumSize: const Size(100, 39),
-                                      backgroundColor: Colors.white,
+                                      backgroundColor: Theme.of(context)
+                                          .scaffoldBackgroundColor,
                                       shadowColor: Colors.transparent,
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
@@ -262,7 +285,10 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                     child: Text(
                                       "Confirmar",
                                       style: GoogleFonts.oswald(
-                                        color: Colors.black,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color,
                                         fontWeight: FontWeight.bold,
                                         fontSize:
                                             MediaQuery.of(context).size.width *
@@ -290,9 +316,10 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                 child: Text(
                                   "Esqueci minha senha",
                                   style: GoogleFonts.oswald(
-                                    color: const Color(0xFF0E414F),
+                                    color: themeProvider.getSpecialColor(),
                                     decoration: TextDecoration.underline,
-                                    decorationColor: const Color(0xFF0E414F),
+                                    decorationColor:
+                                        themeProvider.getSpecialColor(),
                                     fontWeight: FontWeight.bold,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
@@ -318,8 +345,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
   Future<bool> login() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    final url = Uri.parse(
-        GlobalPageState.Url + '/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
+    final url = Uri.parse(GlobalPageState.Url +
+        '/appfeteps/pages/Users/loginUser.php?userEmail=${_emailController.text}&userPassword=${_passwordController.text}');
 
     final resposta = await http.post(url);
 

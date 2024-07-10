@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'cadastro2_page.dart';
 import 'telainicial_page.dart';
 import 'global.dart';
+import 'package:provider/provider.dart';
+import 'package:feteps/Modos/theme_provider.dart';
 
 class Cadastro1Page extends StatefulWidget {
   const Cadastro1Page({Key? key}) : super(key: key);
@@ -143,6 +145,8 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    String logoAsset = themeProvider.getLogoAsset();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -150,7 +154,9 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
         primarySwatch: Colors.red,
       ),
       home: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           title: SizedBox(
             width: screenWidth * 0.9,
             child: Row(
@@ -169,13 +175,13 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                     icon: Icon(
                       size: MediaQuery.of(context).size.width * 0.075,
                       Icons.arrow_back_sharp,
-                      color: const Color(0xFF0E414F),
+                      color: themeProvider.getSpecialColor2(),
                     )),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 15.0, left: 20, right: 20),
                   child: Image.asset(
-                    'lib/assets/logo.png',
+                    logoAsset,
                     width: MediaQuery.of(context).size.width * 0.65,
                   ),
                 )
@@ -217,7 +223,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                       "CADASTRO",
                       style: TextStyle(
                         fontSize: screenWidth * 0.069,
-                        color: Colors.black,
+                        color: Theme.of(context).textTheme.bodyLarge!.color,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -242,10 +248,19 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           color: Color(0xFFFFD35F)),
                                     )
                                   : DropdownButtonFormField(
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .color),
+                                      dropdownColor:
+                                          Color.fromARGB(255, 164, 164, 164),
                                       icon: Icon(
                                         Icons.person,
                                         size: screenWidth * 0.072,
-                                        color: Colors.black,
+                                        color: Theme.of(context)
+                                            .appBarTheme
+                                            .foregroundColor,
                                       ),
                                       value: selectedItem,
                                       items: items
@@ -265,14 +280,16 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                         labelText:
                                             'Selecione um tipo de usuário',
                                         labelStyle: TextStyle(
-                                          color: const Color(0xFF0E414F),
+                                          color:
+                                              themeProvider.getSpecialColor2(),
                                           fontWeight: FontWeight.bold,
                                           fontSize: screenWidth * 0.045,
                                         ),
                                         border: const OutlineInputBorder(),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.black),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: themeProvider
+                                                  .getBorderColor()),
                                         ),
                                       ),
                                       validator: (value) {
@@ -285,10 +302,18 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                             ),
                             SizedBox(height: screenHeight * 0.03),
                             DropdownButtonFormField<String>(
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color),
+                              dropdownColor: Color.fromARGB(255, 164, 164, 164),
                               icon: Icon(
                                 Icons.business,
                                 size: screenWidth * 0.072,
-                                color: Colors.black,
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .foregroundColor,
                               ),
                               value: selectedMainOption,
                               items: options.keys.map<DropdownMenuItem<String>>(
@@ -312,13 +337,14 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                               decoration: InputDecoration(
                                 labelText: 'Selecione um tipo de instituição',
                                 labelStyle: TextStyle(
-                                  color: const Color(0xFF0E414F),
+                                  color: themeProvider.getSpecialColor2(),
                                   fontWeight: FontWeight.bold,
                                   fontSize: screenWidth * 0.045,
                                 ),
                                 border: const OutlineInputBorder(),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: themeProvider.getBorderColor()),
                                 ),
                               ),
                               validator: (value) {
@@ -351,19 +377,23 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                                 labelText:
                                                     'Pesquisar instituição',
                                                 labelStyle: TextStyle(
-                                                  color: Color(0xFF0E414F),
+                                                  color: themeProvider
+                                                      .getSpecialColor2(),
                                                   fontSize:
                                                       screenWidth * 0.0425,
                                                 ),
                                                 border:
                                                     const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                      color: Color(0xFF0E414F)),
+                                                      color: themeProvider
+                                                          .getBorderColor()),
                                                 ),
                                                 suffixIcon: Icon(Icons.search,
-                                                    color: Colors.black),
+                                                    color: Theme.of(context)
+                                                        .appBarTheme
+                                                        .foregroundColor),
                                               ),
                                               onChanged: filterOptions,
                                             )),
@@ -371,10 +401,19 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                           height: screenHeight * 0.13,
                                           child:
                                               DropdownButtonFormField<String>(
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge!
+                                                    .color),
+                                            dropdownColor: Color.fromARGB(
+                                                255, 164, 164, 164),
                                             icon: Icon(
                                               Icons.house,
                                               size: screenWidth * 0.072,
-                                              color: Colors.black,
+                                              color: Theme.of(context)
+                                                  .appBarTheme
+                                                  .foregroundColor,
                                             ),
                                             value: selectedSubOption,
                                             items: filteredOptions
@@ -397,16 +436,17 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                                               labelText:
                                                   'Selecione sua instituição',
                                               labelStyle: TextStyle(
-                                                color: const Color(0xFF0E414F),
+                                                color: themeProvider
+                                                    .getSpecialColor2(),
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: screenWidth * 0.045,
                                               ),
                                               border:
                                                   const OutlineInputBorder(),
-                                              focusedBorder:
-                                                  const OutlineInputBorder(
+                                              focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                    color: Colors.black),
+                                                    color: themeProvider
+                                                        .getBorderColor()),
                                               ),
                                             ),
                                             validator: (value) {
