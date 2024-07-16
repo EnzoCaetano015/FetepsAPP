@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,6 +40,18 @@ class ThemeProvider with ChangeNotifier {
         : 'lib/assets/logo2.png';
   }
 
+  String getUserAsset() {
+    return _themeMode == ThemeMode.light
+        ? 'lib/assets/user.png'
+        : 'lib/assets/userDark.png';
+  }
+
+  String getGitAsset() {
+    return _themeMode == ThemeMode.light
+        ? 'lib/assets/github.png'
+        : 'lib/assets/githubDark.png';
+  }
+
   Color getBorderColor() {
     return _themeMode == ThemeMode.light ? Colors.black : Colors.white;
   }
@@ -46,13 +59,21 @@ class ThemeProvider with ChangeNotifier {
   Color getSpecialColor() {
     return _themeMode == ThemeMode.light
         ? const Color(0xFF0E414F)
-        : const Color(0xFFFFD35F);
+        : Color(0xFFFFD35F);
   }
 
   Color getSpecialColor2() {
     return _themeMode == ThemeMode.light
         ? const Color(0xFF0E414F)
         : Colors.white;
+  }
+
+  Color getSpecialColor3() {
+    return _themeMode == ThemeMode.light ? Colors.black : Colors.white;
+  }
+
+  Color getSpecialColor4() {
+    return _themeMode == ThemeMode.light ? Colors.white : Colors.black;
   }
 }
 

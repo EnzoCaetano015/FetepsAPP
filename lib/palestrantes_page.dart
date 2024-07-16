@@ -14,13 +14,8 @@ class PalestrantesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-         ),
-      home: const Scaffold(
-        body: PalestrantesHomePage(),
-      ),
+    return Scaffold(
+      body: PalestrantesHomePage(),
     );
   }
 }
@@ -91,7 +86,9 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar1_page(screenWidth: MediaQuery.of(context).size.width * 1.0, destinationPage: SobrePage()),
+      appBar: AppBar1_page(
+          screenWidth: MediaQuery.of(context).size.width * 1.0,
+          destinationPage: SobrePage()),
       endDrawer: const MenuPage(),
       body: _isLoading
           ? const Center(
@@ -103,7 +100,8 @@ class PalestrantesHomeState extends State<PalestrantesHomePage> {
                     Row(
                       children: [
                         Padding(
-                           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.05),
                           child: Text(
                             'Palestrantes',
                             style: GoogleFonts.poppins(

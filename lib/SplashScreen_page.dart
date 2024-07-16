@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreenPage>
       Navigator.pushReplacement(
         context,
         PageTransition(
-            child: const SobrePage(),
+            child:  SobrePage(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 2000)),
       );
@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreenPage>
       Navigator.pushReplacement(
         context,
         PageTransition(
-            child: const TelaInicialPage(),
+            child:  TelaInicialPage(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 2000)),
       );

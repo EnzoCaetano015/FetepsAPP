@@ -37,6 +37,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     String logoAsset = themeProvider.getLogoAsset();
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: SizedBox(
           width: 400,
           height: 300,
@@ -48,7 +49,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                   Navigator.pushReplacement(
                     context,
                     PageTransition(
-                      child: const TelaInicialPage(),
+                      child: TelaInicialPage(),
                       type: PageTransitionType.leftToRightWithFade,
                     ),
                   );
@@ -255,7 +256,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                           Navigator.pushReplacement(
                                             context,
                                             PageTransition(
-                                              child: const SobrePage(),
+                                              child: SobrePage(),
                                               type: PageTransitionType
                                                   .bottomToTop,
                                             ),

@@ -167,7 +167,7 @@ class _Cadastro1PageState extends State<Cadastro1Page> {
                       Navigator.pushReplacement(
                         context,
                         PageTransition(
-                          child: const TelaInicialPage(),
+                          child:  TelaInicialPage(),
                           type: PageTransitionType.leftToRightWithFade,
                         ),
                       );

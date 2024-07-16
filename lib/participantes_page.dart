@@ -8,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'global.dart';
+import 'package:provider/provider.dart';
+import 'package:feteps/Modos/theme_provider.dart';
 
 class ParticipantesPage extends StatefulWidget {
   const ParticipantesPage({super.key});
@@ -90,84 +92,81 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar1_page(
-              screenWidth: screenWidth, destinationPage: const SobrePage()),
-          endDrawer: const MenuPage(),
-          body: _isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
-              : ListView(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SizedBox(
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(screenWidth * 0.05),
-                                child: Text('Participantes',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: screenWidth * 0.08,
-                                        fontWeight: FontWeight.bold,
-                                        color: const Color.fromARGB(
-                                            255, 14, 56, 70))),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              bottom: screenHeight * 0.03,
-                              left: screenWidth * 0.06,
-                              right: screenWidth * 0.06),
-                          child: TextField(
-                            controller: _searchController,
-                            decoration: const InputDecoration(
-                              hintText: 'Pesquise um projeto ou instituição...',
-                              hintStyle: TextStyle(color: Colors.grey),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 3.0,
-                                  color: Color.fromARGB(255, 255, 209, 64),
-                                  style: BorderStyle.solid,
-                                ),
-                              ),
-                              prefixIcon: Icon(Icons.search,
-                                  color: Color.fromARGB(255, 255, 209, 64)),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar1_page(
+            screenWidth: screenWidth, destinationPage: SobrePage()),
+        endDrawer: const MenuPage(),
+        body: _isLoading
+            ? const Center(
+                child: CircularProgressIndicator(color: Color(0xFFFFD35F)))
+            : ListView(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(screenWidth * 0.05),
+                              child: Text('Participantes',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: screenWidth * 0.08,
+                                      fontWeight: FontWeight.bold,
+                                      color: themeProvider.getSpecialColor2())),
                             ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            bottom: screenHeight * 0.03,
+                            left: screenWidth * 0.06,
+                            right: screenWidth * 0.06),
+                        child: TextField(
+                          controller: _searchController,
+                          decoration: const InputDecoration(
+                            hintText: 'Pesquise um projeto ou instituição...',
+                            hintStyle: TextStyle(color: Colors.grey),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 3.0,
+                                color: Color.fromARGB(255, 255, 209, 64),
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            prefixIcon: Icon(Icons.search,
+                                color: Color.fromARGB(255, 255, 209, 64)),
                           ),
                         ),
-                        _buildProjectSection('Etecs', 'ETEC'),
-                        const SizedBox(height: 10.0),
-                        const Divider(
-                          color: Colors.grey,
-                          thickness: 1.5,
-                        ),
-                        _buildProjectSection('Fatecs', 'FATEC'),
-                        const SizedBox(height: 10.0),
-                        const Divider(
-                          color: Colors.grey,
-                          thickness: 1.5,
-                        ),
-                        _buildProjectSection('Outras Instituições', 'OUTROS'),
-                      ],
-                    ),
-                  ],
-                ),
-        ),
+                      ),
+                      _buildProjectSection('Etecs', 'ETEC'),
+                      const SizedBox(height: 10.0),
+                      const Divider(
+                        color: Colors.grey,
+                        thickness: 1.5,
+                      ),
+                      _buildProjectSection('Fatecs', 'FATEC'),
+                      const SizedBox(height: 10.0),
+                      const Divider(
+                        color: Colors.grey,
+                        thickness: 1.5,
+                      ),
+                      _buildProjectSection('Outras Instituições', 'OUTROS'),
+                    ],
+                  ),
+                ],
+              ),
       ),
     );
   }
 
   Widget _buildProjectSection(String title, String classification) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final filteredProjects = _filterProjects(_projectsCache[classification]!);
 
@@ -180,7 +179,7 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
             title,
             style: GoogleFonts.inter(
                 fontSize: screenWidth * 0.065,
-                color: Colors.black,
+                color: themeProvider.getSpecialColor3(),
                 fontWeight: FontWeight.bold),
           ),
         ),
@@ -203,7 +202,8 @@ class _ParticipantesPageState extends State<ParticipantesPage> {
                 child: Text(
                   'Nenhum projeto encontrado.',
                   style: GoogleFonts.poppins(
-                      fontSize: screenWidth * 0.05, color: Colors.black),
+                      fontSize: screenWidth * 0.05,
+                      color: themeProvider.getSpecialColor3()),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -236,6 +236,7 @@ class CardWidget2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final String? bannerUrl = project['banner'];
 
     final List<dynamic>? exhibitors = project['exhibitors'];
@@ -279,7 +280,7 @@ class CardWidget2 extends StatelessWidget {
                     height: screenHeight * 0.15,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.black,
+                        color: themeProvider.getSpecialColor3(),
                         width: 2.5,
                       ),
                     ),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:feteps/Modos/theme_provider.dart';
 
 class CintiaPinhoPage extends StatelessWidget {
   final String githubUrl = "https://github.com/cintiapinho";
@@ -17,6 +19,8 @@ class CintiaPinhoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    String GitAsset = themeProvider.getGitAsset();
 
     return Scaffold(
       appBar: AppBar2_page(
@@ -128,8 +132,8 @@ class CintiaPinhoPage extends StatelessWidget {
                             await _launchURL(githubUrl);
                           },
                           child: Image.asset(
-                            'lib/assets/github.png',
-                            width: screenWidth * 0.1,
+                            GitAsset,
+                            width: screenWidth * 0.12,
                           )),
                       InkWell(
                           onTap: () async {
@@ -141,7 +145,8 @@ class CintiaPinhoPage extends StatelessWidget {
                           )),
                       IconButton(
                         icon: Icon(Icons.email,
-                            color: Colors.orange, size: screenWidth * 0.1),
+                            color: const Color(0xFFFFD35F),
+                            size: screenWidth * 0.1),
                         onPressed: () => _copyToClipboard(email, context),
                       ),
                     ],

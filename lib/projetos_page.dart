@@ -8,19 +8,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:feteps/Menu_Page.dart';
 import 'global.dart';
+import 'package:provider/provider.dart';
+import 'package:feteps/Modos/theme_provider.dart';
 
 class ProjetosPage extends StatelessWidget {
   const ProjetosPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-         ),
-      home: const Scaffold(
-        body: ProjetosHomePage(),
-      ),
+    return Scaffold(
+      body: ProjetosHomePage(),
     );
   }
 }
@@ -106,11 +103,12 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: AppBar1_page(
-          screenWidth: screenWidth, destinationPage: const SobrePage()),
-      endDrawer: const MenuPage(),
+      appBar:
+          AppBar1_page(screenWidth: screenWidth, destinationPage: SobrePage()),
+      endDrawer: MenuPage(),
       body: ListView(
         children: [
           Column(
@@ -121,10 +119,9 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                 child: Text(
                   'Projetos',
                   style: GoogleFonts.poppins(
-                    fontSize: screenWidth * 0.08,
-                    fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 14, 56, 70),
-                  ),
+                      fontSize: screenWidth * 0.08,
+                      fontWeight: FontWeight.bold,
+                      color: themeProvider.getSpecialColor2()),
                 ),
               ),
               Padding(
@@ -159,7 +156,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                   'Selecione uma ODS:',
                   style: GoogleFonts.inter(
                     fontSize: screenWidth * 0.06,
-                    color: Colors.black,
+                    color: themeProvider.getSpecialColor3(),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -193,7 +190,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                   "ODS ${CardWidget.texto(_selectedOds)[0]} - ${CardWidget.texto(_selectedOds)[1]}",
                   style: GoogleFonts.inter(
                     fontSize: screenWidth * 0.05,
-                    color: Colors.black,
+                    color: themeProvider.getSpecialColor3(),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -226,7 +223,7 @@ class ProjetosHomeState extends State<ProjetosHomePage> {
                                 'Nenhum projeto encontrado.',
                                 style: GoogleFonts.poppins(
                                   fontSize: screenWidth * 0.05,
-                                  color: Colors.black,
+                                  color: themeProvider.getSpecialColor3(),
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -335,6 +332,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     const Alignment _startAlignment = Alignment.topLeft;
     const Alignment _endAlignment = Alignment.centerLeft;
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     final intermediateAlignment = Alignment.lerp(
       _startAlignment,
@@ -361,13 +359,15 @@ class CardWidget extends StatelessWidget {
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    color:
-                        isSelected ? cor(ods).withOpacity(0.3) : Colors.white,
+                    color: isSelected
+                        ? cor(ods).withOpacity(0.3)
+                        : themeProvider.getSpecialColor4(),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
                     ),
-                    border: Border.all(color: Colors.black, width: 2),
+                    border: Border.all(
+                        color: themeProvider.getSpecialColor3(), width: 2),
                   ),
                 ),
               ),
@@ -401,7 +401,7 @@ class CardWidget extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.bold,
                       fontSize: screenWidth * 0.042,
-                      color: Colors.black,
+                      color: themeProvider.getSpecialColor3(),
                     ),
                   ),
                 ),
@@ -411,7 +411,8 @@ class CardWidget extends StatelessWidget {
                 child: Container(
                   height: screenWidth * 0.20,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
+                    border: Border.all(
+                        color: themeProvider.getSpecialColor3(), width: 2),
                   ),
                   child: SizedBox(
                     child: Container(
@@ -452,6 +453,7 @@ class CardWidget2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
     final String? bannerUrl = project['banner'];
 
     final List<dynamic>? exhibitors = project['exhibitors'];
@@ -495,7 +497,7 @@ class CardWidget2 extends StatelessWidget {
                     height: screenHeight * 0.15,
                     decoration: BoxDecoration(
                         border: Border.all(
-                      color: Colors.black,
+                      color: themeProvider.getSpecialColor3(),
                       width: 2.5,
                     )),
                     child: Image.network(

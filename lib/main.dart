@@ -28,9 +28,8 @@ class MyApp extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: themeProvider.themeMode,
+      theme:
+          themeProvider.themeMode == ThemeMode.light ? lightTheme : darkTheme,
       title: 'Feteps 2024',
 
       //parametros para o calendario funcionar

@@ -15,6 +15,8 @@ import 'package:feteps/sobrenos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:feteps/Modos/theme_provider.dart';
 
 class NossaEquipePage extends StatefulWidget {
   const NossaEquipePage({super.key});
@@ -105,100 +107,103 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   ];
 
   final List<Map<String, String>> ilustracoes = [
-    {"name": "Richard", "image": "lib/assets/equipe/richard.jpg", "page": "RichardPage"}
+    {
+      "name": "Richard",
+      "image": "lib/assets/equipe/richard.jpg",
+      "page": "RichardPage"
+    }
   ];
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: SizedBox(
-            width: screenWidth * 0.9,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                        child: const SobreNosPage(),
-                        type: PageTransitionType.bottomToTop,
-                      ),
-                    );
-                  },
-                  icon: Padding(
-                    padding: const EdgeInsets.only(bottom: 8, right: 15),
-                    child: Icon(
-                      size: screenWidth * 0.075,
-                      Icons.arrow_back_sharp,
-                      color: Color(0xFF0E414F),
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    String logoAsset = themeProvider.getLogoAsset();
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: SizedBox(
+          width: screenWidth * 0.9,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                      child: SobreNosPage(),
+                      type: PageTransitionType.bottomToTop,
                     ),
+                  );
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 8, right: 15),
+                  child: Icon(
+                    size: screenWidth * 0.075,
+                    Icons.arrow_back_sharp,
+                    color: themeProvider.getSpecialColor2(),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 20,
-                    right: 20,
-                    bottom: 15,
-                  ),
-                  child: Image.asset(
-                    'lib/assets/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.65,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        body: Center(
-          child: ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                    height: screenHeight * 0.12,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(screenWidth * 0.05),
-                          child: Text(
-                            'Nossa Equipe',
-                            style: GoogleFonts.poppins(
-                              fontSize: screenWidth * 0.09,
-                              fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 14, 56, 70),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  _buildProjectSection(
-                    'Orientadores',
-                    orientadores,
-                    const Color(0xFFFFD35F),
-                  ),
-                  _buildProjectSection('Modelagem Figma', modelagemFigma,
-                      const Color.fromARGB(255, 112, 70, 132)),
-                  _buildProjectSection('Desenvolvimento Mobile',
-                      desenvolvimentoMobile, const Color(0xFF0E414F)),
-                  _buildProjectSection('Desenvolvimento Web',
-                      desenvolvimentoWeb, const Color(0xFF136A9F)),
-                  _buildProjectSection('Desenvolvimento back-end',
-                      desenvolvimentoBackend, const Color(0xFFF26A2E)),
-                  _buildProjectSection(
-                      'Ilustrações', ilustracoes, const Color(0xFF830000)),
-                ],
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  right: 20,
+                  bottom: 15,
+                ),
+                child: Image.asset(
+                  logoAsset,
+                  width: MediaQuery.of(context).size.width * 0.65,
+                ),
+              )
             ],
           ),
+        ),
+      ),
+      body: Center(
+        child: ListView(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: screenHeight * 0.12,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(screenWidth * 0.05),
+                        child: Text(
+                          'Nossa Equipe',
+                          style: GoogleFonts.poppins(
+                            fontSize: screenWidth * 0.09,
+                            fontWeight: FontWeight.bold,
+                            color: themeProvider.getSpecialColor2(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _buildProjectSection(
+                  'Orientadores',
+                  orientadores,
+                  const Color(0xFFFFD35F),
+                ),
+                _buildProjectSection('Modelagem Figma', modelagemFigma,
+                    const Color.fromARGB(255, 112, 70, 132)),
+                _buildProjectSection('Desenvolvimento Mobile',
+                    desenvolvimentoMobile, const Color(0xFF0E414F)),
+                _buildProjectSection('Desenvolvimento Web', desenvolvimentoWeb,
+                    const Color(0xFF136A9F)),
+                _buildProjectSection('Desenvolvimento back-end',
+                    desenvolvimentoBackend, const Color(0xFFF26A2E)),
+                _buildProjectSection(
+                    'Ilustrações', ilustracoes, const Color(0xFF830000)),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -207,17 +212,18 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
   Widget _buildProjectSection(
       String title, List<Map<String, String>> teamMembers, Color color) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-         padding: EdgeInsets.all(screenWidth * 0.05),
+          padding: EdgeInsets.all(screenWidth * 0.05),
           child: Text(
             title,
             style: GoogleFonts.inter(
               fontSize: screenWidth * 0.06,
-              color: Colors.black,
+              color: themeProvider.getSpecialColor3(),
               fontWeight: FontWeight.bold,
             ),
           ),
