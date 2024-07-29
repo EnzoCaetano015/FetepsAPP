@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:feteps/esquecisenha_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:feteps/telainicial_page.dart';
@@ -9,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class LoginFetepsPage extends StatefulWidget {
   const LoginFetepsPage({super.key});
@@ -37,15 +38,14 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
     String logoAsset = themeProvider.getLogoAsset();
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: SizedBox(
           width: 400,
           height: 300,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                onPressed: () {
+              WillPopScope(
+                onWillPop: () async {
                   Navigator.pushReplacement(
                     context,
                     PageTransition(
@@ -53,11 +53,23 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                       type: PageTransitionType.leftToRightWithFade,
                     ),
                   );
+                  return false;
                 },
-                icon: Icon(
-                  size: MediaQuery.of(context).size.width * 0.075,
-                  Icons.arrow_back_sharp,
-                  color: themeProvider.getSpecialColor2(),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                        child: const TelaInicialPage(),
+                        type: PageTransitionType.leftToRightWithFade,
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    size: MediaQuery.of(context).size.width * 0.075,
+                    Icons.arrow_back_sharp,
+                    color: themeProvider.getSpecialColor2(),
+                  ),
                 ),
               ),
               Padding(
@@ -109,7 +121,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                     "LOGIN",
                     style: GoogleFonts.roboto(
                       fontSize: MediaQuery.of(context).size.width * 0.069,
-                      color: Theme.of(context).textTheme.bodyLarge!.color,
+                      color: themeProvider.getSpecialColor3(),
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -132,30 +144,21 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: themeProvider.getBorderColor()),
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 labelStyle: GoogleFonts.roboto(
-                                  color: Colors.white,
+                                  color: themeProvider.getSpecialColor3(),
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16.0,
                                 ),
                               ),
                             ),
                             child: TextFormField(
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .color),
                               decoration: InputDecoration(
                                 labelText: 'E-mail',
                                 labelStyle: GoogleFonts.roboto(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .color,
+                                  color: themeProvider.getSpecialColor3(),
                                   fontWeight: FontWeight.bold,
                                   fontSize:
                                       MediaQuery.of(context).size.width * 0.05,
@@ -182,9 +185,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                           Theme(
                             data: Theme.of(context).copyWith(
                               inputDecorationTheme: InputDecorationTheme(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: themeProvider.getBorderColor()),
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 labelStyle: GoogleFonts.roboto(
                                   color: Colors.black,
@@ -194,19 +196,11 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                               ),
                             ),
                             child: TextFormField(
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .color),
                               obscureText: true,
                               decoration: InputDecoration(
                                 labelText: 'Senha',
                                 labelStyle: GoogleFonts.roboto(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .color,
+                                  color: themeProvider.getSpecialColor3(),
                                   fontWeight: FontWeight.bold,
                                   fontSize:
                                       MediaQuery.of(context).size.width * 0.05,
@@ -225,7 +219,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.06,
+                            height: MediaQuery.of(context).size.height * 0.053,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -256,7 +250,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                           Navigator.pushReplacement(
                                             context,
                                             PageTransition(
-                                              child: SobrePage(),
+                                              child: const SobrePage(),
                                               type: PageTransitionType
                                                   .bottomToTop,
                                             ),
@@ -270,8 +264,8 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                     },
                                     style: ElevatedButton.styleFrom(
                                       minimumSize: const Size(100, 39),
-                                      backgroundColor: Theme.of(context)
-                                          .scaffoldBackgroundColor,
+                                      backgroundColor:
+                                          themeProvider.getSpecialColor4(),
                                       shadowColor: Colors.transparent,
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
@@ -286,10 +280,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                     child: Text(
                                       "Confirmar",
                                       style: GoogleFonts.oswald(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .color,
+                                        color: themeProvider.getSpecialColor3(),
                                         fontWeight: FontWeight.bold,
                                         fontSize:
                                             MediaQuery.of(context).size.width *
@@ -309,7 +300,7 @@ class _LoginFetepsPageState extends State<LoginFetepsPage> {
                                   Navigator.pushReplacement(
                                     context,
                                     PageTransition(
-                                      child: const EsqueciSenhaPage(),
+                                      child: EsqueciSenhaPage(),
                                       type: PageTransitionType.bottomToTop,
                                     ),
                                   );

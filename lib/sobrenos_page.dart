@@ -10,7 +10,7 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class SobreNosPage extends StatefulWidget {
   const SobreNosPage({super.key});
@@ -22,20 +22,22 @@ class SobreNosPage extends StatefulWidget {
 class _SobreNosPageState extends State<SobreNosPage> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar1_page(
-          screenWidth: MediaQuery.of(context).size.width * 1.0,
-          destinationPage: SobrePage()),
+          screenWidth: screenWidth * 1.0, destinationPage: SobrePage()),
       endDrawer: MenuPage(),
       body: Column(children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.3,
+          height: screenHeight * 0.3,
           child: Row(
             children: [
               Image.asset(
                 'lib/assets/banner2.png',
-                width: MediaQuery.of(context).size.width * 1.0,
+                width: screenWidth * 1.0,
               )
             ],
           ),
@@ -45,15 +47,15 @@ class _SobreNosPageState extends State<SobreNosPage> {
             scrollDirection: Axis.vertical,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.05,
+                height: screenHeight * 0.05,
                 margin: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.05,
-                  vertical: MediaQuery.of(context).size.height * 0.01,
+                  horizontal: screenWidth * 0.05,
+                  vertical: screenHeight * 0.01,
                 ),
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: themeProvider.getSpecialColor3(),
+                        color: themeProvider.getBorderColor(),
                         width: 1), // Define a linha de borda inferior
                   ),
                 ),
@@ -63,8 +65,8 @@ class _SobreNosPageState extends State<SobreNosPage> {
                     Text(
                       'Sobre Nós',
                       style: GoogleFonts.poppins(
-                        fontSize: MediaQuery.of(context).size.width * 0.064,
-                        color: themeProvider.getSpecialColor3(),
+                        fontSize: screenWidth * 0.064,
+                        color: themeProvider.getSpecialColor2(),
                         fontWeight: FontWeight.bold,
                       ),
                     )
@@ -76,15 +78,15 @@ class _SobreNosPageState extends State<SobreNosPage> {
                 children: [
                   Padding(
                     padding: EdgeInsets.all(
-                      MediaQuery.of(context).size.width * 0.05,
+                      screenWidth * 0.05,
                     ),
                     child: Container(
-                      width: MediaQuery.of(context).size.width *
+                      width: screenWidth *
                           0.9, // Ajuste a largura conforme necessário
                       child: Text(
                         'Somos um grupo de alunos dedicados e inovadores que uniram suas paixões pela tecnologia e educação. Movidos pelo desejo de fazer a diferença, desenvolvemos um aplicativo para a Feira Tecnológica do Estado de São Paulo (Feteps). Nossa jornada foi marcada por colaboração, aprendizado e superação de desafios. Este aplicativo é o resultado do nosso comprometimento em proporcionar uma experiência única aos participantes da Feteps, conectando pessoas, ideias e tecnologia. Estamos orgulhosos de contribuir para o sucesso deste evento e ansiosos para compartilhar essa jornada emocionante com vocês.',
                         style: GoogleFonts.poppins(
-                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                          fontSize: screenWidth * 0.04,
                           color: themeProvider.getSpecialColor3(),
                         ),
                         textAlign: TextAlign.center,
@@ -98,13 +100,13 @@ class _SobreNosPageState extends State<SobreNosPage> {
                 children: [
                   Image.asset(
                     'lib/assets/estudantes.png',
-                    width: MediaQuery.of(context).size.width * 0.45,
+                    width: screenWidth * 0.45,
                   )
                 ],
               ),
               SizedBox(
                   child: Container(
-                height: MediaQuery.of(context).size.height * 0.01,
+                height: screenHeight * 0.01,
               )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -125,8 +127,7 @@ class _SobreNosPageState extends State<SobreNosPage> {
                             color: themeProvider.getSpecialColor3(),
                             fontWeight: FontWeight.bold,
                             fontSize: 16.0,
-                            decoration: TextDecoration.underline,
-                            decorationColor: themeProvider.getSpecialColor3()),
+                            decoration: TextDecoration.underline),
                       ))
                 ],
               )

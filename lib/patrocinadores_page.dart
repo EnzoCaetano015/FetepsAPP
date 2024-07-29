@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class PatrocinadoresPage extends StatefulWidget {
   const PatrocinadoresPage({super.key});
@@ -67,41 +67,13 @@ class _PatrocinadoresPageState extends State<PatrocinadoresPage> {
                       style: GoogleFonts.poppins(
                           fontSize: screenWidth * 0.08,
                           fontWeight: FontWeight.bold,
-                          color: themeProvider.getSpecialColor3()),
+                          color: themeProvider.getSpecialColor2()),
                     ),
                   )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(screenWidth * 0.05),
-                    child: Text(
-                        'Apoiadores da Feira Tecnológica\ndo Centro Paula Souza!',
-                        style: TextStyle(
-                            fontSize: screenWidth * 0.045,
-                            color: themeProvider.getSpecialColor3())),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'lib/assets/dinheiro.png',
-                    width: screenWidth * 0.55,
-                  )
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: screenWidth * 0.02,
-                ),
-                child: const Divider(
-                  thickness: 1.5,
-                  color: Colors.grey,
-                ),
+              SizedBox(
+                height: screenHeight * 0.05,
               ),
               for (int i = 0; i < patrocinadores.length; i += 2)
                 Row(

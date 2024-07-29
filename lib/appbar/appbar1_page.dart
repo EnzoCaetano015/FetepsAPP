@@ -1,8 +1,9 @@
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class AppBar1_page extends StatelessWidget implements PreferredSizeWidget {
   final double screenWidth;
@@ -14,29 +15,39 @@ class AppBar1_page extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     String logoAsset = themeProvider.getLogoAsset();
-
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          IconButton(
-            onPressed: () {
+          WillPopScope(
+            onWillPop: () async {
               Navigator.pushReplacement(
                 context,
                 PageTransition(
                   child: destinationPage,
-                  type: PageTransitionType.topToBottom,
+                  type: PageTransitionType.bottomToTop,
                 ),
               );
+              return false;
             },
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Icon(
-                size: screenWidth * 0.075,
-                Icons.arrow_back_sharp,
-                color: themeProvider.getSpecialColor2(),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                    child: destinationPage,
+                    type: PageTransitionType.topToBottom,
+                  ),
+                );
+              },
+              icon: Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Icon(
+                  size: screenWidth * 0.075,
+                  Icons.arrow_back_sharp,
+                  color: themeProvider.getSpecialColor2(),
+                ),
               ),
             ),
           ),

@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class AtualizarDadosPage extends StatefulWidget {
   const AtualizarDadosPage({super.key});
@@ -64,7 +64,16 @@ class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
       final responseData = jsonDecode(await response.stream.bytesToString());
       if (responseData['type'] == 'success' &&
           responseData['message'] == 'Operation completed successfully!') {
-        Future.delayed(const Duration(seconds: 3), () {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              'Dados atualizados com sucesso',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.roboto(
+                  color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            backgroundColor: const Color(0xFFFFD35F),
+            duration: const Duration(seconds: 3)));
+        Future.delayed(const Duration(seconds: 2), () {
           _deucerto();
         });
         return true;
@@ -93,14 +102,6 @@ class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
       (route) => false,
     );
   }
-
-  final snackBar = const SnackBar(
-    content: Text(
-      'Dados atualizados com sucesso',
-      textAlign: TextAlign.center,
-    ),
-    backgroundColor: Colors.redAccent,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +204,7 @@ class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
                                   bool dadosAtualizados =
                                       await _atualizarDados();
                                   if (dadosAtualizados) {
-                                    _deucerto;
+                                    _deucerto();
                                   }
                                 },
                           style: ElevatedButton.styleFrom(
@@ -240,8 +241,8 @@ class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
 
   Padding buildTextField(BuildContext context,
       {required String labelText, required TextEditingController controller}) {
-    final double screenWidth = MediaQuery.of(context).size.width;
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final double screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
       padding:
@@ -260,8 +261,9 @@ class _AtualizarDadosPageState extends State<AtualizarDadosPage> {
                   fontSize: screenWidth * 0.045,
                   fontWeight: FontWeight.bold,
                 ),
-                border: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
+                border: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: themeProvider.getSpecialColor3()),
                 ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(

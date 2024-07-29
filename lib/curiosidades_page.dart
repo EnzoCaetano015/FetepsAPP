@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class CuriosidadePage extends StatelessWidget {
   const CuriosidadePage({super.key});
@@ -19,7 +19,7 @@ class CuriosidadePage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar1_page(
-            screenWidth: screenWidth, destinationPage: SobrePage()),
+            screenWidth: screenWidth, destinationPage: const SobrePage()),
         endDrawer: const MenuPage(),
         body: ListView(
           children: [
@@ -50,13 +50,13 @@ class CuriosidadePage extends StatelessWidget {
                           color: Color(0xFF0C414F),
                           border: Border(
                             left: BorderSide(
-                                color: themeProvider.getSpecialColor3(),
+                                color: themeProvider.getBorderColor(),
                                 width: 2),
                             top: BorderSide(
-                                color: themeProvider.getSpecialColor3(),
+                                color: themeProvider.getBorderColor(),
                                 width: 2),
                             right: BorderSide(
-                                color: themeProvider.getSpecialColor3(),
+                                color: themeProvider.getBorderColor(),
                                 width: 2),
                           ),
                         ),
@@ -81,13 +81,13 @@ class CuriosidadePage extends StatelessWidget {
                           color: Colors.white,
                           border: Border(
                             left: BorderSide(
-                                color: themeProvider.getSpecialColor3(),
+                                color: themeProvider.getBorderColor(),
                                 width: 2),
                             right: BorderSide(
-                                color: themeProvider.getSpecialColor3(),
+                                color: themeProvider.getBorderColor(),
                                 width: 2),
                             bottom: BorderSide(
-                                color: themeProvider.getSpecialColor3(),
+                                color: themeProvider.getBorderColor(),
                                 width: 2),
                           ),
                         ),

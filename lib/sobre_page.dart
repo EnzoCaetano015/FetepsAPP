@@ -1,11 +1,17 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:feteps/participantes_page.dart';
 import 'package:feteps/Menu_Page.dart';
+import 'package:feteps/sobrenos_page.dart';
+import 'package:feteps/telainicial_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class SobrePage extends StatefulWidget {
+  const SobrePage({super.key});
+
   @override
   State<SobrePage> createState() => _SobrePageState();
 }
@@ -32,10 +38,8 @@ class _SobrePageState extends State<SobrePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           title: SizedBox(
             width: 400,
             height: 300,
@@ -74,21 +78,43 @@ class _SobrePageState extends State<SobrePage> {
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
-              child: Row(
-                children: [
-                  Image.asset(
-                    'lib/assets/banner2.png',
-                    width: MediaQuery.of(context).size.width * 1.0,
-                  )
-                ],
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                  enlargeCenterPage: true,
+                ),
+                items: [
+                  'lib/assets/banner2.png',
+                  'lib/assets/banner1.png',
+                  'lib/assets/banner3.png',
+                  'lib/assets/banner2.png',
+                ].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: themeProvider.getSpecialColor2(),
+                                width: 2)),
+                        child: Image.asset(
+                          i,
+                          width: MediaQuery.of(context).size.width * 1.0,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
               ),
             ),
             TabBar(
               indicatorColor: const Color(0xFFFFD35F),
-              labelColor: themeProvider.getSpecialColor2(),
+              labelColor: themeProvider.getSpecialColor3(),
               labelStyle: GoogleFonts.poppins(
-                fontSize: MediaQuery.of(context).size.width * 0.043,
+                fontSize: MediaQuery.of(context).size.width * 0.045,
               ),
               tabs: const [
                 Tab(text: 'Feteps'),
@@ -105,11 +131,11 @@ class _SobrePageState extends State<SobrePage> {
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height * 0.04,
+                              top: screenHeight * 0.025,
                             ),
                             child: Image.asset(
                               'lib/assets/alunos.png',
-                              width: MediaQuery.of(context).size.width * 0.65,
+                              width: screenWidth * 0.65,
                             ),
                           ),
                           Row(
@@ -117,19 +143,21 @@ class _SobrePageState extends State<SobrePage> {
                             children: [
                               Flexible(
                                 child: Padding(
-                                  padding: EdgeInsets.all(
-                                    MediaQuery.of(context).size.width * 0.07,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.of(context).size.width *
+                                            0.07,
                                   ),
                                   child: Text(
                                     _isExpanded
                                         ? _fullText
-                                        : _fullText.substring(0, 636) + '...',
+                                        : _fullText.substring(0, 850) + '...',
                                     style: GoogleFonts.poppins(
-                                      fontSize:
-                                          MediaQuery.of(context).size.width *
-                                              0.04,
-                                      color: themeProvider.getSpecialColor2(),
-                                    ),
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.04,
+                                        color:
+                                            themeProvider.getSpecialColor3()),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -168,6 +196,9 @@ class _SobrePageState extends State<SobrePage> {
                     scrollDirection: Axis.vertical,
                     children: [
                       Column(children: [
+                        SizedBox(
+                          height: screenHeight * 0.045,
+                        ),
                         Padding(
                           padding: EdgeInsets.all(screenWidth * 0.025),
                           child: const EventTable(),
@@ -177,7 +208,7 @@ class _SobrePageState extends State<SobrePage> {
                           children: [
                             Image.asset(
                               'lib/assets/calendario.png',
-                              width: MediaQuery.of(context).size.width * 0.55,
+                              width: MediaQuery.of(context).size.width * 0.45,
                             )
                           ],
                         ),
@@ -205,8 +236,10 @@ class EventTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Container(
-      width: MediaQuery.of(context).size.width * 0.95,
+      width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(2.5),
         border: Border.all(color: Colors.black),
@@ -218,40 +251,52 @@ class EventTable extends StatelessWidget {
         },
         children: [
           _buildTableRow(
-            '10/10/2023\n25/03/2024',
-            'Submissão dos Trabalhos [Prorrogado]',
-            Color(0xFFFFD35F),
-          ),
+              '10/10/2023\n25/03/2024',
+              'Submissão dos Trabalhos [Prorrogado]',
+              Color(0xFFFFD35F),
+              context),
+          _buildTableRow('22/04/2024', 'Início da Etapa de Avaliação',
+              Colors.white, context),
+          _buildTableRow('15/05/2024', 'Divulgação dos Finalistas',
+              Color(0xFFFFD35F), context),
           _buildTableRow(
-              '22/04/2024', 'Início da Etapa de Avaliação', Colors.white),
-          _buildTableRow(
-              '15/05/2024', 'Divulgação dos Finalistas', Color(0xFFFFD35F)),
-          _buildTableRow('19, 20, 21 e 22/08/2024',
-              'Feira Presencial: São Paulo Expo - Pavilhão 7', Colors.white),
+              '19, 20, 21 e 22/08/2024',
+              'Feira Presencial: São Paulo Expo - Pavilhão 7',
+              Colors.white,
+              context),
         ],
       ),
     );
   }
 
-  TableRow _buildTableRow(
-      String date, String description, Color backgroundColor) {
+  TableRow _buildTableRow(String date, String description,
+      Color backgroundColor, BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return TableRow(
       children: [
         Container(
           color: backgroundColor,
-          padding: const EdgeInsets.all(20.66), // Aumenta a altura da linha
+          padding:
+              EdgeInsets.all(screenWidth * 0.042), // Aumenta a altura da linha
           child: Text(
             date,
             style: TextStyle(
-                fontSize: 13, color: Colors.black, fontWeight: FontWeight.bold),
+                fontSize: screenWidth * 0.03,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
           ),
         ),
         Container(
           color: backgroundColor,
-          padding: const EdgeInsets.all(20.0), // Aumenta a altura da linha
+          padding:
+              EdgeInsets.all(screenWidth * 0.04), // Aumenta a altura da linha
           child: Text(
             description,
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: screenWidth * 0.031),
           ),
         ),
       ],

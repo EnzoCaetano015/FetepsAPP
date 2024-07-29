@@ -38,14 +38,14 @@ class _SplashScreenState extends State<SplashScreenPage>
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 3));
     bool isLoggedIn = await verificarToken();
 
     if (isLoggedIn) {
       Navigator.pushReplacement(
         context,
         PageTransition(
-            child:  SobrePage(),
+            child: const SobrePage(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 2000)),
       );
@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreenPage>
       Navigator.pushReplacement(
         context,
         PageTransition(
-            child:  TelaInicialPage(),
+            child: const TelaInicialPage(),
             type: PageTransitionType.fade,
             duration: const Duration(milliseconds: 2000)),
       );
@@ -73,13 +73,13 @@ class _SplashScreenState extends State<SplashScreenPage>
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF0E414F),
-              Color(0xFF8D3E51),
-              Color(0xFFB6382B),
-              Color(0xFFFFD35F),
+              const Color(0xFFFFBF5F),
+              const Color(0xFFFFAA5F),
+              const Color(0xFFA66736),
+              const Color(0xFF85491A),
             ],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
           ),
         ),
         child: Stack(
@@ -92,7 +92,7 @@ class _SplashScreenState extends State<SplashScreenPage>
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.black26,
+                          color: Color(0xFF0E414F),
                           width: 3.5,
                         )),
                     child: ClipOval(

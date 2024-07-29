@@ -13,10 +13,11 @@ import 'package:feteps/NossaEquipe/Gabriel_page.dart';
 import 'package:feteps/NossaEquipe/Richard_page.dart';
 import 'package:feteps/sobrenos_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class NossaEquipePage extends StatefulWidget {
   const NossaEquipePage({super.key});
@@ -95,6 +96,11 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
       "name": "Ribas",
       "image": "lib/assets/equipe/ribas.png",
       "page": "RibasPage"
+    },
+    {
+      "name": "Andrey",
+      "image": "lib/assets/equipe/andrey.png",
+      "page": "AndreyPage"
     }
   ];
 
@@ -122,14 +128,13 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
     String logoAsset = themeProvider.getLogoAsset();
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: SizedBox(
           width: screenWidth * 0.9,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                onPressed: () {
+              WillPopScope(
+                onWillPop: () async {
                   Navigator.pushReplacement(
                     context,
                     PageTransition(
@@ -137,13 +142,25 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                       type: PageTransitionType.bottomToTop,
                     ),
                   );
+                  return false;
                 },
-                icon: Padding(
-                  padding: const EdgeInsets.only(bottom: 8, right: 15),
-                  child: Icon(
-                    size: screenWidth * 0.075,
-                    Icons.arrow_back_sharp,
-                    color: themeProvider.getSpecialColor2(),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                        child: const SobreNosPage(),
+                        type: PageTransitionType.bottomToTop,
+                      ),
+                    );
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.only(bottom: 8, right: 15),
+                    child: Icon(
+                      size: screenWidth * 0.075,
+                      Icons.arrow_back_sharp,
+                      color: themeProvider.getSpecialColor2(),
+                    ),
                   ),
                 ),
               ),
@@ -169,7 +186,6 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: screenHeight * 0.12,
                   child: Row(
                     children: [
                       Padding(
@@ -177,7 +193,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                         child: Text(
                           'Nossa Equipe',
                           style: GoogleFonts.poppins(
-                            fontSize: screenWidth * 0.09,
+                            fontSize: screenWidth * 0.08,
                             fontWeight: FontWeight.bold,
                             color: themeProvider.getSpecialColor2(),
                           ),
@@ -195,9 +211,9 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
                     const Color.fromARGB(255, 112, 70, 132)),
                 _buildProjectSection('Desenvolvimento Mobile',
                     desenvolvimentoMobile, const Color(0xFF0E414F)),
-                _buildProjectSection('Desenvolvimento Web', desenvolvimentoWeb,
-                    const Color(0xFF136A9F)),
-                _buildProjectSection('Desenvolvimento back-end',
+                _buildProjectSection('Desenvolvimento Frontend Web',
+                    desenvolvimentoWeb, const Color(0xFF136A9F)),
+                _buildProjectSection('Desenvolvimento Backend',
                     desenvolvimentoBackend, const Color(0xFFF26A2E)),
                 _buildProjectSection(
                     'Ilustrações', ilustracoes, const Color(0xFF830000)),
@@ -211,8 +227,8 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
 
   Widget _buildProjectSection(
       String title, List<Map<String, String>> teamMembers, Color color) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,7 +238,7 @@ class _NossaEquipePageState extends State<NossaEquipePage> {
           child: Text(
             title,
             style: GoogleFonts.inter(
-              fontSize: screenWidth * 0.06,
+              fontSize: screenWidth * 0.056,
               color: themeProvider.getSpecialColor3(),
               fontWeight: FontWeight.bold,
             ),

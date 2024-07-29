@@ -2,10 +2,11 @@ import 'package:feteps/Menu_Page.dart';
 import 'package:feteps/curiosidades_page.dart';
 import 'package:feteps/sobre_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class Curiosidade2Page extends StatelessWidget {
   const Curiosidade2Page({super.key});
@@ -19,25 +20,36 @@ class Curiosidade2Page extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-              onPressed: () {
+            WillPopScope(
+              onWillPop: () async {
                 Navigator.pushReplacement(
                   context,
                   PageTransition(
-                      child: CuriosidadePage(),
-                      type: PageTransitionType.bottomToTop),
+                    child: CuriosidadePage(),
+                    type: PageTransitionType.bottomToTop,
+                  ),
                 );
+                return false;
               },
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 8, right: 15),
-                child: Icon(
-                  size: screenWidth * 0.075,
-                  Icons.arrow_back_sharp,
-                  color: themeProvider.getSpecialColor2(),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        child: const CuriosidadePage(),
+                        type: PageTransitionType.bottomToTop),
+                  );
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 8, right: 15),
+                  child: Icon(
+                    size: screenWidth * 0.075,
+                    Icons.arrow_back_sharp,
+                    color: themeProvider.getSpecialColor2(),
+                  ),
                 ),
               ),
             ),

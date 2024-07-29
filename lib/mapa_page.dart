@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class MapaPage extends StatelessWidget {
   const MapaPage({super.key});
@@ -17,8 +17,8 @@ class MapaPage extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar:
-          AppBar1_page(screenWidth: screenWidth, destinationPage: SobrePage()),
+      appBar: AppBar1_page(
+          screenWidth: screenWidth, destinationPage: const SobrePage()),
       endDrawer: const MenuPage(),
       body: ListView(children: [
         Column(children: [

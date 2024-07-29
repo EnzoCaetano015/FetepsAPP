@@ -1,15 +1,30 @@
+import 'package:feteps/avaliar_page.dart';
 import 'package:feteps/global.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
+// Importe a página de avaliação
 
 class VotarPage extends StatefulWidget {
   final Map<String, dynamic> project;
+  final int fiveStars;
+  final int fourStars;
+  final int threeStars;
+  final int twoStars;
+  final int oneStar;
 
-  const VotarPage({super.key, required this.project});
+  const VotarPage({
+    super.key,
+    required this.project,
+    required this.fiveStars,
+    required this.fourStars,
+    required this.threeStars,
+    required this.twoStars,
+    required this.oneStar,
+  });
 
   @override
   _VotarPageState createState() => _VotarPageState();
@@ -84,52 +99,73 @@ class _VotarPageState extends State<VotarPage> {
     };
 
     String starKey;
+    int updatedValue;
+
     switch (rating) {
       case 5:
         starKey = 'five_stars';
+        updatedValue = widget.fiveStars + 1;
         break;
       case 4:
         starKey = 'four_stars';
+        updatedValue = widget.fourStars + 1;
         break;
       case 3:
         starKey = 'three_stars';
+        updatedValue = widget.threeStars + 1;
         break;
       case 2:
         starKey = 'two_stars';
+        updatedValue = widget.twoStars + 1;
         break;
       case 1:
       default:
         starKey = 'one_star';
+        updatedValue = widget.oneStar + 1;
         break;
     }
 
     var request = http.MultipartRequest('POST', Uri.parse(apiUrl))
       ..headers.addAll(headers)
       ..fields['id'] = idProjeto
-      ..fields[starKey] = '1';
+      ..fields[starKey] = updatedValue.toString();
 
     try {
       final response = await request.send();
 
       if (response.statusCode == 200) {
         print('Voto enviado com sucesso');
-        // Adicione qualquer lógica adicional em caso de sucesso
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Voto enviado com sucesso')),
+        );
+        // Redirecionar para AvaliacaoPage após o sucesso e 3 segundos
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => AvaliacaoPage()),
+          );
+        });
       } else {
         print('Falha ao enviar voto: ${response.reasonPhrase}');
-        // Adicione qualquer lógica adicional em caso de falha
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text('Falha ao enviar voto: ${response.reasonPhrase}')),
+        );
       }
     } catch (e) {
       print('Erro ao enviar voto: $e');
-      // Adicione qualquer lógica adicional em caso de erro
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao enviar voto: $e')),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
     final themeProvider = Provider.of<ThemeProvider>(context);
     String logoAsset = themeProvider.getLogoAsset();
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
     final String? bannerUrl = widget.project['banner'];
     String odsId =
         widget.project['ods']['id_ods']?.toString() ?? 'ID ODS Não Disponível';
@@ -193,7 +229,7 @@ class _VotarPageState extends State<VotarPage> {
               height: screenHeight * 0.25,
               decoration: BoxDecoration(
                   border: Border.all(
-                color: themeProvider.getSpecialColor3(),
+                color: themeProvider.getBorderColor(),
                 width: 2.5,
               )),
               child: Image.network(
@@ -218,9 +254,10 @@ class _VotarPageState extends State<VotarPage> {
           Text(
             widget.project['name_project'] ?? 'Nome do Projeto',
             style: GoogleFonts.inter(
-                fontSize: screenWidth * 0.06,
-                fontWeight: FontWeight.bold,
-                color: themeProvider.getSpecialColor3()),
+              fontSize: screenWidth * 0.06,
+              fontWeight: FontWeight.bold,
+              color: themeProvider.getSpecialColor3(),
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -229,13 +266,13 @@ class _VotarPageState extends State<VotarPage> {
             style: GoogleFonts.inter(
               fontSize: screenWidth * 0.048,
               fontWeight: FontWeight.bold,
-              color: const Color.fromARGB(255, 208, 20, 20),
+              color: themeProvider.getSpecialColor(),
             ),
+            textAlign: TextAlign.start,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Text(
-            widget.project['project_abstract'] ??
-                'Lorem ipsum dolor sit amet...',
+            widget.project['project_abstract'] ?? 'Descrição do Projeto',
             style: GoogleFonts.inter(
               fontSize: screenWidth * 0.042,
               color: themeProvider.getSpecialColor3(),
@@ -266,15 +303,16 @@ class _VotarPageState extends State<VotarPage> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: StarRating(
-                    maximumRating: 5,
-                    onChanged: (rating) {
-                      setState(() {
-                        _currentRating = rating;
-                      });
-                      print('Avaliação atual: $rating');
-                    },
-                    size: 35,
-                    color: themeProvider.getSpecialColor()),
+                  maximumRating: 5,
+                  onChanged: (rating) {
+                    setState(() {
+                      _currentRating = rating;
+                    });
+                    print('Avaliação atual: $rating');
+                  },
+                  size: 35,
+                  color: themeProvider.getSpecialColor(),
+                ),
               ),
             ],
           ),

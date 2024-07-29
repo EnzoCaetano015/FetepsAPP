@@ -15,7 +15,7 @@ import 'telainicial_page.dart';
 import 'global.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:feteps/Modos/theme_provider.dart';
+import 'package:feteps/Temas/theme_provider.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -100,39 +100,37 @@ class _PerfilPageState extends State<PerfilPage> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     final themeProvider = Provider.of<ThemeProvider>(context);
+    String logoAsset = themeProvider.getLogoAsset();
 
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar:
-          AppBar1_page(screenWidth: screenWidth, destinationPage: SobrePage()),
-      endDrawer: MenuPage(),
+      appBar: AppBar1_page(
+          screenWidth: screenWidth, destinationPage: const SobrePage()),
+      endDrawer: const MenuPage(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildHeader(screenHeight, screenWidth, context),
-            _buildUserInfo(screenHeight, screenWidth, context),
-            _buildInstitutionField(screenWidth, screenHeight, context),
-            _buildActionItems(screenHeight, screenWidth, context),
-            _buildLogoutButton(screenWidth, screenHeight, context),
+            _buildHeader(screenHeight, screenWidth),
+            _buildUserInfo(screenHeight, screenWidth),
+            _buildInstitutionField(screenWidth, screenHeight),
+            _buildActionItems(screenHeight, screenWidth),
+            _buildLogoutButton(screenWidth, screenHeight),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: screenWidth * 0.048,
-                vertical: screenHeight * 0.01,
-              ),
+                  horizontal: screenWidth * 0.048,
+                  vertical: screenHeight * 0.01),
               child: Divider(
-                color: Theme.of(context).appBarTheme.foregroundColor,
+                color: themeProvider.getSpecialColor3(),
               ),
             ),
             _buildDocumentsImage(screenWidth, screenHeight),
-            _buildPrivacyPolicyLink(screenWidth, screenHeight, context),
+            _buildPrivacyPolicyLink(screenWidth, screenHeight),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHeader(
-      double screenHeight, double screenWidth, BuildContext context) {
+  Widget _buildHeader(double screenHeight, double screenWidth) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return SizedBox(
       child: Row(
@@ -144,7 +142,7 @@ class _PerfilPageState extends State<PerfilPage> {
               'Perfil',
               style: GoogleFonts.poppins(
                 fontSize: screenWidth * 0.08,
-                color: themeProvider.getSpecialColor3(),
+                color: themeProvider.getSpecialColor2(),
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -154,10 +152,13 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Widget _buildUserInfo(
-      double screenHeight, double screenWidth, BuildContext context) {
+  Widget _buildUserInfo(double screenHeight, double screenWidth) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     double fontSize = screenWidth * 0.065;
+    String displayedNomeUsuario = nomeUsuario.length > 20
+        ? '${nomeUsuario.substring(0, 16)}...'
+        : nomeUsuario;
+
     if (nomeUsuario.length > 15) {
       int excessLength = nomeUsuario.length - 15;
       double reductionFactor = 0.005 * excessLength;
@@ -165,14 +166,15 @@ class _PerfilPageState extends State<PerfilPage> {
     }
 
     return SizedBox(
-      height: screenHeight * 0.18,
+      height: screenHeight * 0.15,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: screenWidth * 0.06),
+            padding: EdgeInsets.only(left: screenWidth * 0.025),
             child: SvgPicture.network(
               'https://api.dicebear.com/9.x/bottts/svg?seed=$nomeUsuario',
-              height: screenWidth * 0.3,
+              height: screenHeight * 0.15,
               width: screenWidth * 0.3,
               placeholderBuilder: (context) => CircularProgressIndicator(),
             ),
@@ -189,11 +191,12 @@ class _PerfilPageState extends State<PerfilPage> {
                       TextSpan(
                         text: 'Olá\n',
                         style: GoogleFonts.poppins(
-                            fontSize: fontSize,
-                            color: themeProvider.getSpecialColor3()),
+                          fontSize: fontSize,
+                          color: themeProvider.getSpecialColor3(),
+                        ),
                       ),
                       TextSpan(
-                        text: nomeUsuario,
+                        text: displayedNomeUsuario,
                         style: GoogleFonts.poppins(
                           fontSize: fontSize,
                           color: const Color(0xFFD4A03D),
@@ -211,22 +214,18 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Widget _buildInstitutionField(
-      double screenWidth, double screenHeight, BuildContext context) {
+  Widget _buildInstitutionField(double screenWidth, double screenHeight) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: EdgeInsets.only(
-        left: screenWidth * 0.06,
-        bottom: screenHeight * 0.05,
-      ),
+          left: screenWidth * 0.06, bottom: screenHeight * 0.035),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: themeProvider.getSpecialColor(),
                   width: 0.9,
                 ),
               ),
@@ -244,15 +243,13 @@ class _PerfilPageState extends State<PerfilPage> {
                 ),
                 border: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: themeProvider.getSpecialColor3(),
+                    color: themeProvider.getBorderColor(),
                   ),
                 ),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: const Color(0xFFD4A03D),
-                    width: screenWidth * 0.005,
-                  ),
-                ),
+                    borderSide: BorderSide(
+                        color: const Color(0xFFD4A03D),
+                        width: screenWidth * 0.005)),
               ),
             ),
           ),
@@ -261,8 +258,7 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Widget _buildActionItems(
-      double screenHeight, double screenWidth, BuildContext context) {
+  Widget _buildActionItems(double screenHeight, double screenWidth) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
@@ -271,15 +267,13 @@ class _PerfilPageState extends State<PerfilPage> {
           screenWidth,
           label: 'Meus Dados',
           onTap: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               PageTransition(
-                child:  MeusDadosPage(),
-                type: PageTransitionType.rightToLeft,
-              ),
+                  child: const MeusDadosPage(),
+                  type: PageTransitionType.rightToLeft),
             );
           },
-          context: context,
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.048),
@@ -292,7 +286,7 @@ class _PerfilPageState extends State<PerfilPage> {
           screenWidth,
           label: 'Alterar senha',
           onTap: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               PageTransition(
                 child: AlterarSenhaPage(idUsuario: idUsuario),
@@ -300,7 +294,6 @@ class _PerfilPageState extends State<PerfilPage> {
               ),
             );
           },
-          context: context,
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.048),
@@ -317,7 +310,6 @@ class _PerfilPageState extends State<PerfilPage> {
     double screenWidth, {
     required String label,
     required VoidCallback onTap,
-    required BuildContext context,
   }) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return GestureDetector(
@@ -354,8 +346,7 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Widget _buildLogoutButton(
-      double screenWidth, double screenHeight, BuildContext context) {
+  Widget _buildLogoutButton(double screenWidth, double screenHeight) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Padding(
       padding: EdgeInsets.only(
@@ -363,7 +354,7 @@ class _PerfilPageState extends State<PerfilPage> {
         top: screenHeight * 0.015,
       ),
       child: GestureDetector(
-        onTap: () => _logout(context),
+        onTap: Sair,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
@@ -393,7 +384,7 @@ class _PerfilPageState extends State<PerfilPage> {
 
   Widget _buildDocumentsImage(double screenWidth, double screenHeight) {
     return Padding(
-      padding: EdgeInsets.only(top: screenHeight * 0.02),
+      padding: EdgeInsets.only(top: screenHeight * 0.01),
       child: Image.asset(
         'lib/assets/documentos.png',
         width: screenWidth * 0.5,
@@ -401,15 +392,14 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Widget _buildPrivacyPolicyLink(
-      double screenWidth, double screenHeight, BuildContext context) {
+  Widget _buildPrivacyPolicyLink(double screenWidth, double screenHeight) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return GestureDetector(
       onTap: () {
-        showPrivacyPolicy(context);
+        showPrivacyPolicy();
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
+        padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
         child: Text(
           'Política de Privacidade',
           style: GoogleFonts.poppins(
@@ -424,7 +414,7 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  void showPrivacyPolicy(BuildContext context) {
+  void showPrivacyPolicy() {
     showDialog(
       context: context,
       builder: (context) {
@@ -454,13 +444,70 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  Future<void> _logout(BuildContext context) async {
+  void Sair() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Color.fromARGB(255, 199, 199, 199),
+          title: Center(
+              child: Text(
+            "Aviso!",
+            style: GoogleFonts.poppins(color: const Color(0xFFB6382B)),
+          )),
+          content: Container(
+            height: MediaQuery.of(context).size.height * 0.08,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.64,
+                      child: Text(
+                        'Essa ação irá te desconectar do aplicativo, deseja prosseguir?',
+                        style: GoogleFonts.roboto(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          actions: [
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  _logout();
+                },
+                child: Text(
+                  "Confirmar",
+                  style: TextStyle(
+                      color: const Color(0xFFB6382B),
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      decoration: TextDecoration.underline,
+                      decorationColor: const Color(0xFFB6382B),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
 
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => TelaInicialPage()),
+      MaterialPageRoute(builder: (context) => const TelaInicialPage()),
       (route) => false,
     );
   }
