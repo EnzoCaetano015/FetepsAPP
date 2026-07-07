@@ -1,7 +1,7 @@
 
 # 📱🎉 FETEPS App — Aplicativo Oficial da Feira Tecnológica do CPS
 
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Finalizado-green?style=for-the-badge)
 ![Flutter](https://img.shields.io/badge/Flutter-3.0+-blue?style=for-the-badge&logo=flutter)
 ![Dart](https://img.shields.io/badge/Dart-3.0+-blue?style=for-the-badge&logo=dart)
 ![Licença](https://img.shields.io/badge/Licença-Não%20definida-lightgrey?style=for-the-badge)
